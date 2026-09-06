@@ -5,11 +5,19 @@ resources/
 *.bin
 *.bin.manifest
 
-# Portable runtime (21MB, re-downloadable from python.org)
-runtime/
+# Portable runtime binaries (folder + README are tracked; binaries are not)
+runtime/python.exe
+runtime/*.dll
+runtime/*.pyd
+runtime/*.zip
+runtime/Lib/
+runtime/Scripts/
 
-# User state / saves (personal data)
-user-data/
+# Personal save state / logs (never commit these)
+user-data/bootstrap-state.json
+user-data/events.jsonl
+user-data/*.json.lock
+user-data/backups/
 logs/
 
 # Client binaries

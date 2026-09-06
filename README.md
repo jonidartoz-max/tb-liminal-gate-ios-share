@@ -32,14 +32,14 @@ TB-SHARE - Liminal Gate\
 ├── server_json\                 <- prebuilt manifests: resources.json +
 │                                    resources_ios2.json (SHA-256 of every
 │                                    resource file), profile copy
-├── resources\                   <- [not in repo] iOS_2 asset pack (~505 MB,
+├── resources\                   <- [you provide] iOS_2 asset pack (~505 MB,
 │                                    copyrighted art - see "Resources")
-├── user-data\                   <- [created at runtime] your save state
-│                                    (bootstrap-state.json), event log,
-│                                    public_data\ banners - back this up!
-├── runtime\                     <- [optional] portable Python 3.11
-│                                    (python.org download; the launcher
-│                                    falls back to system python without it)
+├── user-data\                   <- save state (created at runtime) +
+│                                    public_data\ banners & patchData.zip
+│                                    (shipped in this repo)
+├── runtime\                     <- [optional] drop a portable Python 3.11
+│                                    here (see runtime/README.md); the
+│                                    launcher falls back to system Python
 ├── START-SERVER-WINDOWS.bat     <- one-click server (Windows)
 ├── START-SERVER-LINUX-MAC.sh    <- one-click server (Linux/macOS)
 ├── STOP-SERVER-*.bat/.sh        <- stop helpers
@@ -50,7 +50,6 @@ TB-SHARE - Liminal Gate\
 ├── TerraBattle-UNPATCHED-template.ipa  <- clean iOS client build (patch this)
 ├── FIX-LOG-EN.md                <- full fix log (change device, inbox,
 │                                    chapter 20+, quest flow)
-├── FIX-DAILY-ENERGY-CLAIM.md    <- daily gift runbook
 └── README-QUICKSTART-EN.txt     <- the original player-facing quick start
 ```
 
