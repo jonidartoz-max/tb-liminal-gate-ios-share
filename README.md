@@ -17,6 +17,10 @@ fixes and the one-click portable launcher on top).
 
 ## What is included (and what is NOT)
 
+Complete folder layout of the share — everything below exists locally after
+setup; folders marked **[not in repo]** are created at runtime or fetched
+separately (reasons given):
+
 ```
 TB-SHARE - Liminal Gate\
 ├── project-liminal-gate\        <- server source (Python, stdlib only)
@@ -25,10 +29,17 @@ TB-SHARE - Liminal Gate\
 │   ├── scripts\, tools\         <- build/import helpers
 │   └── pyproject.toml
 ├── profiles\                    <- profile copy used by the launcher
-├── resources\                   <- NOT IN THIS REPO (see "Resources" below)
-├── user-data\                   <- created at runtime (state, event log,
-│                                    public_data banners) - not in repo
-├── runtime\                     <- portable Python (not in repo, optional)
+├── server_json\                 <- prebuilt manifests: resources.json +
+│                                    resources_ios2.json (SHA-256 of every
+│                                    resource file), profile copy
+├── resources\                   <- [not in repo] iOS_2 asset pack (~505 MB,
+│                                    copyrighted art - see "Resources")
+├── user-data\                   <- [created at runtime] your save state
+│                                    (bootstrap-state.json), event log,
+│                                    public_data\ banners - back this up!
+├── runtime\                     <- [optional] portable Python 3.11
+│                                    (python.org download; the launcher
+│                                    falls back to system python without it)
 ├── START-SERVER-WINDOWS.bat     <- one-click server (Windows)
 ├── START-SERVER-LINUX-MAC.sh    <- one-click server (Linux/macOS)
 ├── STOP-SERVER-*.bat/.sh        <- stop helpers
@@ -39,7 +50,7 @@ TB-SHARE - Liminal Gate\
 ├── TerraBattle-UNPATCHED-template.ipa  <- clean iOS client build (patch this)
 ├── FIX-LOG-EN.md                <- full fix log (change device, inbox,
 │                                    chapter 20+, quest flow)
-├── FIX-DAILY-ENERGY-CLAIM.md        <- daily gift runbook
+├── FIX-DAILY-ENERGY-CLAIM.md    <- daily gift runbook
 └── README-QUICKSTART-EN.txt     <- the original player-facing quick start
 ```
 
