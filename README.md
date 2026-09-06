@@ -1,6 +1,6 @@
-# Terra Battle — Liminal Gate (iOS Private Server Share)
+# Liminal Gate TB1 — Terra Battle (iOS Private Server Share)
 
-A portable, self-contained private server for **Terra Battle (iOS version)** —
+**Liminal Gate TB1** is a portable, self-contained private server for **Terra Battle (iOS version)** —
 the complete "data transfer / change device" feature, daily energy gifts,
 recruit banners, patch data, and the chapter 20+ progression fix, all working
 out of one folder.
@@ -36,6 +36,7 @@ TB-SHARE - Liminal Gate\
 ├── PATCH-ME.py                  <- IPA URL patcher (26-char slot, null-pad)
 ├── PATCH-ME-WINDOWS.bat/.sh     <- patcher wrappers
 ├── extract_code.py              <- extracts source on first run
+├── TerraBattle-UNPATCHED-template.ipa  <- clean iOS client build (patch this)
 ├── FIX-CHANGE-DEVICE-AND-INBOX.md   <- full fix log (change device, inbox,
 │                                        chapter 20+, reTB ports)
 ├── FIX-DAILY-ENERGY-CLAIM.md        <- daily 10-energy fix log
@@ -78,9 +79,11 @@ The launcher passes `--resource-root resources\iOS_2`, and the manifest in
 1. **Start the server** — `START-SERVER-WINDOWS.bat` (or the `.sh` on
    Linux/macOS). First boot takes 1–5 minutes (SHA-256 validation of every
    resource file). Ready when `/healthz` returns `{"status":"ok"}`.
-2. **Patch the IPA** — run `PATCH-ME-WINDOWS.bat`, enter your PC's LAN IP
-   (or Tailscale 100.x IP) when asked. The patcher pads short addresses with
-   null bytes to fill the fixed 26-char slot inside the binary.
+2. **Patch the IPA** — this repo ships the clean client build
+   (`TerraBattle-UNPATCHED-template.ipa`, iOS version). Run
+   `PATCH-ME-WINDOWS.bat`, enter your PC's LAN IP (or Tailscale 100.x IP) when
+   asked. The patcher pads short addresses with null bytes to fill the fixed
+   26-char slot inside the binary.
    Output: `TerraBattle-PATCHED.ipa` — side-load it (Sideloadly/AltStore).
 3. **Play** — open the game on the iPhone; the title screen will hit your
    server directly.

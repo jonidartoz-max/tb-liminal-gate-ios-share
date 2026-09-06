@@ -13,7 +13,6 @@ user-data/
 logs/
 
 # Client binaries
-*.ipa
 *.apk
 
 # Build artifacts
