@@ -1,0 +1,33 @@
+# .gitignore — Terra Battle Liminal Gate share
+
+# Resource pack (copyrighted game art — see README "Resources")
+resources/
+*.bin
+*.bin.manifest
+
+# Portable runtime (21MB, re-downloadable from python.org)
+runtime/
+
+# User state / saves (personal data)
+user-data/
+logs/
+
+# Client binaries
+*.ipa
+*.apk
+
+# Build artifacts
+project-liminal-gate-source.tar.gz
+server_json/
+_chkstate.py
+
+# Python junk
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# OS junk
+Thumbs.db
+.DS_Store
