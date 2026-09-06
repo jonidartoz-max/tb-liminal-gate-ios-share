@@ -15,10 +15,10 @@ logs/
 # Client binaries
 *.apk
 
-# Build artifacts
+# Build artifacts / debug
 project-liminal-gate-source.tar.gz
-server_json/
 _chkstate.py
+server_json/bootstrap-state.json
 
 # Python junk
 __pycache__/

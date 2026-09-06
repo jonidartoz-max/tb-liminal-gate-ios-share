@@ -1,0 +1,10 @@
+{
+  "tools": {
+    "dotnet_root": "/root/project-liminal-gate/user-data/toolchain/dotnet",
+    "il2cpp_dumper": "/root/project-liminal-gate/user-data/toolchain/il2cpp-dumper/Il2CppDumper.dll",
+    "java_home": "/root/project-liminal-gate/user-data/toolchain/jdk/jdk-17.0.20.1+1",
+    "objdump": "/root/project-liminal-gate/user-data/toolchain/android-sdk/ndk/27.3.13750724/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-objdump",
+    "sdk_root": "/root/project-liminal-gate/user-data/toolchain/android-sdk"
+  },
+  "version": 1
+}
