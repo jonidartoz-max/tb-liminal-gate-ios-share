@@ -9,6 +9,10 @@ Server code base: forked from [anzensan/project-liminal-gate](https://github.com
 (you are likely on a fork of it already — this repo adds the iOS-specific
 fixes and the one-click portable launcher on top).
 
+> **New here? Read the full step-by-step guide: [`GUIDE.md`](GUIDE.md)** —
+> every step in detail (resource pack, IPA patching, side-loading, Tailscale,
+> change device, troubleshooting).
+
 > **This is the iOS version** of the game client (IPA side-load). The patcher
 > rewrites the hardcoded server URL inside the IPA binary (9 slots, fixed
 > 26-character window, null-padded).
