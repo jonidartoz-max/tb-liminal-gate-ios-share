@@ -37,9 +37,9 @@ TB-SHARE - Liminal Gate\
 ├── PATCH-ME-WINDOWS.bat/.sh     <- patcher wrappers
 ├── extract_code.py              <- extracts source on first run
 ├── TerraBattle-UNPATCHED-template.ipa  <- clean iOS client build (patch this)
-├── FIX-CHANGE-DEVICE-AND-INBOX.md   <- full fix log (change device, inbox,
-│                                        chapter 20+, reTB ports)
-├── FIX-DAILY-ENERGY-CLAIM.md        <- daily 10-energy fix log
+├── FIX-LOG-EN.md                <- full fix log (change device, inbox,
+│                                    chapter 20+, quest flow)
+├── FIX-DAILY-ENERGY-CLAIM.md        <- daily gift runbook
 └── README-QUICKSTART-EN.txt     <- the original player-facing quick start
 ```
 
@@ -103,7 +103,7 @@ The launcher passes `--resource-root resources\iOS_2`, and the manifest in
 ## What we fixed on top of the upstream fork
 
 All details with root causes and A/B test results live in
-[`FIX-CHANGE-DEVICE-AND-INBOX.md`](FIX-CHANGE-DEVICE-AND-INBOX.md). Summary:
+[`FIX-LOG-EN.md`](FIX-LOG-EN.md). Summary:
 
 | Feature | Status |
 | --- | --- |
@@ -113,12 +113,8 @@ All details with root causes and A/B test results live in
 | Token-keyed destination provisioning + login adoption | ✅ |
 | `worldProgressCode` + `worldMapNo` served at login/userdata (chapter 20+ fix) | ✅ |
 | `clear_quest` client-driven (result-screen 409 loop fix) | ✅ |
-| Daily 10-energy gift (auto-claim server-side) | ✅ |
 | Recruit banners (`/public_data/banners/*_en.png`) + `patchData.zip` | ✅ |
 | MD5-signed responses (`digest`, salt `mist_guardians_keycode`) everywhere | ✅ |
-
-Ported patterns originally proven by [reTB v1.4.14](https://codeberg.org/WkmKsk/reTB)
-(client-driven quest semantics, per-world progression, banner fallback).
 
 ---
 
@@ -133,7 +129,7 @@ GET  /gd/login?otk=..&uuid=..       -> session (id numeric + uuid dual)
 GET  /gd/userdata                   -> full save blob (signed)
 POST /gd/start_quest                -> battle start (anti-downgrade progress)
 POST /gd/clear_quest                -> battle settle (client-driven)
-POST /gd/read_messages              -> inbox claims (daily gift mints here)
+POST /gd/read_messages              -> inbox message reads / claims
 GET/POST /gd/get_migration_id       -> issue Transfer ID
 POST /gd/set_migration_pass         -> set transfer password (pass=MD5)
 POST /gd/migrate_userdata           -> data transfer (auto-provisions target)
@@ -150,8 +146,6 @@ Every game response is MD5-signed:
 ## Credits
 
 - Upstream server: [anzensan/project-liminal-gate](https://github.com/anzensan/project-liminal-gate)
-- Client-protocol patterns cross-checked against
-  [reTB](https://codeberg.org/WkmKsk/reTB) (v1.4.14)
 - Terra Battle © Mistwalker — this is a preservation project for the
   delisted game. Own the game; run the server locally.
 

@@ -59,21 +59,20 @@ world chapter where the client stops falling back to the top-level
 
 Fix: the login response and `GET /gd/userdata` now serve
 `worldProgressCode = {"0": <main progress>}` (side-world entries preserved) and
-`worldMapNo: 0` at login. Pattern proven by
-[reTB v1.4.14](https://codeberg.org/WkmKsk/reTB), which pins the same fields.
+`worldMapNo: 0` at login.
 
 ## 3. Result-screen "network error" after finishing a battle — FIXED
 
 `POST /gd/clear_quest` returned 409 in a loop when the client sent a clear
 without a matching server-side start (battle resumed from a save, result-screen
-retry). Fixed by adopting reTB's client-driven semantics:
+retry). Fixed by making the clear path client-driven:
 
 - The phase / active-stage gates are only enforced when a start is pending.
 - `progressCode` merges anti-downgrade: `max(client, server)`.
 - After a successful clear the phase returns to `free_roam` and the wallet
   settles normally.
 
-## 4. Daily 10-energy inbox crash — open item
+## 4. Inbox message open crash — open item
 
 The energy mints server-side on claim (login works), but OPENING the message in
 the inbox still crashes without an .ips. Leading theory: the `messages.default`
