@@ -123,7 +123,7 @@ MAX_REQUEST_BODY_BYTES = 4 * 1024 * 1024
 ACCOUNT_STATE_BACKUP_COUNT = 5
 PACT_BANNER_FILES = {
     # Client requests <asset>_<lang>.png; the shipped banner PNGs use bare
-    # names (ported from reTB). The language suffix is stripped when resolving.
+    # names (language suffix is stripped when resolving).
     "/public_data/banners/sl_truth_01_en.png": "sl_truth_01.png",
     "/public_data/banners/slb_truth_01_en.png": "slb_truth_01.png",
     "/public_data/banners/sl_friend_01_en.png": "sl_friend_01.png",
@@ -2913,7 +2913,7 @@ class BootstrapState:
                 + (reported_battle_coins if event else 0)
                 + chest_coins(authored_chest)
             )
-            # Client-driven clear (reTB semantics): the client may finish a
+            # Client-driven clear: the client may finish a
             # battle whose start never reached us (app resume, result-screen
             # retry, offline completion). Rejecting those wedges the result
             # screen into a 409 loop ("network error" after finishing a run).
@@ -3503,7 +3503,7 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             banners_dir = self.server.public_data_root / "banners"
             # <asset>_<lang>.png resolves to the language-stripped asset, like
             # the client's own fallback; unknown names fall back by kind
-            # (truth/friend/luck/campaign) then to default.png — mirroring reTB.
+            # (truth/friend/luck/campaign) then to default.png.
             import re as _re
             from pathlib import Path as _Path
             stem = _re.sub(r"_(en|ja|fr|de|es|zh_tw|zh|ko)$", "", _Path(path).name.rsplit(".", 1)[0])
@@ -3636,7 +3636,7 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             # worldProgressCode[str(world)] — a missing world entry reads as
             # "everything locked", which is the "network error from chapter 20
             # onwards" (the first main-world chapter where the client stops
-            # falling back to the top-level progressCode). reTB serves the same
+            # falling back to the top-level progressCode). Serve the same
             # dict and pins worldMapNo=0 so every boot opens the main world.
             login_progress = self.server.state.accounts[resolved].get(
                 "userdata", {}
