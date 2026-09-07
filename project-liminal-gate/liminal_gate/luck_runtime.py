@@ -33,6 +33,11 @@ from liminal_gate.luck_data import (
     team_luck,
 )
 from liminal_gate.luck_pool_data import pool_for
+from liminal_gate.server_constants import (
+    BUDDY_LUCK_UP,
+    BUDDY_LUCK_UP_BOOST,
+    BUDDY_TEAM_LUCK_UP,
+)
 
 #: The six wire slots, empty-string for a slot that did not appear. The client
 #: reads a fixed-length array and treats an empty entry as no chest.
@@ -57,26 +62,43 @@ def _seeded(*parts: object) -> random.Random:
 def party_team_luck(userdata: dict) -> int:
     """Read the account's current team Luck in tenths from its own save.
 
-    Companion Luck effects are not applied here. The client publishes the three
-    constants that describe them and computes its own display value; this server
-    does not model which Companion is equipped to which party member, so the
-    average is taken over the characters' stored Luck alone. The effect is that
-    a Companion-boosted team is treated as slightly unluckier than the client
-    shows it, which errs toward fewer chests rather than more.
+    Companion Luck effects ARE applied, from the account's own save plus the
+    same constant tables the client received in server constants: each party
+    member's equipped Companion (``chrdata.buddy`` -> ``buddyInfo.iid`` ->
+    ``bid``) contributes its personal bonus from ``luckUpBuddies``, and the
+    equipped set's team bonuses from ``teamLuckUpBuddies`` are summed once.
+    This mirrors the client's display math so the chest odds the server rolls
+    match the Luck value the player sees on screen.
     """
     roster = userdata.get("chrdata")
     party = userdata.get("teamMembers")
     if not isinstance(roster, list) or not isinstance(party, list):
         return 0
-    luck_by_id = {
-        row.get("id"): int(row.get("luck", 0))
-        for row in roster
-        if isinstance(row, dict) and type(row.get("luck", 0)) is int
-    }
+    luck_by_id: dict[int, int] = {}
+    buddy_iid_by_id: dict[int, int] = {}
+    for row in roster:
+        if isinstance(row, dict) and type(row.get("id")) is int:
+            if type(row.get("luck", 0)) is int:
+                luck_by_id[row["id"]] = row["luck"]
+            if type(row.get("buddy", 0)) is int and row.get("buddy", 0):
+                buddy_iid_by_id[row["id"]] = row["buddy"]
+    personal_bonuses: list[int] = []
+    team_bonus = 0
+    if buddy_iid_by_id:
+        bid_by_iid: dict[int, int] = {}
+        for companion in userdata.get("buddyInfo", {}).get("list", []) or []:
+            if isinstance(companion, dict) and type(companion.get("iid")) is int:
+                bid_by_iid[companion["iid"]] = companion.get("bid", 0)
+        for member in party[:6]:
+            if not member:
+                continue
+            bid = bid_by_iid.get(buddy_iid_by_id.get(member, 0), 0)
+            personal_bonuses.append(BUDDY_LUCK_UP.get(str(bid), 0))
+            team_bonus += BUDDY_TEAM_LUCK_UP.get(str(bid), 0)
     members = tuple(
         luck_by_id.get(member, 0) for member in party[:6] if member
     )
-    return team_luck(members)
+    return team_luck(members, tuple(personal_bonuses), team_bonus)
 
 
 def roll_luck_result(
@@ -109,6 +131,9 @@ def roll_luck_up_table(
     A quest costing less than eight stamina never raises Luck, which is the
     developer's own rule and excludes every Daily Quest, all of which are free.
     A character at its ceiling stays there, and an empty slot stays zero.
+    Royal Ringstone (a companion's equipped buddy id in
+    ``BUDDY_LUCK_UP_BOOST``) doubles a successful increment, its documented
+    effect, applied before the ceiling clamp.
     """
     party = userdata.get("teamMembers")
     if not isinstance(party, list):
@@ -117,11 +142,21 @@ def roll_luck_up_table(
     if not gains_luck(stamina):
         return [0] * 6
     roster = userdata.get("chrdata")
-    current = {
-        row.get("id"): int(row.get("luck", 0))
-        for row in roster
-        if isinstance(roster, list) and isinstance(row, dict) and type(row.get("luck", 0)) is int
-    }
+    current: dict[int, int] = {}
+    buddy_iid_by_id: dict[int, int] = {}
+    if isinstance(roster, list):
+        for row in roster:
+            if isinstance(row, dict) and type(row.get("id")) is int:
+                if type(row.get("luck", 0)) is int:
+                    current[row["id"]] = row["luck"]
+                if type(row.get("buddy", 0)) is int and row.get("buddy", 0):
+                    buddy_iid_by_id[row["id"]] = row["buddy"]
+    bid_by_iid: dict[int, int] = {}
+    buddy_info = userdata.get("buddyInfo")
+    if isinstance(buddy_info, dict):
+        for companion in buddy_info.get("list", []) or []:
+            if isinstance(companion, dict) and type(companion.get("iid")) is int:
+                bid_by_iid[companion["iid"]] = companion.get("bid", 0)
     generator = _seeded("luckUpTable", stamina, *seed)
     chance = min(1.0, stamina * LUCK_GAIN_CHANCE_PER_STAMINA)
     table: list[int] = []
@@ -133,8 +168,10 @@ def roll_luck_up_table(
         if not member or not rolled:
             table.append(0)
             continue
+        bid = bid_by_iid.get(buddy_iid_by_id.get(member, 0), 0)
+        multiplier = BUDDY_LUCK_UP_BOOST.get(str(bid), 1)
         headroom = max(0, LUCK_TENTHS_MAX - current.get(member, 0))
-        table.append(min(gain, headroom))
+        table.append(min(gain * multiplier, headroom))
     return table
 
 

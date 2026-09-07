@@ -142,3 +142,16 @@ def build_server_constants(
 # The country the client stores for a local account, returned alongside login so
 # the stored value and `CountryCodes[country_id]` agree.
 LOCAL_LOGIN_COUNTRY_FIELDS = {"country_id": 0, "countryCode": LOCAL_COUNTRY_CODE}
+
+#: Companion master Luck tables, as ints keyed by the string buddy id. These
+#: mirror the values embedded in ``build_server_constants`` so the runtime can
+#: apply the same effects the client displays, without re-deriving them per
+#: request. Sources: the final client's embedded Character Luck dictionaries
+#: (see the constants block above for the provenance notes).
+BUDDY_LUCK_UP = {"292": 100, "293": 300}
+BUDDY_TEAM_LUCK_UP = {
+    "291": 100, "394": 50, "395": 50, "428": 50,
+    "484": 50, "496": 50, "497": 50,
+}
+#: Royal Ringstone doubles a successful per-character Luck increment.
+BUDDY_LUCK_UP_BOOST = {"445": 2}
