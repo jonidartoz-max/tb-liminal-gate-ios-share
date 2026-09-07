@@ -3736,6 +3736,22 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                 _prog = 0
             _wpc = userdata.get("worldProgressCode")
             userdata["worldProgressCode"] = {**(_wpc or {}), "0": _prog}
+            # Same Metal Zone policy as login: keep the unlock window open.
+            # The client's own POSTs persist its LOCAL (expired) timestamp into
+            # the stored save; without this re-override every GET /gd/userdata
+            # re-locks the Metal Zone the login response had opened.
+            userdata["metalZoneUnlockTime"] = 9999999999.0
+            # Fields the client ContainsKey-guards at various screens (same
+            # defaults the proven reference server serves). Without them the
+            # client falls back to nil and feature menus can grey out after a
+            # dirty-data POST echoes an empty local value back.
+            userdata.setdefault("worldMapNo", 0)
+            userdata.setdefault("countryId", 0)
+            userdata.setdefault("countryCode", "")
+            userdata.setdefault("bonusStamina", 0)
+            userdata.setdefault("questClearDate", {})
+            userdata.setdefault("loginDays", 1)
+            userdata.setdefault("consecutiveLoginDays", 1)
             self._signed(HTTPStatus.OK, token, {"success": True, **userdata})
             return
         for operation in ("multiplay_enable", "special_event"):
