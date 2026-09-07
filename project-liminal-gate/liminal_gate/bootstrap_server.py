@@ -3388,6 +3388,7 @@ class BootstrapServer(ThreadingHTTPServer):
         )
         try:
             super().__init__(address, BootstrapHandler)
+            self.started_at = time.time()
         except BaseException:
             try:
                 if resource_catalog is not None:
@@ -3468,6 +3469,22 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                     return True
         
         """Serve operator UI, derived banners, or manifested local resources."""
+        if path == "/dashboard":
+            try:
+                self._html(HTTPStatus.OK, render_dashboard_html(self.server))
+            except Exception:
+                self._html(HTTPStatus.OK, "<h1>Liminal Gate TB1</h1><p>dashboard data unavailable</p>")
+            return True
+        if path == "/dashboard/data":
+            body = json.dumps(dashboard_data(self.server), indent=1).encode()
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", "application/json")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(body)
+            self.server.events.record(self.command, self.path, HTTPStatus.OK)
+            return True
         if path == "/en/news/app":
             self._html(
                 HTTPStatus.OK,
@@ -6496,11 +6513,21 @@ def build_server(
         # Rarity comes from the operator's own catalog when one was supplied,
         # which is what lets duplicate gains and Truth rates follow the class
         # bands instead of a flat uniform default.
-        pact_rarity = load_character_rarity(args.character_catalog) if args.pacts and args.character_catalog is not None else None
+        pact_rarity = None
+        if args.pacts and args.character_catalog is not None:
+            try:
+                pact_rarity = load_character_rarity(args.character_catalog)
+            except PactDrawCatalogError as error:
+                print(f"[boot] WARNING: {error}; using bundled pact rarity instead", flush=True)
         pact_draw = build_bundled_pact_policy(pact_rarity) if args.pacts else (None if args.pact_draw_catalog is None else load_pact_draw_catalog(args.pact_draw_catalog))
         if (args.event_catalog is None) != (args.character_catalog is None):
             raise ProfileError("--event-catalog and --character-catalog must be supplied together")
-        events = None if args.event_catalog is None else load_event_catalog(args.event_catalog, args.character_catalog)
+        events = None
+        if args.event_catalog is not None:
+            try:
+                events = load_event_catalog(args.event_catalog, args.character_catalog)
+            except EventCatalogError as error:
+                print(f"[boot] WARNING: {error}; continuing without the local event catalog (Special/Tower/Eidolon lists stay empty)", flush=True)
         if args.hunting and args.hunting_catalog is not None:
             raise ProfileError("--hunting cannot be combined with --hunting-catalog")
         hunts = build_bundled_hunting_policy() if args.hunting else (None if args.hunting_catalog is None else load_hunting_catalog(args.hunting_catalog))
@@ -6581,6 +6608,138 @@ def build_server(
             resources.close()
         raise ProfileError(f"bootstrap server failed: {error}") from error
     return server
+
+
+# ---------------------------------------------------------------------------
+# Operator dashboard (stdlib-only, self-contained; /dashboard + /dashboard/data)
+# ---------------------------------------------------------------------------
+
+def dashboard_data(server: Any) -> dict[str, Any]:
+    """Snapshot for the dashboard page: accounts, zones, recent requests."""
+    import datetime
+    state = server.state
+    now = time.time()
+    accounts_out: list[dict[str, Any]] = []
+    with state.lock:
+        account_items = sorted(state.accounts.items())
+        active_id = state.active_account_id
+    for account_id, account in account_items:
+        userdata = account.get("userdata", {})
+        progress = userdata.get("progressCode", 0)
+        if type(progress) is not int or progress < 0:
+            progress = 0
+        chapter = (progress & 0xFFFF) >> 6
+        section = progress & 0x3F
+        accounts_out.append({
+            "account": account_id[:8] + "…" if len(account_id) > 8 else account_id,
+            "phase": account.get("tutorial_phase", "?"),
+            "chapter": chapter,
+            "section": section,
+            "coins": userdata.get("coins", 0),
+            "freeEnergy": userdata.get("freeEnergy", 0),
+            "energy": userdata.get("energy", 0),
+            "active": account_id == active_id,
+        })
+    recent: list[dict[str, Any]] = []
+    log_path = getattr(server.events, "path", None)
+    try:
+        if log_path and os.path.exists(log_path):
+            with open(log_path, "r", encoding="utf-8", errors="replace") as handle:
+                lines = handle.read().splitlines()
+            for line in lines[-30:]:
+                try:
+                    event = json.loads(line)
+                    recent.append({
+                        "time": datetime.datetime.utcfromtimestamp(
+                            event.get("timestamp_utc", 0) + 8 * 3600
+                        ).strftime("%H:%M:%S"),
+                        "method": event.get("method", "?"),
+                        "path": event.get("path", "?").split("?")[0],
+                        "status": event.get("status", "?"),
+                        "error": event.get("error", ""),
+                    })
+                except (ValueError, TypeError):
+                    continue
+            recent.reverse()
+    except OSError:
+        pass
+    return {
+        "service": "project-liminal-gate",
+        "now": datetime.datetime.utcfromtimestamp(now + 8 * 3600).strftime("%Y-%m-%d %H:%M:%S"),
+        "uptime_seconds": int(now - getattr(server, "started_at", now)),
+        "port": 18696,
+        "accounts_total": len(state.accounts),
+        "active_account": (active_id or "")[:8] + "…" if active_id else None,
+        "accounts": accounts_out,
+        "recent_requests": recent,
+    }
+
+def render_dashboard_html(server: Any) -> str:
+    """Self-contained monitor page (read-only); meta-refresh every 5 seconds."""
+    data = dashboard_data(server)
+    rows_accounts = "".join(
+        "<tr><td>{}</td><td>{}</td><td>ch{}-{}</td><td>{}</td><td>{}</td><td>{}</td><td>{}</td></tr>".format(
+            _esc(a["account"]), _esc(a["phase"]), a["chapter"], a["section"],
+            a["coins"], a["energy"], a["freeEnergy"], "\u2605" if a["active"] else "")
+        for a in data["accounts"]
+    ) or '<tr><td colspan="7" class="muted">no accounts yet</td></tr>'
+    rows_recent = "".join(
+        '<tr><td class="muted">{}</td><td>{}</td><td>{}</td><td class="{}">{}</td><td class="muted">{}</td></tr>'.format(
+            _esc(r["time"]), _esc(r["method"]), _esc(r["path"]),
+            "err" if isinstance(r["status"], int) and r["status"] >= 400 else "ok",
+            _esc(r["status"]), _esc(r.get("error") or ""))
+        for r in data["recent_requests"]
+    ) or '<tr><td colspan="5" class="muted">no requests yet</td></tr>'
+    summary = (
+        'Accounts: {} &nbsp;|&nbsp; Active: {} &nbsp;|&nbsp; Port: {}'
+        ' &nbsp;|&nbsp; Uptime: {}m {}s &nbsp;|&nbsp; {}'.format(
+            data["accounts_total"],
+            _esc(data["active_account"] or "\u2014"),
+            data["port"],
+            data["uptime_seconds"] // 60, data["uptime_seconds"] % 60,
+            _esc(data["now"]),
+        )
+    )
+    html = """<!doctype html>
+<html><head><meta charset="utf-8">
+<meta http-equiv="refresh" content="5">
+<title>Liminal Gate TB1 - Server Dashboard</title>
+<style>
+body{font-family:Consolas,monospace;background:#0d1117;color:#c9d1d9;margin:24px}
+h1{color:#58a6ff;font-size:20px}h2{color:#8b949e;font-size:14px;margin:18px 0 6px}
+table{border-collapse:collapse;font-size:13px;width:100%}
+td,th{border:1px solid #30363d;padding:4px 10px;text-align:left}
+th{background:#161b22;color:#58a6ff}
+.ok{color:#3fb950}.err{color:#f85149}.muted{color:#8b949e}
+.card{background:#161b22;border:1px solid #30363d;border-radius:8px;padding:12px 16px;margin:8px 0}
+a{color:#58a6ff}
+code{background:#161b22;border:1px solid #30363d;border-radius:4px;padding:1px 6px}
+li{margin:4px 0}
+</style></head><body>
+<h1>Liminal Gate TB1 - Server Dashboard</h1>
+<div class="card">Status: <span class="ok">RUNNING</span> &nbsp;|&nbsp; auto-refresh 5s &nbsp;|&nbsp; <a href="/dashboard/data">raw JSON</a> &nbsp;|&nbsp; <a href="/healthz">healthz</a></div>
+__SUMMARY__
+<h2>ACCOUNTS</h2>
+""" + rows_accounts + """
+<h2>RECENT REQUESTS (last 30)</h2>
+""" + rows_recent + """
+<h2>OPERATOR TOOLS (on this PC)</h2>
+<div class="card">
+<ul>
+<li><b>Start / Stop the server:</b> run <code>START-SERVER-WINDOWS.bat</code> / <code>STOP-SERVER-WINDOWS.bat</code> in the share folder.</li>
+<li><b>Save manager (inspect, snapshot, restore, switch, link devices):</b> <code>runtime/python.exe project-liminal-gate/liminal_gate/account_state.py inspect user-data/bootstrap-state.json</code> &mdash; <a href="https://github.com/jonidartoz-max/tb-liminal-gate-ios-share#readme">guide on GitHub</a></li>
+<li><b>Save file (backup this before experiments):</b> <code>user-data/bootstrap-state.json</code> &nbsp;&middot;&nbsp; <b>Request log:</b> <code>user-data/events.jsonl</code></li>
+<li><b>Resource pack + manifests:</b> <code>resources/iOS_2</code> &nbsp;&middot;&nbsp; <b>Banners / patch data:</b> <code>user-data/public_data</code></li>
+<li><b>Full guide:</b> <code>GUIDE.md</code> in the share folder &nbsp;&middot;&nbsp; iOS address for players: <code>http://&lt;PC-IP&gt;:18696</code></li>
+</ul>
+</div>
+</body></html>"""
+    return html.replace("__SUMMARY__", summary)
+
+def _esc(value: Any) -> str:
+    import html as _html
+    return _html.escape(str(value), quote=True)
+
 
 
 def main() -> int:

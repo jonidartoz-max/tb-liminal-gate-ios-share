@@ -1,0 +1,3754 @@
+{
+  "characters": [
+    {
+      "character_id": 1,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        1,
+        7,
+        8
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 2,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        2,
+        9,
+        10
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 3,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        3,
+        11,
+        12
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 4,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        4,
+        13,
+        14
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 5,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5,
+        15,
+        16
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 6,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        6,
+        17,
+        18
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 7,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        19,
+        20,
+        21
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 8,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        22,
+        23,
+        24
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 9,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        199,
+        200,
+        201
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 10,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        25,
+        26,
+        27
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 11,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        28,
+        29,
+        30
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 12,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        31,
+        32,
+        33
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 13,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        34,
+        35,
+        36
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 14,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        37,
+        38,
+        39
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 15,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        40,
+        41,
+        42
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 16,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        43,
+        44,
+        45
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 17,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        46,
+        47,
+        48
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 18,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        49,
+        50,
+        51
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 19,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        52,
+        53,
+        54
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 20,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        55,
+        56,
+        57
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 21,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        58,
+        59,
+        60
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 22,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        61,
+        62,
+        63
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 23,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        64,
+        65,
+        66
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 24,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        67,
+        68,
+        69
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 25,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        70,
+        71,
+        72
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 26,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        73,
+        74,
+        75
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 27,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        76,
+        77,
+        78
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 28,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        79,
+        80,
+        81
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 29,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        82,
+        83,
+        84
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 30,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        85,
+        86,
+        87
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 31,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        88,
+        89,
+        90
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 32,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        91,
+        92,
+        93
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 33,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        94,
+        95,
+        96
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 34,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        97,
+        98,
+        99
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 35,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        100,
+        101,
+        102
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 36,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        103,
+        104,
+        105
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 37,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        106,
+        107,
+        108
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 38,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        109,
+        110,
+        111
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 39,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        112,
+        113,
+        114
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 40,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        115,
+        116,
+        117
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 41,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        118,
+        119,
+        120
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 42,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        121,
+        122,
+        123
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 43,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        124,
+        125,
+        126
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 44,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        127,
+        128,
+        129
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 45,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        130,
+        131,
+        132
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 46,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        133,
+        134,
+        135
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 47,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        136,
+        137,
+        138
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 48,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        139,
+        140,
+        141
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 49,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        142,
+        143,
+        144
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 50,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        145,
+        146,
+        147
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 51,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        148,
+        149,
+        150
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 52,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        151,
+        152,
+        153
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 53,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        154,
+        155,
+        156
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 54,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        157,
+        158,
+        159
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 55,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        160,
+        161,
+        162
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 56,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        163,
+        164,
+        165
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 57,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        166,
+        167,
+        168
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 58,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        169,
+        170,
+        171
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 59,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        172,
+        173,
+        174
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 60,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        175,
+        176,
+        177
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 61,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        178,
+        179,
+        180
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 62,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        181,
+        182,
+        183
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 63,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        251
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 64,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        252
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 65,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        253
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 66,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        254
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 67,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        258
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 68,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        259
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 69,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        260
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 70,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        261
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 71,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        262
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 72,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        263
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 73,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        264
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 74,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        221,
+        222,
+        223
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 79,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        376
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 80,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        271
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 81,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        224,
+        225,
+        226
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 82,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        273
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 84,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        275
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 85,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        276
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 86,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        277
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 88,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        279
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 91,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        282
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 94,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        285
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 98,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        289
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 99,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        290
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 100,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        291
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 107,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        298
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 110,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        301
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 114,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        305
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 115,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        306
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 123,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        314
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 124,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        315
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 126,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        317
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 128,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        319
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 132,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        220
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 143,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        334
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 144,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        217,
+        218,
+        219
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 145,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        336
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 146,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        337
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 148,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        211,
+        212,
+        213
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 149,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        340
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 150,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        341
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 151,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        214,
+        215,
+        216
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 155,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        346
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 163,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        354
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 164,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        355
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 165,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        356
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 166,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        357
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 175,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        366
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 176,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        367
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 184,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        375
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 185,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        272
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 187,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        210
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 188,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        379,
+        872,
+        873
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 198,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        389
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 199,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        390
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 200,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        391
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 201,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        392
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 202,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        393
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 203,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        394
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 204,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        395
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 205,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        396
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 210,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        401
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 211,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        402
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 212,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        403
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 215,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        415
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 216,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        416
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 220,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        420
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 221,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        421
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 228,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        428
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 237,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        437
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 238,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        439
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 239,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        438
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 264,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        464
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 285,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        485
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 286,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        486
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 287,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        487
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 292,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        440
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 299,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        499
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 307,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        507
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 308,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        508
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 312,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        512
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 313,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        513
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 314,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        514
+      ],
+      "rarity": 2,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 323,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        523
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 337,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        537
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 338,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        255
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 339,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        256
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 340,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        257
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 341,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        404
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 342,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        405
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 343,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        406
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 344,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        407
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 345,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        408
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 346,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        409
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 347,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        410
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 348,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        411
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 349,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        412
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 399,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        190,
+        191,
+        192
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 402,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        202,
+        203,
+        204
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 403,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        205,
+        206,
+        207
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 463,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        785
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 519,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        696
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 524,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        482
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 540,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        227,
+        228,
+        229
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 546,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        230,
+        231,
+        232
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 547,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        233,
+        234,
+        235
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 557,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        236,
+        237,
+        238
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 564,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        239,
+        240,
+        241
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 582,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        242,
+        243,
+        244
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 583,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        739
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 588,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        193,
+        194,
+        195
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 596,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        245,
+        246,
+        247
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 597,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        248,
+        249,
+        250
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 620,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        196,
+        197,
+        198
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 621,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        746,
+        747,
+        748
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 163
+    },
+    {
+      "character_id": 622,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        749,
+        750,
+        751
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 164
+    },
+    {
+      "character_id": 623,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        752
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 2
+    },
+    {
+      "character_id": 624,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        753
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 8
+    },
+    {
+      "character_id": 625,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        754
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 13
+    },
+    {
+      "character_id": 626,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        755
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 25
+    },
+    {
+      "character_id": 627,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        756
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 34
+    },
+    {
+      "character_id": 628,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        757
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 56
+    },
+    {
+      "character_id": 629,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        758
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 57
+    },
+    {
+      "character_id": 630,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        759
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 58
+    },
+    {
+      "character_id": 631,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        760
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 59
+    },
+    {
+      "character_id": 632,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        761
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 148
+    },
+    {
+      "character_id": 633,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        762
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 151
+    },
+    {
+      "character_id": 634,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        763
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 144
+    },
+    {
+      "character_id": 648,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        377
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 671,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        784
+      ],
+      "rarity": 3,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 673,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        787,
+        788,
+        789
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 678,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        795
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 679,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        798
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 691,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        791
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 540
+    },
+    {
+      "character_id": 692,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        792
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 35
+    },
+    {
+      "character_id": 693,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        793
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 23
+    },
+    {
+      "character_id": 694,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        794
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 52
+    },
+    {
+      "character_id": 703,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        814
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 711,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8011
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 718,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        796
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 719,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        797
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 769
+    },
+    {
+      "character_id": 736,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        559,
+        595,
+        800
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 763,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        596
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 764,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        588
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 769,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        801,
+        802,
+        803
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 801,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        589
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 399
+    },
+    {
+      "character_id": 802,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        599
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 27
+    },
+    {
+      "character_id": 804,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        593
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 5
+    },
+    {
+      "character_id": 805,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        809,
+        810,
+        811
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 825,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        812
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 42
+    },
+    {
+      "character_id": 827,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        813
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 50
+    },
+    {
+      "character_id": 828,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        815,
+        816,
+        817
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 829,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        818,
+        819,
+        820
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 830,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        821,
+        822,
+        823
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 831,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        824,
+        825,
+        826
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 832,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        827,
+        828,
+        829
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 833,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        830,
+        831,
+        832
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 834,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        833,
+        834,
+        835
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 835,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        836,
+        837,
+        838
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 836,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        839,
+        840,
+        841
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 846,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        842
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 11
+    },
+    {
+      "character_id": 848,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        843
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 60
+    },
+    {
+      "character_id": 853,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        852
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 855,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        853
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 857,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        854
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 859,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        855
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 861,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        844
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 12
+    },
+    {
+      "character_id": 862,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        845
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 402
+    },
+    {
+      "character_id": 863,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        846
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 403
+    },
+    {
+      "character_id": 864,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        847
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 39
+    },
+    {
+      "character_id": 865,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        848
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 16
+    },
+    {
+      "character_id": 866,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        849
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 46
+    },
+    {
+      "character_id": 867,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        850
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 871
+    },
+    {
+      "character_id": 868,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        851
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 871
+    },
+    {
+      "character_id": 871,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        856,
+        857,
+        858
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 887,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8004
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 888,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8005
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 889,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8006
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 890,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5000
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 24
+    },
+    {
+      "character_id": 891,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5001
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 29
+    },
+    {
+      "character_id": 892,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5002
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 40
+    },
+    {
+      "character_id": 893,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5003
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 17
+    },
+    {
+      "character_id": 894,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5004,
+        5005,
+        5006
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 895,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8000
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 897,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8001
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 899,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8002
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 901,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8003
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 903,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5007
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 894
+    },
+    {
+      "character_id": 915,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5008,
+        5009,
+        5010
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 916,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5011
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 915
+    },
+    {
+      "character_id": 917,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5012,
+        5013,
+        5014
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 918,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5015,
+        5016,
+        5017
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 919,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5018
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 918
+    },
+    {
+      "character_id": 920,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5019
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 1
+    },
+    {
+      "character_id": 921,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5020
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 47
+    },
+    {
+      "character_id": 922,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5021
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 6
+    },
+    {
+      "character_id": 923,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5022
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 32
+    },
+    {
+      "character_id": 938,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8012
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 939,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8009
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 943,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8007
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 945,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8008
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 947,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8010
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 963,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8014
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 964,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8013
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 965,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8015
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 967,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8016
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 969,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8017
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 971,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5023,
+        5024,
+        5025
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 972,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5026
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 971
+    },
+    {
+      "character_id": 973,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5034
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 1004
+    },
+    {
+      "character_id": 974,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5027,
+        5028,
+        5029
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 975,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5030
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 974
+    },
+    {
+      "character_id": 992,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8019
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 994,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8020
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 995,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8021
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 998,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5036
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 3
+    },
+    {
+      "character_id": 999,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5035
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 588
+    },
+    {
+      "character_id": 1002,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5037
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 736
+    },
+    {
+      "character_id": 1003,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8018
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1004,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5031,
+        5032,
+        5033
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1005,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5038,
+        5039,
+        5040
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1006,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5041,
+        5042,
+        5043
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1007,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5044
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 620
+    },
+    {
+      "character_id": 1008,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5045,
+        5046,
+        5047
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1014,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8022
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1016,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8023
+      ],
+      "rarity": 4,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1018,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8024
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1019,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5048,
+        5049,
+        5050
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1020,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5051,
+        5052,
+        5053
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1021,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5054,
+        5055,
+        5056
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1022,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5057,
+        5058,
+        5059
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1023,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5060,
+        5061,
+        5062
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1024,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5063,
+        5064,
+        5065
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1080,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5072,
+        5073,
+        5074
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1082,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5066
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 81
+    },
+    {
+      "character_id": 1083,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5067
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 188
+    },
+    {
+      "character_id": 1084,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5068,
+        5069,
+        5070
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1085,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5071
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 1084
+    },
+    {
+      "character_id": 1090,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8029
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1096,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5075,
+        5076,
+        5077
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1097,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5078,
+        5079,
+        5080
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1098,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5081,
+        5082,
+        5083
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1099,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5084,
+        5085,
+        5086
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1100,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5087,
+        5088,
+        5089
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1103,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5090,
+        5091,
+        5092
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1126,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8031
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1127,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8032
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1156,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5093,
+        5094,
+        5095
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1157,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5096,
+        5097,
+        5098
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1158,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5099,
+        5100,
+        5101
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1159,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5102,
+        5103,
+        5104
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1174,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8039
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1200,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5105,
+        5106,
+        5107
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1201,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5108,
+        5109,
+        5110
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1202,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5111,
+        5112,
+        5113
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1203,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5114
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 28
+    },
+    {
+      "character_id": 1204,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5115
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 7
+    },
+    {
+      "character_id": 1217,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5116
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 1097
+    },
+    {
+      "character_id": 1218,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5117
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 831
+    },
+    {
+      "character_id": 1219,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5118
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 828
+    },
+    {
+      "character_id": 1220,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5119
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 834
+    },
+    {
+      "character_id": 1221,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5120
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 1201
+    },
+    {
+      "character_id": 1222,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5121
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 49
+    },
+    {
+      "character_id": 1223,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5122
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 41
+    },
+    {
+      "character_id": 1224,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8040
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1225,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8041
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1226,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8042
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1227,
+      "character_type": 2,
+      "is_lambda": false,
+      "job_ids": [
+        8043
+      ],
+      "rarity": 5,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1239,
+      "character_type": 2,
+      "is_lambda": true,
+      "job_ids": [
+        8044
+      ],
+      "rarity": 6,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1243,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5123,
+        5124,
+        5125
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1244,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5126,
+        5127,
+        5128
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1245,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5129,
+        5130,
+        5131
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1251,
+      "character_type": 1,
+      "is_lambda": true,
+      "job_ids": [
+        5132
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 37
+    },
+    {
+      "character_id": 1257,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5133,
+        5134,
+        5135
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1258,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5136,
+        5137,
+        5138
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1259,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5139,
+        5140,
+        5141
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1260,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5142,
+        5143,
+        5144
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1261,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5145,
+        5146,
+        5147
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1262,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5148,
+        5149,
+        5150
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1263,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5151,
+        5152,
+        5153
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1264,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5154,
+        5155,
+        5156
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1265,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5157,
+        5158,
+        5159
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1266,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5160,
+        5161,
+        5162
+      ],
+      "rarity": 7,
+      "rebirth_from_id": 0
+    },
+    {
+      "character_id": 1288,
+      "character_type": 1,
+      "is_lambda": false,
+      "job_ids": [
+        5163,
+        5164,
+        5165
+      ],
+      "rarity": 8,
+      "rebirth_from_id": 0
+    }
+  ],
+  "provenance": "user-derived",
+  "schema_version": 1,
+  "source": {
+    "apk_sha256": "2a5216a456709f9691cb2a219958c0bb320c254abc20a0d1da9db388638e2180",
+    "profile": "terra-battle-android-5.5.7-170"
+  }
+}

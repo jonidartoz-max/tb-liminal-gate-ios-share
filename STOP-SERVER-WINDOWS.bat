@@ -6,10 +6,11 @@ rem  Uses PowerShell CIM (wmic is gone on Windows 11 24H2+).
 rem ============================================================
 title Terra Battle Server - Stopper
 
+cd /d "%~dp0"
 set "KILLED=0"
 
 rem --- kill only python.exe processes whose command line runs bootstrap_server ---
-for /f "usebackq tokens=2" %%P in (`powershell -NoProfile -Command "Get-CimInstance Win32_Process -Filter \"Name='python.exe'\" | Where-Object { $_.CommandLine -like '*bootstrap_server*' } | Select-Object -ExpandProperty ProcessId" 2^>nul`) do (
+for /f "usebackq tokens=1" %%P in (`powershell -NoProfile -Command "Get-CimInstance Win32_Process | Where-Object { $_.Name -eq 'python.exe' -and $_.CommandLine -like '*bootstrap_server*' } | Select-Object -ExpandProperty ProcessId" 2^>nul`) do (
     if not "%%P"=="" (
         echo Killing server process PID %%P ...
         taskkill /PID %%P /F >nul 2>nul
@@ -19,10 +20,11 @@ for /f "usebackq tokens=2" %%P in (`powershell -NoProfile -Command "Get-CimInsta
 
 if "%KILLED%"=="0" (
     echo No running Terra Battle server found.
-) else (
-    echo Server stopped.
+    goto :verify
 )
+echo Server stopped.
 
+:verify
 rem --- verify port 18696 is free ---
 timeout /t 2 /nobreak >nul
 netstat -ano | findstr ":18696" | findstr "LISTENING" >nul 2>nul

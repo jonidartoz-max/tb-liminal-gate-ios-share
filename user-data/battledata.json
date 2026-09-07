@@ -1,0 +1,6290 @@
+{
+  "provenance": "user-derived",
+  "schema_version": 1,
+  "source": {
+    "apk_sha256": "2a5216a456709f9691cb2a219958c0bb320c254abc20a0d1da9db388638e2180",
+    "profile": "terra-battle-android-5.5.7-170"
+  },
+  "stages": [
+    {
+      "battle_count": 3,
+      "chapter": 1,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 1
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 1
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 1
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 1
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 1
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 6
+    },
+    {
+      "battle_count": 5,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 6
+    },
+    {
+      "battle_count": 5,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 6
+    },
+    {
+      "battle_count": 5,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 6
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 6
+    },
+    {
+      "battle_count": 5,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 6
+    },
+    {
+      "battle_count": 5,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 6
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 6
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 6
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 6
+    },
+    {
+      "battle_count": 5,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 7
+    },
+    {
+      "battle_count": 3,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 5,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 7
+    },
+    {
+      "battle_count": 3,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 7
+    },
+    {
+      "battle_count": 4,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 6,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 7
+    },
+    {
+      "battle_count": 5,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 8
+    },
+    {
+      "battle_count": 3,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 8
+    },
+    {
+      "battle_count": 3,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 7,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 8
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 8
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 8
+    },
+    {
+      "battle_count": 4,
+      "chapter": 8,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 8
+    },
+    {
+      "battle_count": 3,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 9
+    },
+    {
+      "battle_count": 4,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 9
+    },
+    {
+      "battle_count": 3,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 9
+    },
+    {
+      "battle_count": 4,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 9
+    },
+    {
+      "battle_count": 3,
+      "chapter": 9,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 9
+    },
+    {
+      "battle_count": 4,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 9
+    },
+    {
+      "battle_count": 3,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 9
+    },
+    {
+      "battle_count": 3,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 9
+    },
+    {
+      "battle_count": 4,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 9
+    },
+    {
+      "battle_count": 3,
+      "chapter": 10,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 9
+    },
+    {
+      "battle_count": 5,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 11,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 12,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 11
+    },
+    {
+      "battle_count": 3,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 11
+    },
+    {
+      "battle_count": 3,
+      "chapter": 13,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 11
+    },
+    {
+      "battle_count": 4,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 11
+    },
+    {
+      "battle_count": 3,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 11
+    },
+    {
+      "battle_count": 5,
+      "chapter": 14,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 11
+    },
+    {
+      "battle_count": 3,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 12
+    },
+    {
+      "battle_count": 4,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 12
+    },
+    {
+      "battle_count": 5,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 12
+    },
+    {
+      "battle_count": 4,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 12
+    },
+    {
+      "battle_count": 4,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 12
+    },
+    {
+      "battle_count": 5,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 12
+    },
+    {
+      "battle_count": 4,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 12
+    },
+    {
+      "battle_count": 4,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 12
+    },
+    {
+      "battle_count": 5,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 12
+    },
+    {
+      "battle_count": 3,
+      "chapter": 15,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 12
+    },
+    {
+      "battle_count": 5,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 13
+    },
+    {
+      "battle_count": 3,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 13
+    },
+    {
+      "battle_count": 3,
+      "chapter": 16,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 13
+    },
+    {
+      "battle_count": 3,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 13
+    },
+    {
+      "battle_count": 3,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 17,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 13
+    },
+    {
+      "battle_count": 4,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 14
+    },
+    {
+      "battle_count": 3,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 14
+    },
+    {
+      "battle_count": 3,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 14
+    },
+    {
+      "battle_count": 3,
+      "chapter": 18,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 14
+    },
+    {
+      "battle_count": 3,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 14
+    },
+    {
+      "battle_count": 3,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 14
+    },
+    {
+      "battle_count": 4,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 14
+    },
+    {
+      "battle_count": 5,
+      "chapter": 19,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 14
+    },
+    {
+      "battle_count": 20,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 4,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 5,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 6,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 7,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 8,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 9,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 20,
+      "coins": 0,
+      "has_battle": false,
+      "section": 10,
+      "stamina": 25
+    },
+    {
+      "battle_count": 4,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 21,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 16
+    },
+    {
+      "battle_count": 3,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 16
+    },
+    {
+      "battle_count": 4,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 16
+    },
+    {
+      "battle_count": 3,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 16
+    },
+    {
+      "battle_count": 4,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 16
+    },
+    {
+      "battle_count": 3,
+      "chapter": 22,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 16
+    },
+    {
+      "battle_count": 4,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 16
+    },
+    {
+      "battle_count": 4,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 16
+    },
+    {
+      "battle_count": 4,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 16
+    },
+    {
+      "battle_count": 3,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 16
+    },
+    {
+      "battle_count": 4,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 16
+    },
+    {
+      "battle_count": 3,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 23,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 16
+    },
+    {
+      "battle_count": 5,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 17
+    },
+    {
+      "battle_count": 4,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 17
+    },
+    {
+      "battle_count": 5,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 17
+    },
+    {
+      "battle_count": 4,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 17
+    },
+    {
+      "battle_count": 4,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 17
+    },
+    {
+      "battle_count": 4,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 17
+    },
+    {
+      "battle_count": 3,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 17
+    },
+    {
+      "battle_count": 4,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 17
+    },
+    {
+      "battle_count": 5,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 17
+    },
+    {
+      "battle_count": 3,
+      "chapter": 24,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 17
+    },
+    {
+      "battle_count": 4,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 18
+    },
+    {
+      "battle_count": 4,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 18
+    },
+    {
+      "battle_count": 3,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 18
+    },
+    {
+      "battle_count": 4,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 18
+    },
+    {
+      "battle_count": 3,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 18
+    },
+    {
+      "battle_count": 4,
+      "chapter": 25,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 18
+    },
+    {
+      "battle_count": 3,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 18
+    },
+    {
+      "battle_count": 4,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 18
+    },
+    {
+      "battle_count": 4,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 18
+    },
+    {
+      "battle_count": 3,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 18
+    },
+    {
+      "battle_count": 4,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 18
+    },
+    {
+      "battle_count": 1,
+      "chapter": 26,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 27,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 19
+    },
+    {
+      "battle_count": 5,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 19
+    },
+    {
+      "battle_count": 3,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 28,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 19
+    },
+    {
+      "battle_count": 4,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 29,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 30,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 31,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 32,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 33,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 34,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 35,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 36,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 37,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 38,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 39,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 40,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 41,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 42,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 42,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 42,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 103,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 103,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 103,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 103,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 103,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 104,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 110,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 111,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 112,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 113,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 114,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 115,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 116,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 117,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 118,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 119,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 0,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 8,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 9,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 10,
+      "stamina": 0
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 11,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 12,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 13,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 14,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 15,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 16,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 17,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 20
+    },
+    {
+      "battle_count": 0,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 8,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 9,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 10,
+      "stamina": 0
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 11,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 12,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 13,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 14,
+      "stamina": 13
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 15,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 16,
+      "stamina": 18
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 17,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 3001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 3001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 3002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 3003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 3004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 7
+    },
+    {
+      "battle_count": 1,
+      "chapter": 3100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 4,
+      "chapter": 3200,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 3201,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 3202,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 4,
+      "chapter": 3300,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 3,
+      "chapter": 1002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 1003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 8
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 25
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1200,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1201,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1300,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1301,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 1302,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 25
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 25
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 25
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 40
+    },
+    {
+      "battle_count": 10,
+      "chapter": 2003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 30
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 30
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 20
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 30
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 35
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 40
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 40
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2007,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2007,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 30
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2008,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2008,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2008,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 40
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2008,
+      "coins": 0,
+      "has_battle": false,
+      "section": 4,
+      "stamina": 40
+    },
+    {
+      "battle_count": 1,
+      "chapter": 2009,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 40
+    },
+    {
+      "battle_count": 1,
+      "chapter": 2010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 40
+    },
+    {
+      "battle_count": 1,
+      "chapter": 2011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 40
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2012,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 1
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2012,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 1
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2012,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 1
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2013,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 40
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2014,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 30
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2015,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 30
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2015,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 35
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2015,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 40
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2015,
+      "coins": 0,
+      "has_battle": false,
+      "section": 4,
+      "stamina": 25
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2015,
+      "coins": 0,
+      "has_battle": false,
+      "section": 5,
+      "stamina": 35
+    },
+    {
+      "battle_count": 0,
+      "chapter": 2015,
+      "coins": 0,
+      "has_battle": false,
+      "section": 6,
+      "stamina": 35
+    },
+    {
+      "battle_count": 3,
+      "chapter": 2016,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 40
+    },
+    {
+      "battle_count": 1,
+      "chapter": 2016,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 40
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 20
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 7,
+      "chapter": 2017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 30
+    },
+    {
+      "battle_count": 1,
+      "chapter": 2017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 35
+    },
+    {
+      "battle_count": 5,
+      "chapter": 2018,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 2,
+      "chapter": 4006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4008,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4008,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4008,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4009,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4009,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4009,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4100,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4100,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4101,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4101,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4102,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4102,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4103,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4104,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4104,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4104,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4105,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4105,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4105,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 2,
+      "chapter": 4106,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4107,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4107,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4107,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4108,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4108,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4108,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4109,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 10
+    },
+    {
+      "battle_count": 0,
+      "chapter": 4109,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 20
+    },
+    {
+      "battle_count": 4,
+      "chapter": 4109,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 30
+    },
+    {
+      "battle_count": 3,
+      "chapter": 4110,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 4111,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5001,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5001,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5001,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5002,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5002,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5002,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5003,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5003,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5003,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5004,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5004,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5004,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5005,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5005,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5005,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5006,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5006,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5006,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5007,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5007,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 5007,
+      "coins": 0,
+      "has_battle": false,
+      "section": 3,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6001,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6002,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6003,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6004,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6005,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6006,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 3,
+      "chapter": 6007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6008,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6009,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6010,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6011,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6011,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 6012,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 0
+    },
+    {
+      "battle_count": 0,
+      "chapter": 7000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 1,
+      "stamina": 1
+    },
+    {
+      "battle_count": 0,
+      "chapter": 7000,
+      "coins": 0,
+      "has_battle": false,
+      "section": 2,
+      "stamina": 1
+    },
+    {
+      "battle_count": 3,
+      "chapter": 7010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 1
+    },
+    {
+      "battle_count": 3,
+      "chapter": 7010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 1
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8004,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8005,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8006,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 8007,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8008,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8008,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8009,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8009,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8012,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8012,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8012,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8013,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8013,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8013,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8014,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8014,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 3,
+      "chapter": 8014,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8015,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8015,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8015,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8016,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8016,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8016,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 10
+    },
+    {
+      "battle_count": 2,
+      "chapter": 8017,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 6,
+      "chapter": 8018,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9000,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9001,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9002,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9003,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9010,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9011,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9012,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9012,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9012,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9013,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9013,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 15
+    },
+    {
+      "battle_count": 1,
+      "chapter": 9013,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 11,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 12,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 13,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 14,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9100,
+      "coins": 0,
+      "has_battle": true,
+      "section": 15,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 11,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 12,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 13,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 14,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9101,
+      "coins": 0,
+      "has_battle": true,
+      "section": 15,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 1,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 2,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 3,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 4,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 5,
+      "stamina": 5
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 6,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 7,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 8,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 9,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 10,
+      "stamina": 10
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 11,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 12,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 13,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 14,
+      "stamina": 15
+    },
+    {
+      "battle_count": 5,
+      "chapter": 9102,
+      "coins": 0,
+      "has_battle": true,
+      "section": 15,
+      "stamina": 15
+    }
+  ]
+}

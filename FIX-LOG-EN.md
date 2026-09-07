@@ -93,3 +93,39 @@ step: instrument the IPA to capture the real exception.
    (a live container pushes old state back every 60 s).
 6. Per-second server log: `modal run eventlog4.py` — the last request before a
    crash shows which step the client died on.
+
+---
+
+# 2026-09-07 — Event content unlock (Special / Tower / Eidolon) + robust start/stop
+
+## 6. Special Quest / Tower / Eidolon lists were always empty — FIXED
+
+Root cause: `towerQuestList`, `eidolonQuestList` and the generated part of
+`specialQuestList` are only filled when the server runs with
+`--event-catalog` + `--character-catalog`. The start scripts never passed them, so
+those menus stayed empty on every device.
+
+Fix:
+- `user-data/event-catalog.json`, `user-data/character-catalog.json`,
+  `user-data/battledata.json` — pre-generated from the 5.5.7-170 APK (124 stages:
+  42 special, 58 strikes-back, 12 tower, 12 eidolon). Regeneration steps:
+  `EVENT-CATALOG.md`.
+- `START-SERVER-WINDOWS.bat` now passes both catalog flags.
+- Missing/corrupt catalog files no longer kill the server — a `[boot] WARNING` is
+  printed and the server starts with those lists empty.
+
+Unlocks follow the original game's gating (per-story progress):
+Special/Bahamut ch2 · Tower+Eidolon ch4 · Strikes Back ch6 (14 families, ch6-18) ·
+Leviathan ch10 · Mobius/Lucia ch13 · Captive Golem ch15 · Odin/FFXV ch20 ·
+Dragon Kings ch30-32. Counter Descent (Strikes Back) was already bundled via
+`--hunting`; the bundled rows stay authoritative when merged.
+
+## 7. START/STOP batch fixes + dashboard revert
+
+- `STOP-SERVER-WINDOWS.bat` had two latent bugs since the original build
+  (`tokens=2` over one-token-per-line output, broken nested quoting in the
+  PowerShell filter) — it never killed anything. Fixed and verified end-to-end.
+- The dashboard stays a simple read-only status page (accounts + recent requests +
+  operator tools links). A realtime version with control buttons was built and
+  rolled back the same day by operator decision — do not re-add control endpoints.
+- `dashboard/data` now reports real uptime (`started_at` fix).
