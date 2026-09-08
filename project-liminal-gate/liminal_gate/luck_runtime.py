@@ -78,7 +78,7 @@ def party_team_luck(userdata: dict) -> int:
     buddy_iid_by_id: dict[int, int] = {}
     for row in roster:
         if isinstance(row, dict) and type(row.get("id")) is int:
-            if type(row.get("luck", 0)) is int:
+            if "luck" in row and type(row["luck"]) is int:
                 luck_by_id[row["id"]] = row["luck"]
             if type(row.get("buddy", 0)) is int and row.get("buddy", 0):
                 buddy_iid_by_id[row["id"]] = row["buddy"]
@@ -147,7 +147,7 @@ def roll_luck_up_table(
     if isinstance(roster, list):
         for row in roster:
             if isinstance(row, dict) and type(row.get("id")) is int:
-                if type(row.get("luck", 0)) is int:
+                if "luck" in row and type(row["luck"]) is int:
                     current[row["id"]] = row["luck"]
                 if type(row.get("buddy", 0)) is int and row.get("buddy", 0):
                     buddy_iid_by_id[row["id"]] = row["buddy"]

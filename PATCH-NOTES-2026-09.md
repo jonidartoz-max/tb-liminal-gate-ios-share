@@ -142,3 +142,27 @@ client retry. Log pattern: bursts of 2-4 x 500 followed by 200 OK.
 carry `Content-Length`, so the framing requirement is met). Verified with a
 30-request single-connection test against production: all 200, zero
 exceptions. Post-deploy logs show no further 500 bursts.
+
+
+## 9. Server crash on story/Bahamut start (keyError 'luck') — FIXED
+
+**Problem:** starting any story stage (including ch<6) or a Special Quest
+crashed the server handler: the client saw a dropped connection ("network
+error"), and because the earlier user session also burned stamina, later
+attempts surfaced "insufficient stamina" while the client bar still showed
+plenty. Metal Zone (different route) and Daily Quests worked, which is why the
+pattern looked random.
+
+**Root cause:** `party_team_luck` in luck_runtime.py (added with the companion
+Luck fix) had a broken guard — `type(row.get("luck", 0)) is int` always passes
+because `.get` supplies the default, so a roster row without a `luck` field
+reached `row["luck"]` and raised KeyError. The user's roster rows (older save
+schema) have no `luck` field on every character. Any story/event start read the
+team's Luck and crashed.
+
+**Fix:** the guard now requires the field to exist
+(`"luck" in row and type(row["luck"]) is int`); rows without it simply
+contribute 0, matching pre-fix behavior. Applied in both read paths.
+
+**Verified locally:** story 6-1 start/clear, Bahamut 2000-1/2, story 5-1 and
+4-1 (ch<6) all return 200; earlier crash reproduced then confirmed gone.
