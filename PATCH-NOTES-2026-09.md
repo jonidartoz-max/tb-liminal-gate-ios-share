@@ -98,3 +98,26 @@ save intact but unreachable. Built and verified:
 - GitHub repo updated (`4ad030e`, `91165f7`): catalogs, hardened scripts,
   companion-luck patch, and these docs. `.gitignore` keeps player saves and
   the resource pack out of the repo.
+
+
+## 7. Luck chest pools extended to all battle stages
+
+**Problem:** only 30 story stages had documented chest pools (the community
+scrape's own limit), so a high-Luck team earned chests almost nowhere.
+
+**Fix (luck_pool_data.py):** the remaining 671 battle-capable stages now carry
+generated pools under an explicit local policy, keeping the 30 documented rows
+byte-identical:
+- Coins scale with stage stamina (25 + 31/stamina) anchored to the documented
+  stages' C-values, multiplied by tier (A x1, B x2, C x4, D x6, Luck 80 x8,
+  Luck 100 x12), rounded to 25.
+- Items are drawn only from the 36 item IDs the documented record uses,
+  preferring items documented near the same chapter.
+- Companions follow the documented pattern: O128/O129 appear in D/Luck 80
+  from chapter 20, O455 in Luck 100 from chapter 34.
+- Character rewards (M<id>) stay absent - the icon-to-ID mapping was never
+  resolved. Equal-weight selection and per-tier rolls are unchanged, so
+  documented-stage rolls are byte-identical to before.
+
+Verified: 701 total pools (30 documented + 671 generated), rolls return
+non-empty chests on generated stages at high Luck, documented stages unchanged.
