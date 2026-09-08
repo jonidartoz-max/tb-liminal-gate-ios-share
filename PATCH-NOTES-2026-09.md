@@ -166,3 +166,31 @@ contribute 0, matching pre-fix behavior. Applied in both read paths.
 
 **Verified locally:** story 6-1 start/clear, Bahamut 2000-1/2, story 5-1 and
 4-1 (ch<6) all return 200; earlier crash reproduced then confirmed gone.
+
+
+## 10. reTB data adoption — Luck pools 420 stages + reference masters
+
+**Source:** reTB v1.4.18 (codeberg.org/WkmKsk/reTB), an independent
+reverse-engineering project. Their data files complement ours where the
+community scrape was incomplete.
+
+**Adopted:**
+- `luck_pool_data.py`: +390 stage pools imported from reTB's
+  `ltc_pools_by_stage.json` (478 stages total; 20 overlap our documented 30
+  and were skipped; 68 had no battledata entry - cutscene/section-0 stages).
+  Total pools now **420** (30 documented byte-identical + 390 reTB-mapped).
+  Mapping: reTB flat rewards -> our per-tier format; coins scaled by tier
+  (x1/x2/x4/x6/x8/x12) anchored on each stage's own reTB coin value;
+  items -> A/B/C; character drops -> D/Luck 100; companions -> D/Luck 80/100.
+  Character drops (M<id>) now exist on 57 stages - previously impossible.
+- `achievement_master_data.py` (NEW): full 99-achievement master with
+  unlockType/unlockValues/presents. Reference data; server settlement
+  behavior unchanged (8 ClearChapter rows).
+- `item_names_data.py` (NEW): 181 item ID -> name, for readable logs.
+- `companion_master_full.py` (NEW): full 497-companion master (names en/ja/
+  zh_tw, rarity, max levels, EXP curves, base coins, evolve chains).
+  Supersedes companion_master_data.py as reference; behavior unchanged.
+
+**Verification:** all modules import clean; server boots; story/Bahamut smoke
+routes return 200 on the fixed build. Luck pools documented 30 remain
+byte-identical to the community record.
