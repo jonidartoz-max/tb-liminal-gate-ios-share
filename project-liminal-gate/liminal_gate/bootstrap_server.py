@@ -3412,6 +3412,12 @@ class BootstrapServer(ThreadingHTTPServer):
 class BootstrapHandler(BaseHTTPRequestHandler):
     server: BootstrapServer
 
+    # HTTP/1.1 keep-alive: the Modal edge reuses connections, so closing each
+    # response (HTTP/1.0 default) surfaces as ServerDisconnectedError on the
+    # client roughly every few requests. Every response carries Content-Length,
+    # which is what HTTP/1.1 framing requires.
+    protocol_version = "HTTP/1.1"
+
     def _client_host(self) -> str | None:
         """The requesting client's address, used only to route unknown tokens."""
         address = getattr(self, "client_address", None)

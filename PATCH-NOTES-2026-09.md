@@ -121,3 +121,24 @@ byte-identical:
 
 Verified: 701 total pools (30 documented + 671 generated), rolls return
 non-empty chests on generated stages at high Luck, documented stages unchanged.
+
+
+## 8. Intermittent "network error" / phantom "stamina insufficient" — FIXED
+
+**Problem:** every few requests the client saw a network error (HTTP 500 at the
+Modal edge) despite the server being healthy. Worse, a `start_quest` that
+succeeded server-side but whose response was lost to this error silently
+debited stamina without updating the client — so the next attempt reported
+"insufficient stamina" while the on-screen bar still showed enough. Players
+burned Energy refilling stamina that wasn't actually spent.
+
+**Root cause:** `BootstrapHandler` used `BaseHTTPRequestHandler`'s default
+HTTP/1.0, which closes the connection after every response. The Modal edge
+speaks HTTP/1.1 with connection reuse, so it periodically sent a request over a
+connection the server had already closed — `ServerDisconnectedError`, 500,
+client retry. Log pattern: bursts of 2-4 x 500 followed by 200 OK.
+
+**Fix:** `protocol_version = "HTTP/1.1"` on the handler (all responses already
+carry `Content-Length`, so the framing requirement is met). Verified with a
+30-request single-connection test against production: all 200, zero
+exceptions. Post-deploy logs show no further 500 bursts.
