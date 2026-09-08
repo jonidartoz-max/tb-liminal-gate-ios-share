@@ -98,24 +98,3 @@ save intact but unreachable. Built and verified:
 - GitHub repo updated (`4ad030e`, `91165f7`): catalogs, hardened scripts,
   companion-luck patch, and these docs. `.gitignore` keeps player saves and
   the resource pack out of the repo.
-
-
-## 6. Companion equip network error — FIXED
-
-**Problem:** equipping a Companion (moving it onto a character) produced an
-immediate network error; the equip was refused with
-`unsupported_companion_userdata` (HTTP 501).
-
-**Root cause:** every new equip link is authorised against a
-`CompanionEquipmentCatalog` (character ancestry + job-species restrictions
-mirroring the client's `Buddy.CanEquip`). The server deliberately fails closed
-when that catalog is absent — and it was never generated or deployed, so every
-equip was refused regardless of the Companion.
-
-**Fix:**
-- Generated `user-data/companion-equipment.json` from the 5.5.7 APK master
-  data (346 characters, 497 companions) via the existing
-  `tester_setup` derivation path (ChrDatabase + BuddyDatabase trees).
-- Deployments now pass `--companion-equipment-catalog` and bundle the file.
-- Verified locally: the same equip write that returned 501 returns 200 with
-  the catalog loaded.

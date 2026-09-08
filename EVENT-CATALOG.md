@@ -16,9 +16,10 @@ generation and use them as-is.
 
 ## Files involved
 
-    user-data/battledata.json          (stage metadata: stamina/coins per section)
-    user-data/character-catalog.json   (character rarities, used by pact draws)
-    user-data/event-catalog.json       (the event stages themselves)
+    user-data/battledata.json             (stage metadata: stamina/coins per section)
+    user-data/character-catalog.json      (character rarities, used by pact draws)
+    user-data/event-catalog.json          (the event stages themselves)
+    user-data/companion-equipment.json    (companion equip restrictions; REQUIRED for equipping companions)
 
 START-SERVER-WINDOWS.bat already passes the two catalog flags. If a file is missing or
 corrupt, the server prints a `[boot] WARNING` and starts anyway (with those lists empty) —
