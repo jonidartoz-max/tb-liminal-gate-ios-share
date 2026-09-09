@@ -303,3 +303,14 @@ Adopted from reTB 1.4.18's quality-of-life set (changelog sweep):
   `EnableLiveMusic` (options toggle), `ch1-5_stamina_one` (client applies the
   one-stamina campaign rule for chapters 1-5), `slot_show_probabirity`,
   `enableDailyBonus`.
+
+
+## 17. Inbox crash fix — read_messages result shape (2026-09-09)
+
+Opening the inbox right after collecting the daily Energy gift crashed the
+client: the server answered `read_messages` with `result: true` plus the
+currency at the top level, while the client's collector replaces its
+in-memory currency from a dict at `result` (`energy`, `freeEnergy`, `coins`,
+`readlist`, `itemList` — reTB parity, confirmed by the retired service's
+response model). The daily-gift fast path and the catalog read path now both
+ship the nested shape with the full `itemList` inside `result`.

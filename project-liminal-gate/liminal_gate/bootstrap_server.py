@@ -1403,11 +1403,17 @@ class BootstrapState:
                     userdata["freeEnergy"] = int(userdata.get("freeEnergy", 0)) + DAILY_GIFT_ENERGY
                     account["messages"][DAILY_GIFT_MESSAGE_ID]["read"] = True
                     self._persist_locked()
+                    # Wire shape per the retired service (reTB parity): the
+                    # client REPLACES its in-memory currency from the dict at
+                    # `result` — a boolean there crashes the inbox parser.
                     return "success", _canonical_payload({
-                        "result": True,
-                        "readlist": [DAILY_GIFT_MESSAGE_ID],
-                        "freeEnergy": int(userdata.get("freeEnergy", 0)),
-                        "energy": int(userdata.get("energy", 0)),
+                        "result": {
+                            "energy": int(userdata.get("energy", 0)),
+                            "freeEnergy": int(userdata.get("freeEnergy", 0)),
+                            "coins": int(userdata.get("coins", 0)),
+                            "readlist": [DAILY_GIFT_MESSAGE_ID],
+                            "itemList": list(userdata.get("itemList", [])),
+                        },
                     })
             digest = hashlib.sha256(body).hexdigest()
             requests = account.setdefault("message_requests", {})
@@ -1444,7 +1450,16 @@ class BootstrapState:
                 message["read"] = True
             data["coins"], data["freeEnergy"], data["itemList"] = coins, energy, updated_items
             _apply_message_grants(data, grants)
-            payload = _canonical_payload({"result": True, "readlist": message_ids, "itemList": updated_items, "coins": coins, "energy": int(data.get("energy", 0)), "freeEnergy": energy, **_message_reload_projection(data, account)})
+            payload = _canonical_payload({
+                "result": {
+                    "energy": int(data.get("energy", 0)),
+                    "freeEnergy": energy,
+                    "coins": coins,
+                    "readlist": message_ids,
+                    "itemList": updated_items,
+                },
+                **_message_reload_projection(data, account),
+            })
             requests[_replay_key(request_id, body, "read")] = {"operation": "read", "body_sha256": digest, "payload": copy.deepcopy(payload)}
             self._persist_locked()
             return "success", payload
