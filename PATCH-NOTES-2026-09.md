@@ -194,3 +194,26 @@ community scrape was incomplete.
 **Verification:** all modules import clean; server boots; story/Bahamut smoke
 routes return 200 on the fixed build. Luck pools documented 30 remain
 byte-identical to the community record.
+
+
+## 11. Event boss drops — Bahamut/Leviathan/Odin & 8-Bit/Kino bosses (2026-09-09)
+
+The flat reTB `ltc_pools_by_stage.json` import lacked the boss characters.
+Their `quest_consts.py` contains `LTC_SPECIAL_TIERS` — wiki-verified
+per-difficulty tables — which were imported instead for all event chapters:
+
+- Bahamut Descended: Bahamut (M148) in Luck80/Luck100 on every section,
+  Bahamut Lambda (M632) on Recoded; companions Blazing Wand O8 / Inferno
+  Rod O9 / Mantle Staff O12 / Daiana OII O337 / Bahamut O O275 / Bahamut OII O311
+- Leviathan: M144 / M634 + Glacial/Blizzard/Comet staff line + Leviathan O O276 / OII O312
+- Odin: M151 / M633 + spear line + Odin O O277 / OII O313
+- 8-Bit Strikes Back (8004-8007): Orbling M899, Spinetrich M895, Golem M897,
+  Hiso Alien M901 + their O/OII companions
+- Kino Strikes Back Lambda (8012-8017): Lich M965, Marilith M967, Mechanic M969,
+  Odin M992, Bahamut M1014, Leviathan M1016 + recruit O/OII companions
+- Metal Minion O128/O129/O130 across event tiers
+
+Sections are 0-based in reTB and 1-based here (reTB 2000-0 = our 2000-1).
+Event stages with no recorded table anywhere (46) and story boss stages
+(81, e.g. (2,5)) keep empty chests - no data was invented.
+Total: 473 pools. Deployed to Modal, pushed as 317e657.
