@@ -534,6 +534,38 @@ LUCK_CHEST_POOLS.update({
 })
 
 
+# BEGIN ANIMATA CORE CHESTS (2026-09-09) --
+# The 8-Bit and Kino Strikes Back quests pay Animata Core (item 181) amounts
+# from the A / B chests, on top of the listed rewards. Source: reTB quest_consts
+# _SB_ANIMATA_{A,B}_COUNTS (wiki "Luck Treasure Chests/Strikes Back" template):
+# each chest draws ONE of its two candidate amounts uniformly on a win. Emitted
+# as L<count> slots the client renders as "<exchange item> x<count>".
+def _append_animata_candidates() -> None:
+    from liminal_gate.animata_counts_data import animata_candidates
+
+    for chapter in (8000, 8001, 8002, 8003, 8004, 8005, 8006, 8007,
+                    8012, 8013, 8014, 8015, 8016, 8017):
+        for section in (1, 2, 3):
+            pool = LUCK_CHEST_POOLS.get((chapter, section))
+            if not pool:
+                continue
+            candidates = animata_candidates(chapter, section)
+            if candidates is None:
+                continue
+            a_extra, b_extra = candidates
+            if any(r.startswith("L") for r in pool.get("A", ()) + pool.get("B", ())):
+                continue  # already appended (module re-run guard)
+            updated = dict(pool)
+            updated["A"] = tuple(pool.get("A", ())) + a_extra
+            updated["B"] = tuple(pool.get("B", ())) + b_extra
+            LUCK_CHEST_POOLS[(chapter, section)] = updated
+
+
+_append_animata_candidates()
+# END ANIMATA CORE CHESTS --
+
+
+
 def pool_for(chapter: int, section: int, tier: str) -> tuple[str, ...]:
     """Return one stage-and-tier reward pool, empty when undocumented."""
     return LUCK_CHEST_POOLS.get((chapter, section), {}).get(tier, ())

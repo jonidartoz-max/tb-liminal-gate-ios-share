@@ -217,3 +217,18 @@ Sections are 0-based in reTB and 1-based here (reTB 2000-0 = our 2000-1).
 Event stages with no recorded table anywhere (46) and story boss stages
 (81, e.g. (2,5)) keep empty chests - no data was invented.
 Total: 473 pools. Deployed to Modal, pushed as 317e657.
+
+
+## 12. Animata Core chest amounts — 8-Bit & Kino Strikes Back (2026-09-09)
+
+The A / B luck chests of the 8-Bit Strikes Back (8000-8007) and Kino Strikes
+Back Lambda (8012-8017) quests pay Animata Core (item 181) amounts ON TOP of
+the listed rewards, per the wiki "Luck Treasure Chests/Strikes Back" template
+(reTB quest_consts _SB_ANIMATA_{A,B}_COUNTS):
+- difficulty I:   A draws 8 or 18,  B draws 20 or 60
+- difficulty II & III: A draws 50 or 130, B draws 100 or 260
+Each chest draws ONE of its two candidate amounts uniformly on a win; the
+amount is emitted as an L<count> slot code which the client renders as
+"<exchange item> x<count>" (the Animata Core for these chapters).
+credit path: luck_runtime.chest_items now converts L<count> to item 181.
+New module: animata_counts_data.py (candidates + chapter list + item id).

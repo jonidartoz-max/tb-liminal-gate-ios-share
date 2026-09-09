@@ -33,6 +33,7 @@ from liminal_gate.luck_data import (
     team_luck,
 )
 from liminal_gate.luck_pool_data import pool_for
+from liminal_gate.animata_counts_data import ANIMATA_ITEM_ID
 from liminal_gate.server_constants import (
     BUDDY_LUCK_UP,
     BUDDY_LUCK_UP_BOOST,
@@ -205,6 +206,10 @@ def chest_items(slots: list[str]) -> dict[int, int]:
     for slot in slots:
         if slot.startswith("I") and slot[1:].isdigit():
             items[int(slot[1:])] = items.get(int(slot[1:]), 0) + 1
+        elif slot.startswith("L") and slot[1:].isdigit():
+            # Animata Core chest: L<count> awards <count>x of the chapter's
+            # exchange item (the Animata Core, item 181, for chapters >= 6).
+            items[ANIMATA_ITEM_ID] = items.get(ANIMATA_ITEM_ID, 0) + int(slot[1:])
     return items
 
 
