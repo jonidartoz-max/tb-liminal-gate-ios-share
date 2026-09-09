@@ -143,3 +143,18 @@ def chest_probabilities(team_luck_tenths: int) -> dict[str, float]:
 def gains_luck(stamina: int) -> bool:
     """Whether a quest of this stamina cost may raise Luck at all."""
     return stamina >= LUCK_GAIN_MIN_STAMINA
+
+
+# Duplicate-character Luck bonus for Luck-chest monster drops (2026-09-09).
+# Source: reTB state_consts DROP_LUCK_PER_DUPE / DROP_LUCK_OVERRIDES (wiki:
+# a duplicate recruit raises its Luck; a Lambda duplicate's gain is much
+# larger). Internal tenths: 10 = +1.0 displayed Luck.
+DUPE_LUCK_PER_DUPE = 10
+DUPE_LUCK_OVERRIDES = {
+    1018: 100,  # Joker Lambda: +10 displayed
+}
+
+
+def dupe_luck_gain(character_id: int) -> int:
+    """Luck tenths granted for a duplicate Luck-chest recruit of this id."""
+    return DUPE_LUCK_OVERRIDES.get(character_id, DUPE_LUCK_PER_DUPE)

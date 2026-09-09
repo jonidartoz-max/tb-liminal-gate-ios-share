@@ -135,6 +135,10 @@ def roll_luck_up_table(
     Royal Ringstone (a companion's equipped buddy id in
     ``BUDDY_LUCK_UP_BOOST``) doubles a successful increment, its documented
     effect, applied before the ceiling clamp.
+
+    Local policy (2026-09-09): a qualifying quest guarantees ONE party member —
+    drawn at random — a uniform +0.1 to +0.5 Luck gain, instead of the original
+    per-character stamina-weighted chance. The other five slots gain nothing.
     """
     party = userdata.get("teamMembers")
     if not isinstance(party, list):
@@ -159,20 +163,25 @@ def roll_luck_up_table(
             if isinstance(companion, dict) and type(companion.get("iid")) is int:
                 bid_by_iid[companion["iid"]] = companion.get("bid", 0)
     generator = _seeded("luckUpTable", stamina, *seed)
-    chance = min(1.0, stamina * LUCK_GAIN_CHANCE_PER_STAMINA)
-    table: list[int] = []
-    for member in members:
-        # Draw per slot regardless, so an empty or capped slot cannot shift the
-        # draws of the slots after it.
-        rolled = generator.random() < chance
-        gain = generator.choice(LUCK_GAIN_TENTHS)
-        if not member or not rolled:
-            table.append(0)
-            continue
-        bid = bid_by_iid.get(buddy_iid_by_id.get(member, 0), 0)
-        multiplier = BUDDY_LUCK_UP_BOOST.get(str(bid), 1)
-        headroom = max(0, LUCK_TENTHS_MAX - current.get(member, 0))
-        table.append(min(gain * multiplier, headroom))
+    table: list[int] = [0] * 6
+    # Only members with headroom below the 100.0 ceiling can rise; a capped
+    # member drawn as the winner would waste the guarantee on a zero.
+    filled = [
+        index for index, member in enumerate(members)
+        if member and current.get(member, 0) < LUCK_TENTHS_MAX
+    ]
+    if not filled:
+        return table
+    # Guarantee: exactly ONE party member rises, drawn uniformly; the gain is a
+    # uniform +0.1 to +0.5 (1-5 tenths). Ringstone doubles it; the per-class
+    # ceiling clamps it.
+    winner = generator.choice(filled)
+    member = members[winner]
+    gain = generator.choice((1, 2, 3, 4, 5))
+    bid = bid_by_iid.get(buddy_iid_by_id.get(member, 0), 0)
+    multiplier = BUDDY_LUCK_UP_BOOST.get(str(bid), 1)
+    headroom = max(0, LUCK_TENTHS_MAX - current.get(member, 0))
+    table[winner] = min(gain * multiplier, headroom)
     return table
 
 

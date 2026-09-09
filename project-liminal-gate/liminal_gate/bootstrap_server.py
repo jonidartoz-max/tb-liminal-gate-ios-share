@@ -87,6 +87,7 @@ from liminal_gate.secondary_world_data import (
     build_bundled_five_emperors_stages,
     secondary_world_event_flags,
 )
+from liminal_gate.luck_data import dupe_luck_gain
 from liminal_gate.luck_pool_data import pool_for
 from liminal_gate.luck_runtime import (
     apply_luck_up_table,
@@ -2372,7 +2373,6 @@ class BootstrapState:
             account = self.accounts.get(self.tokens.get(token))
             if account is None:
                 return "unknown_account", None
-            print(f"[DBG-hunt-start] token_account={self.tokens.get(token)!r} keys={list(self.accounts)[:5]} phase={account.get('tutorial_phase')!r}", flush=True)
             requests = account.setdefault("tutorial_requests", {})
             digest = hashlib.sha256(body).hexdigest()
             cached = requests.get(_replay_key(request_id, body))
@@ -2467,7 +2467,6 @@ class BootstrapState:
                     request_id, digest,
                 )
                 account["active_luck_result"] = list(luck_slots)
-                print(f"[DBG-luck] rolled={luck_slots} team_luck={party_team_luck(userdata)}", flush=True)
             if stage.once_per_utc_day:
                 # The day is consumed at accepted start, not at clear: the
                 # retired service updated `lastDailyQuestPlayTime` from
@@ -2584,8 +2583,8 @@ class BootstrapState:
                     count + chest_items_granted.get(index + 1, 0)
                     for index, count in enumerate(projected_items)
                 ]
-            if chest_monsters:
-                _apply_monster_recruits(userdata, chest_monsters)
+            if chest:
+                _apply_chest_recruits(userdata, chest)
             chest_buddy_rows = [
                 {
                     "bid": buddy_id, "lv": 1, "date": 0, "iid": len(
@@ -3096,6 +3095,10 @@ class BootstrapState:
                 "chrdata": copy.deepcopy(userdata["chrdata"]),
                 "itemList": copy.deepcopy(userdata["itemList"]),
             }
+            if authored_chest and any(
+                code.startswith("M") and code[1:].isdigit() for code in authored_chest
+            ):
+                _apply_chest_recruits(userdata, authored_chest)
             if buddy_info is not None:
                 payload["buddyInfo"] = copy.deepcopy(buddy_info)
             account["tutorial_phase"] = "free_roam"
@@ -4800,6 +4803,45 @@ def _apply_monster_recruits(userdata: dict[str, Any], recruited: list[int]) -> N
 # 1000-Companion box ceiling every bundled Companion policy uses.
 _WORLD_MAP_SPECIAL_COMPANION_BOX = 1000
 
+def _apply_chest_recruits(
+    userdata: dict[str, Any], chest: list[str],
+) -> list[int]:
+    """Register Luck-chest monster recruits, granting Luck for duplicates.
+
+    The chest's ``M<chrID>`` slots are server-authoritative: the client never
+    uploads them back, so the roster must be updated here — a first copy joins
+    the roster as a fresh recruit, and a duplicate of a character the account
+    already owns raises that character's Luck by the duplicate bonus (a
+    Lambda-class duplicate's much larger gain is in the override table).
+    Returns the ids whose Luck rose, for logging.
+    """
+    luck_risen: list[int] = []
+    for code in chest:
+        if not (code.startswith("M") and code[1:].isdigit()):
+            continue
+        character_id = int(code[1:])
+        rows = userdata.get("chrdata")
+        if not isinstance(rows, list):
+            continue
+        row = next(
+            (item for item in rows if isinstance(item, dict) and item.get("id") == character_id),
+            None,
+        )
+        if row is None:
+            rows.append({
+                "id": character_id, "jobID": 0, "jobLevels": [1], "jobSlots": [],
+                "isNew": True, "levelAdded": 1, "skillBoost": 0,
+            })
+            continue
+        gain = dupe_luck_gain(character_id)
+        current = row.get("luck", 0)
+        if type(current) is not int or current < 0:
+            current = 0
+        row["luck"] = min(1000, current + gain)
+        luck_risen.append(character_id)
+    return luck_risen
+
+
 
 def _granted_hunting_companions(
     userdata: dict[str, Any], stage: HuntingStage | WorldMapSpecialStage, result: dict[str, Any], box_capacity: int,
@@ -6283,6 +6325,15 @@ def _preserved_progress(held: dict[str, Any], reported: dict[str, Any]) -> dict[
         ]
     if type(held.get("skillBoost")) is int and type(merged.get("skillBoost")) is int:
         merged["skillBoost"] = max(held["skillBoost"], merged["skillBoost"])
+    # Luck is server-authoritative and only ever rises (battle-end Luck-up,
+    # duplicate bonuses, Luck status-up items all have their own routes), so a
+    # client that has not read the latest grant back reports a stale — often
+    # absent — value. Keep the larger of the two, exactly like skillBoost.
+    if type(held.get("luck")) is int:
+        if type(merged.get("luck")) is not int:
+            merged["luck"] = held["luck"]
+        else:
+            merged["luck"] = max(held["luck"], merged["luck"])
     return merged
 
 

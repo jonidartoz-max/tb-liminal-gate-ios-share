@@ -250,3 +250,25 @@ quest_consts _DAILY_LTC_TIERS) now roll Luck Treasure Chests:
   Luck80 quest-themed items + companions, Luck100 the companions.
 Total pools: 485. Verified locally end-to-end: start returns the chest, clear
 credits coins/items/companions (O345, O384 observed at Luck 100).
+
+
+## 14. Luck-up overhaul: guaranteed random-gain + luck preserve + dupe bonus (2026-09-09)
+
+**Luck reset bug (FIXED):** after a clear, character Luck snapped back to the
+client's stale value because `_preserved_progress` preserved jobLevels and
+skillBoost but not the server-authored `luck` field. Luck now merges with
+max(held, reported) like skillBoost — a stale client can no longer roll back
+a Luck gain it had not read.
+
+**Guaranteed battle-end Luck-up (local policy):** quests costing >= 8 stamina
+now guarantee exactly ONE random party member a uniform +0.1 to +0.5 Luck
+(1-5 tenths), replacing the per-character stamina-weighted chance. Ringstone
+still doubles it; the per-class ceiling clamps it. Capped members are skipped
+so the guarantee never lands on a zero. The < 8 stamina rule is unchanged
+(daily quests still grant no battle-end Luck-up, per the original design).
+
+**Duplicate Luck bonus:** duplicate characters from Luck-chest monster drops
+now raise that character's Luck by +1.0 (Joker Lambda +10.0 per reTB's
+override table); first copies join the roster as before. Wired into both the
+hunting and event clear paths (event boss chest recruits previously were
+never registered to the roster at all — fixed).
