@@ -232,3 +232,21 @@ amount is emitted as an L<count> slot code which the client renders as
 "<exchange item> x<count>" (the Animata Core for these chapters).
 credit path: luck_runtime.chest_items now converts L<count> to item 181.
 New module: animata_counts_data.py (candidates + chapter list + item id).
+
+
+## 13. Daily Quest Luck Chests (2026-09-09)
+
+Daily quests (chapters 6000-6012, wiki "Daily Quests/*" tables via reTB
+quest_consts _DAILY_LTC_TIERS) now roll Luck Treasure Chests:
+- Hunting start: stages with a chest table roll a chest seeded by the request
+  identity (no re-roll on retry) and stash it as active_luck_result; the
+  response carries luckResult. Stages without a table (Metal Zone etc.) keep
+  their own reward paths.
+- Hunting clear: chest coins join the wallet expectation, item slots are
+  credited on top of the audited inventory, monster recruits join the roster,
+  and companion slots are authored as new level-1 rows reported via buddyInfo.
+- Pools added for all 12 daily chapters at section 1: A/B upgrade items,
+  C weapons + nine dragon-class monsters, D the eight Omicron-II companions,
+  Luck80 quest-themed items + companions, Luck100 the companions.
+Total pools: 485. Verified locally end-to-end: start returns the chest, clear
+credits coins/items/companions (O345, O384 observed at Luck 100).

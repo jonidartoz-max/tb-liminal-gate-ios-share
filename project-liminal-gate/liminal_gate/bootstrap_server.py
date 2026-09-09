@@ -87,6 +87,7 @@ from liminal_gate.secondary_world_data import (
     build_bundled_five_emperors_stages,
     secondary_world_event_flags,
 )
+from liminal_gate.luck_pool_data import pool_for
 from liminal_gate.luck_runtime import (
     apply_luck_up_table,
     chest_coins,
@@ -2371,6 +2372,7 @@ class BootstrapState:
             account = self.accounts.get(self.tokens.get(token))
             if account is None:
                 return "unknown_account", None
+            print(f"[DBG-hunt-start] token_account={self.tokens.get(token)!r} keys={list(self.accounts)[:5]} phase={account.get('tutorial_phase')!r}", flush=True)
             requests = account.setdefault("tutorial_requests", {})
             digest = hashlib.sha256(body).hexdigest()
             cached = requests.get(_replay_key(request_id, body))
@@ -2408,6 +2410,7 @@ class BootstrapState:
                 release_abandoned_battle(account)
                 phase = account["tutorial_phase"]
             if phase != "free_roam" or account.get("active_generic_story") is not None:
+                print(f"[DBG-hunt] phase={phase!r} active_story={account.get('active_generic_story')!r} active_hunt={active!r} identity={identity!r}", flush=True)
                 return "tutorial_state_conflict", None
             if not stage.unlocked_at(int(userdata.get("progressCode", 0))):
                 return "hunting_stage_locked", None
@@ -2449,6 +2452,22 @@ class BootstrapState:
             account["tutorial_phase"] = "hunting_active"
             account["active_hunt"] = identity
             account["active_battle_continue_coins"] = 0
+            # Daily Quests (and any other cataloged Hunting stage carrying a
+            # Luck chest table) roll their chest here, exactly like a story
+            # start: seeded from the request identity so a retry cannot
+            # re-roll a better chest, and settled at clear. Stages without a
+            # pool roll nothing and leave no chest behind, so Metal Zone and
+            # the other Hunting stages keep their own reward paths untouched.
+            if any(
+                pool_for(stage.chapter, stage.section, tier_name)
+                for tier_name in ("A", "B", "C", "D", "Luck 80", "Luck 100")
+            ):
+                luck_slots = roll_luck_result(
+                    stage.chapter, stage.section, party_team_luck(userdata),
+                    request_id, digest,
+                )
+                account["active_luck_result"] = list(luck_slots)
+                print(f"[DBG-luck] rolled={luck_slots} team_luck={party_team_luck(userdata)}", flush=True)
             if stage.once_per_utc_day:
                 # The day is consumed at accepted start, not at clear: the
                 # retired service updated `lastDailyQuestPlayTime` from
@@ -2462,7 +2481,11 @@ class BootstrapState:
             # spend. Retain the entry choice so only that one stale slot can be
             # reconciled at clear time; stamina fallback must remain exact.
             account["active_hunt_ticket_spent"] = spends_ticket
-            payload = _canonical_payload({"success": True, "refillStartTime": origin})
+            payload = {"success": True, "refillStartTime": origin}
+            chest = account.get("active_luck_result")
+            if isinstance(chest, list) and chest:
+                payload["luckResult"] = list(chest)
+            payload = _canonical_payload(payload)
             requests[_replay_key(request_id, body)] = {"body_sha256": digest, "payload": copy.deepcopy(payload)}
             self._persist_locked()
             return "success", payload
@@ -2509,7 +2532,17 @@ class BootstrapState:
             ):
                 return "tutorial_state_conflict", None
             # A Hunting battle settles rewards; it never moves story progress.
-            expected_coins = int(userdata.get("coins", 0)) + result["coins"]
+            # The Luck chest rolled at start is part of that settlement: its
+            # coin slots join the wallet expectation, its item / monster /
+            # companion slots are credited after the client-reported rewards
+            # pass their own audit (see below).
+            authored_chest = account.get("active_luck_result")
+            authored_chest = authored_chest if isinstance(authored_chest, list) else []
+            chest = authored_chest if any(
+                pool_for(identity[0], identity[1], tier_name)
+                for tier_name in ("A", "B", "C", "D", "Luck 80", "Luck 100")
+            ) else []
+            expected_coins = int(userdata.get("coins", 0)) + result["coins"] + chest_coins(chest)
             if (
                 clear["progressCode"] != int(userdata.get("progressCode", 0))
                 or clear["worldMapNo"] != int(userdata.get("worldMapNo", 0))
@@ -2535,6 +2568,32 @@ class BootstrapState:
             companions = _granted_hunting_companions(userdata, stage, result, catalog.max_companions)
             if companions is None:
                 return "invalid_local_hunting_result", None
+            # Luck chest credit (server-authoritative; the client never uploads
+            # chest contents back). Item slots join the projected inventory,
+            # monster slots join the roster, companion slots are authored as
+            # new level-1 rows and reported via buddyInfo.
+            chest_items_granted = chest_items(chest)
+            chest_monsters = [
+                int(code[1:]) for code in chest if code.startswith("M") and code[1:].isdigit()
+            ]
+            chest_buddy_ids = [
+                int(code[1:]) for code in chest if code.startswith("O") and code[1:].isdigit()
+            ]
+            if chest_items_granted:
+                projected_items = [
+                    count + chest_items_granted.get(index + 1, 0)
+                    for index, count in enumerate(projected_items)
+                ]
+            if chest_monsters:
+                _apply_monster_recruits(userdata, chest_monsters)
+            chest_buddy_rows = [
+                {
+                    "bid": buddy_id, "lv": 1, "date": 0, "iid": len(
+                        (userdata.get("buddyInfo") or {}).get("list", [])
+                    ) + position + 1, "exp": 0, "flag": 0, "chrID": 0,
+                }
+                for position, buddy_id in enumerate(chest_buddy_ids)
+            ]
             wallet_fields = ("energyAppStore", "energy", "energyAndApp", "freeEnergy", "energyGooglePlay", "coins")
             userdata.update({
                 "lastupdate": 1.0,
@@ -2555,6 +2614,7 @@ class BootstrapState:
             account["active_hunt"] = None
             account["active_hunt_ticket_spent"] = None
             account["active_battle_continue_coins"] = 0
+            account["active_luck_result"] = []
             # Preservation income; see `archive_economy`.
             award_stage_energy(account, "hunting", *identity)
             userdata["valuables"]["freeEnergy"] = int(userdata.get("freeEnergy", 0))
@@ -2566,9 +2626,16 @@ class BootstrapState:
             # Only a settlement that actually granted Companions touches the box
             # or reports it, so the four item and Coin families keep the exact
             # response they were verified with.
+            if chest_buddy_rows:
+                box = userdata.get("buddyInfo") or {"list": [], "record": []}
+                box = {"list": list(box.get("list", [])) + chest_buddy_rows,
+                       "record": list(box.get("record", []))}
+                userdata["buddyInfo"] = box
             if result["buddies"]:
                 userdata["buddyInfo"] = companions
                 payload = _canonical_payload(payload | {"buddyInfo": copy.deepcopy(companions)})
+            elif chest_buddy_rows:
+                payload = _canonical_payload(payload | {"buddyInfo": copy.deepcopy(userdata["buddyInfo"])})
             requests[_replay_key(request_id, body)] = {"body_sha256": digest, "payload": copy.deepcopy(payload)}
             self._persist_locked()
             return "success", payload
