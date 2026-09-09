@@ -50,7 +50,7 @@ LUCK_CAP_Z_AND_LAMBDA = 1000
 #: **Confirmed, primary.** A quest costing less than this never raises Luck.
 #: The one rule a preservation server is most tempted to drop, because it makes
 #: every zero-stamina archive stage ineligible; it is the developer's own.
-LUCK_GAIN_MIN_STAMINA = 8
+LUCK_GAIN_MIN_STAMINA = 7  # local policy 2026-09-09: lowered from the original 8 so 7-stamina battles (e.g. chapter 6) can raise Luck too
 
 #: **Community record.** A successful battle-end gain is 0.1 to 0.3, in tenths.
 LUCK_GAIN_TENTHS = (1, 2, 3)

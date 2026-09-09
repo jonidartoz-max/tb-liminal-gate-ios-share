@@ -272,3 +272,16 @@ now raise that character's Luck by +1.0 (Joker Lambda +10.0 per reTB's
 override table); first copies join the roster as before. Wired into both the
 hunting and event clear paths (event boss chest recruits previously were
 never registered to the roster at all — fixed).
+
+
+## 15. 7-stamina Luck-up + Android client (2026-09-09)
+
+- LUCK_GAIN_MIN_STAMINA lowered 8 -> 7: seven-stamina battles (chapter 6
+  onward) can now raise Luck, covering the gap where chapter-6 grinders
+  never qualified under the original rule. The guarantee, uniform +0.1..+0.5
+  gain, Ringstone doubling and class ceilings are unchanged.
+- terrabattle-android-modal.apk (79 MB, local share folder only): the
+  Android client with its IL2CPP global-metadata string literals patched
+  from http://43.159.58.65:8696[/] to http://t.mszero00.my.id[/] (3 entries,
+  length-corrected), repacked and signed. The Android client can now reach
+  the Modal deployment like the iOS build.
