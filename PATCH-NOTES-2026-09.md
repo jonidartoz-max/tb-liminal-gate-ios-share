@@ -314,3 +314,13 @@ in-memory currency from a dict at `result` (`energy`, `freeEnergy`, `coins`,
 `readlist`, `itemList` — reTB parity, confirmed by the retired service's
 response model). The daily-gift fast path and the catalog read path now both
 ship the nested shape with the full `itemList` inside `result`.
+
+
+## 18. Drop Guide document (2026-09-09)
+
+`DROP-GUIDE.md`: a complete farming index generated from the live luck-chest
+pools. For every Job Change and every Recode recipe it lists the coins and
+materials with the stages (and chest tiers) that carry each item; plus
+item/companion/character source indexes (80 items, 163 companions, 92
+characters). Items that never appear in a Luck chest are marked as battle
+drops.
