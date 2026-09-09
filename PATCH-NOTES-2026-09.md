@@ -285,3 +285,21 @@ never registered to the roster at all — fixed).
   from http://43.159.58.65:8696[/] to http://t.mszero00.my.id[/] (3 entries,
   length-corrected), repacked and signed. The Android client can now reach
   the Modal deployment like the iOS build.
+
+
+## 16. Human log, /healthz clients, client feature flags (2026-09-09)
+
+Adopted from reTB 1.4.18's quality-of-life set (changelog sweep):
+
+- **Human-readable console log** (`human_log.py`): one coloured line per
+  player action — route, outcome, coins, Luck-up recipients, chest slots.
+  On by default; `TB_HUMAN_LOG=0` silences it.
+- **`/healthz` clients list**: per-address request counters with the last
+  request age, so operators can see which devices are talking to the
+  server.
+- **Client feature flags** now served at login (all confirmed literals from
+  the final client, reTB parity): `use_sakaba_bgm_for_bar` (the Tavern plays
+  its own music), `use_another_bgm_for_hunting` (hunting/metal battle track),
+  `EnableLiveMusic` (options toggle), `ch1-5_stamina_one` (client applies the
+  one-stamina campaign rule for chapters 1-5), `slot_show_probabirity`,
+  `enableDailyBonus`.

@@ -87,6 +87,7 @@ from liminal_gate.secondary_world_data import (
     build_bundled_five_emperors_stages,
     secondary_world_event_flags,
 )
+from liminal_gate.human_log import log_action
 from liminal_gate.luck_data import dupe_luck_gain
 from liminal_gate.luck_pool_data import pool_for
 from liminal_gate.luck_runtime import (
@@ -616,6 +617,24 @@ def load_profile(path: Path) -> BootstrapProfile:
     )
 
 
+def _health_clients_payload(state) -> dict[str, dict[str, int]]:
+    """Per-address request counters for /healthz, oldest last."""
+    import time as _time
+    now = _time.time()
+    rows = []
+    for host, stats in getattr(state, "client_stats", {}).items():
+        rows.append((
+            stats.get("last", 0.0),
+            {
+                "address": host,
+                "requests": int(stats.get("count", 0)),
+                "last_request_age_s": int(max(0.0, now - stats.get("last", 0.0))),
+            },
+        ))
+    rows.sort(key=lambda item: item[0])
+    return {row["address"]: row for _, row in rows}
+
+
 def _replay_key(request_id: str, body: bytes, operation: str = "") -> str:
     """Identify one mutation by its request id *and* its body.
 
@@ -696,6 +715,7 @@ class BootstrapState:
         # three-second time bucket, so two clients playing at once send
         # byte-identical tokens and cannot be told apart by token alone.
         self.client_hosts: dict[str, str] = {}
+        self.client_stats: dict[str, dict[str, float]] = {}
         # Linked devices: a second device's UUID resolves to the account its
         # owner already plays.  Written only by the operator's `link` command,
         # never by the wire protocol, which has no account-transfer route.
@@ -762,6 +782,9 @@ class BootstrapState:
         """
         if not isinstance(client_host, str) or not client_host:
             return False
+        stats = self.client_stats.setdefault(client_host, {"count": 0, "last": 0.0})
+        stats["count"] += 1
+        stats["last"] = time.time()
         if self.client_hosts.get(client_host) == account_id:
             return False
         self.client_hosts[client_host] = account_id
@@ -901,6 +924,10 @@ class BootstrapState:
         if not isinstance(token, str) or not token:
             return False
         with self.lock:
+            if isinstance(client_host, str) and client_host:
+                stats = self.client_stats.setdefault(client_host, {"count": 0, "last": 0.0})
+                stats["count"] += 1
+                stats["last"] = time.time()
             # Internal callers and migrations that have no transport address
             # may still confirm an existing durable binding. HTTP handlers
             # always pass a host and therefore take the host-ownership path.
@@ -3657,7 +3684,8 @@ class BootstrapHandler(BaseHTTPRequestHandler):
         if target.path == "/healthz":
             self._json(
                 HTTPStatus.OK,
-                {"service": "project-liminal-gate", "status": "ok", "build_id": self.server.build_id},
+                {"service": "project-liminal-gate", "status": "ok", "build_id": self.server.build_id,
+                 "clients": _health_clients_payload(self.server.state)},
             )
             return
         if self._serve_local_content(target.path):
@@ -3779,6 +3807,20 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                 payload |= daily_quest_login_fields(
                     self.server.state.accounts[resolved], time.time(),
                 )
+            # Client-confirmed feature flags from the final service's own
+            # login payload (reTB 1.4.18 auth_login parity): tavern BGM,
+            # hunting/metal battle track, the Live Soundtrack options toggle,
+            # the chapters 1-5 one-stamina campaign rule (the client applies
+            # this to the raw master costs at runtime), slot rate display and
+            # the daily bonus panel.
+            event_flags.update({
+                "use_sakaba_bgm_for_bar": {"name": "use_sakaba_bgm_for_bar", "value": True},
+                "use_another_bgm_for_hunting": {"name": "use_another_bgm_for_hunting", "value": True},
+                "EnableLiveMusic": {"name": "EnableLiveMusic", "value": True},
+                "ch1-5_stamina_one": {"name": "ch1-5_stamina_one", "value": True},
+                "slot_show_probabirity": {"name": "slot_show_probabirity", "value": True},
+                "enableDailyBonus": {"name": "enableDailyBonus", "value": True},
+            })
             if event_flags:
                 payload["eventFlags"] = event_flags
             if self.server.drop_eligibility:
@@ -4463,12 +4505,18 @@ class BootstrapHandler(BaseHTTPRequestHandler):
         dispatch = self._select_mutation(target.path, token, request_id, body)
         result, payload = self._resolve_mutation(dispatch, token, request_id, body)
         self._write_mutation_result(token, body, result, payload)
+        log_action(
+            self.server.state.tokens.get(token),
+            target.path.rsplit("/", 1)[-1],
+            result,
+            payload,
+        )
 
     def do_HEAD(self) -> None:
         target = urlsplit(self.path)
         if target.path == "/healthz":
             self._head(HTTPStatus.OK, "application/json", len(
-                (json.dumps({"service": "project-liminal-gate", "status": "ok", "build_id": self.server.build_id}, separators=(",", ":")) + "\n").encode("utf-8")
+                (json.dumps({"service": "project-liminal-gate", "status": "ok", "build_id": self.server.build_id, "clients": _health_clients_payload(self.server.state)}, separators=(",", ":")) + "\n").encode("utf-8")
             ))
             return
         resource = self.server.resource_catalog.resolve(target.path) if self.server.resource_catalog else None
