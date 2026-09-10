@@ -58,7 +58,8 @@ from liminal_gate.message_catalog import (
     eligible_chapter_messages,
     load_message_catalog,
 )
-from liminal_gate.exchange_catalog import ExchangeCatalog, ExchangeCatalogError, active_week_index, build_bundled_exchange_policy, load_exchange_catalog
+from liminal_gate.exchange_catalog import ExchangeCatalog, ExchangeCatalogError, ExchangeOffer, active_week_index, build_bundled_exchange_policy, load_exchange_catalog
+from liminal_gate.holiday_events_data import ANIMATA_CORE_ITEM_ID, HOLIDAY_ID_BASE, active_window as holiday_active_window, holiday_offers as holiday_offers_for
 from liminal_gate.server_config import ServerConfig, ServerConfigError, load_server_config
 from liminal_gate.rebirth_catalog import RebirthCatalog, RebirthCatalogError, build_bundled_rebirth_policy, load_rebirth_catalog
 from liminal_gate.job_catalog import JobCatalog, JobCatalogError, build_bundled_job_policy, load_job_catalog
@@ -1403,16 +1404,26 @@ class BootstrapState:
                     userdata["freeEnergy"] = int(userdata.get("freeEnergy", 0)) + DAILY_GIFT_ENERGY
                     account["messages"][DAILY_GIFT_MESSAGE_ID]["read"] = True
                     self._persist_locked()
-                    # Wire shape per the retired service (reTB parity): the
-                    # client REPLACES its in-memory currency from the dict at
-                    # `result` — a boolean there crashes the inbox parser.
+                    # Wire shape per the reference server (production-tested
+                    # against this client): signed envelope {success, errorCode,
+                    # server_time} + result carrying EXACTLY energy, freeEnergy,
+                    # coins, readlist and itemList.  The client's claim callback
+                    # applies result fields live and reads result.itemList
+                    # unguarded (UserData.LoadItemlistFromJson) — a missing or
+                    # null itemList there crashes the inbox right after the
+                    # wallet is credited.  Extra keys at either level are a
+                    # strict-walker hazard; the field set below is the exact
+                    # verified one.
                     return "success", _canonical_payload({
+                        "success": True,
+                        "errorCode": 0,
+                        "server_time": int(time.time()),
                         "result": {
                             "energy": int(userdata.get("energy", 0)),
                             "freeEnergy": int(userdata.get("freeEnergy", 0)),
                             "coins": int(userdata.get("coins", 0)),
                             "readlist": [DAILY_GIFT_MESSAGE_ID],
-                            "itemList": list(userdata.get("itemList", [])),
+                            "itemList": [int(value) for value in userdata.get("itemList", [])],
                         },
                     })
             digest = hashlib.sha256(body).hexdigest()
@@ -1450,15 +1461,21 @@ class BootstrapState:
                 message["read"] = True
             data["coins"], data["freeEnergy"], data["itemList"] = coins, energy, updated_items
             _apply_message_grants(data, grants)
+            # Same exact shape as the daily-gift special case above (reference
+            # reference wire): envelope + result{energy, freeEnergy, coins,
+            # readlist, itemList}.  The client's claim callback reads
+            # result.itemList unguarded — no extra keys at either level.
             payload = _canonical_payload({
+                "success": True,
+                "errorCode": 0,
+                "server_time": int(time.time()),
                 "result": {
                     "energy": int(data.get("energy", 0)),
                     "freeEnergy": energy,
                     "coins": coins,
                     "readlist": message_ids,
-                    "itemList": updated_items,
+                    "itemList": [int(value) for value in updated_items],
                 },
-                **_message_reload_projection(data, account),
             })
             requests[_replay_key(request_id, body, "read")] = {"operation": "read", "body_sha256": digest, "payload": copy.deepcopy(payload)}
             self._persist_locked()
@@ -1482,7 +1499,14 @@ class BootstrapState:
                 return "invalid_local_message", None
             for message_id in message_ids:
                 del messages[message_id]
-            payload = {"deletelist": message_ids}
+            # Reference wire: the client reads json["deletelist"]
+            # unconditionally (KeyNotFoundException on a missing key).
+            payload = _canonical_payload({
+                "success": True,
+                "errorCode": 0,
+                "server_time": int(time.time()),
+                "deletelist": message_ids,
+            })
             requests[_replay_key(request_id, body, "delete")] = {"operation": "delete", "body_sha256": digest, "payload": copy.deepcopy(payload)}
             self._persist_locked()
             return "success", payload
@@ -1492,10 +1516,12 @@ class BootstrapState:
             account = self.accounts.get(self.tokens.get(token))
             if account is None: return "unknown_account", None
             if catalog is None: return "unsupported_exchange", None
-            open_offers = _restock_exchange_week(account, catalog)
+            open_offers, holiday_end = _restock_exchange_week(account, catalog)
             remaining = account["exchange_remaining"]
             offers = [{"ID": offer.offer_id, "targetItemID": offer.target_item_id, "targetBuddyID": offer.target_buddy_id, "coins": offer.coins, "targetCount": offer.target_count, "count": remaining.get(str(offer.offer_id), offer.initial_count), "weeklyItemCount": offer.weekly_item_count, "items": [[item_id, count] for item_id, count in sorted(offer.ingredients.items())]} for offer in open_offers.values()]
-            return "success", {"totalCount": account.setdefault("exchange_total", 0), "itemList": [{"weeklyItem": catalog.weekly_item, "endDate": catalog.end_date, "items": offers}] if offers else []}
+            # A holiday window also rewrites the countdown to its own end date.
+            end_date = holiday_end or catalog.end_date
+            return "success", {"totalCount": account.setdefault("exchange_total", 0), "itemList": [{"weeklyItem": catalog.weekly_item, "endDate": end_date, "items": offers}] if offers else []}
 
     def exchange(self, token: str, request_id: str, body: bytes, catalog: ExchangeCatalog | None) -> tuple[str, dict[str, Any] | None]:
         with self.lock:
@@ -1505,7 +1531,7 @@ class BootstrapState:
             if cache is not None: return ("replay", _canonical_payload(cache["payload"])) if cache.get("body_sha256")==digest else ("request_collision",None)
             request=_parse_exchange(body)
             if catalog is None or request is None: return "unsupported_exchange",None
-            open_offers=_restock_exchange_week(account, catalog)
+            open_offers, _holiday_end=_restock_exchange_week(account, catalog)
             # Only this week's offers are tradable, exactly as only they render.
             offer=open_offers.get(request[0]); data=account["userdata"]
             items=data.get("itemList"); remaining=account["exchange_remaining"]
@@ -3823,7 +3849,7 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                     self.server.state.accounts[resolved], time.time(),
                 )
             # Client-confirmed feature flags from the final service's own
-            # login payload (reTB 1.4.18 auth_login parity): tavern BGM,
+            # login payload (reference-server parity): tavern BGM,
             # hunting/metal battle track, the Live Soundtrack options toggle,
             # the chapters 1-5 one-stamina campaign rule (the client applies
             # this to the raw master costs at runtime), slot rate display and
@@ -5931,7 +5957,7 @@ def _synchronize_chapter_milestone_messages(account: dict[str, Any]) -> bool:
     return changed
 
 
-#: Local house rule: every login (once per UTC day) puts a 10-Energy gift in
+#: Local house rule: every login (once per UTC day) puts an Energy gift in
 #: the inbox. It is issued as a message so the player sees it in the mailbox
 #: and claims it there, exactly like the chapter milestone presents.
 DAILY_GIFT_ENERGY = 10
@@ -5956,7 +5982,7 @@ def _synchronize_daily_gift_messages(account: dict[str, Any], now: float) -> boo
     issued = account.setdefault("daily_gift_issued", [])
     today = _utc_day(now)
     if issued and issued[-1] == today:
-        return False
+        return _synchronize_holiday_gift_message(account, now)
     issued.append(today)
     if issued:
         issued.sort()
@@ -5978,16 +6004,79 @@ def _synchronize_daily_gift_messages(account: dict[str, Any], now: float) -> boo
         "companion_id": 0,
         "companion_level": 1,
     }
+    _ = _synchronize_holiday_gift_message(account, now)
     return True
 
 
-def _restock_exchange_week(account: dict[str, Any], catalog: ExchangeCatalog) -> dict[int, Any]:
+def _synchronize_holiday_gift_message(account: dict[str, Any], now: float) -> bool:
+    """Issue the holiday-window opening gift (reference parity).
+
+    Each holiday edition carries a one-shot inbox gift (Gifted Energy, the
+    `gift_energy`) delivered on the window's first day.  The mail is once per
+    edition per account, keyed `holiday:<event>:<year>`, and rides the same
+    generic message-credit path as every other inbox present.  Energy only
+    (the historical windows sold companions for Animata Cores; they did not
+    gift cores).
+    """
+    window = holiday_active_window(now)
+    if window is None:
+        return False
+    gift_energy = int(window.event.gift_energy)
+    if gift_energy <= 0:
+        return False
+    messages = account.setdefault("messages", {})
+    if window.mail_key in messages:
+        return False
+    messages[window.mail_key] = {
+        "id": window.mail_key,
+        "date": float(window.start),
+        "read": False,
+        "days_last": window.event.days,
+        "messages": {
+            "default": f"{window.event.name_en}\nA gift of {gift_energy} Energy for the event!",
+            "ja": window.event.name_ja,
+            "en": f"{window.event.name_en}\nA gift of {gift_energy} Energy for the event!",
+        },
+        "coins": 0,
+        "freeEnergy": gift_energy,
+        "energy": gift_energy,
+        "items": {},
+        "character_id": 0,
+        "companion_id": 0,
+        "companion_level": 1,
+    }
+    return True
+
+
+def _restock_exchange_week(account: dict[str, Any], catalog: ExchangeCatalog) -> tuple[dict[int, Any], str | None]:
     """Open the current week's offers, restocking when the rotation turns over.
 
     The Trading Post restocked every Friday.  Stock is per account, so the turn
     is detected by comparing the week the account last saw against the week that
     is open now; a catalog without weeks never turns over and keeps its stock.
+
+    Holiday window override (reference parity): while a dated event window is
+    open it REPLACES the weekly list.  Stock for a holiday edition is keyed by
+    ``<event>:<year>`` per account (a Friday reset can fall inside a window, so
+    the week index must never be part of the key) and the offers' IDs live in
+    the 1000+ range, disjoint from the 1..126 weekly rotation.
     """
+    window = holiday_active_window()
+    if window is not None and window.event.entries:
+        offers = {}
+        for offer_id, (buddy_id, target_count, stock, cost_count) in holiday_offers_for(window).items():
+            offers[offer_id] = ExchangeOffer(offer_id, 0, 0, target_count, stock, 0,
+                                             {ANIMATA_CORE_ITEM_ID: cost_count}, buddy_id)
+        # Per-edition stock, seeded once per account per edition (never weekly).
+        sentinel = f"holiday_stock:{window.stock_key}"
+        if sentinel not in account:
+            account[sentinel] = True
+            account["exchange_remaining"] = {str(offer.offer_id): offer.initial_count for offer in offers.values()}
+        account.setdefault("exchange_remaining", {str(offer.offer_id): offer.initial_count for offer in offers.values()})
+        # Retire stale per-edition stock keys so the save does not grow forever.
+        for key in [k for k in account if isinstance(k, str) and k.startswith("holiday_stock:") and k != sentinel]:
+            del account[key]
+        return offers, window.end_date_text
     week = active_week_index(time.time(), catalog.week_count())
     offers = catalog.offers_open_at(week)
     if catalog.weeks and account.get("exchange_week") != week:
@@ -5995,7 +6084,7 @@ def _restock_exchange_week(account: dict[str, Any], catalog: ExchangeCatalog) ->
         account["exchange_remaining"] = {str(offer.offer_id): offer.initial_count for offer in offers.values()}
     else:
         account.setdefault("exchange_remaining", _initial_exchange_remaining(catalog))
-    return offers
+    return offers, None
 
 
 def _initial_exchange_remaining(catalog: ExchangeCatalog | None) -> dict[str, int]:
