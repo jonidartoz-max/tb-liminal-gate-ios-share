@@ -6055,36 +6055,43 @@ def _restock_exchange_week(account: dict[str, Any], catalog: ExchangeCatalog) ->
     is detected by comparing the week the account last saw against the week that
     is open now; a catalog without weeks never turns over and keeps its stock.
 
-    Holiday window override (reference parity): while a dated event window is
-    open it REPLACES the weekly list.  Stock for a holiday edition is keyed by
-    ``<event>:<year>`` per account (a Friday reset can fall inside a window, so
-    the week index must never be part of the key) and the offers' IDs live in
-    the 1000+ range, disjoint from the 1..126 weekly rotation.
+    Holiday window MERGE (reference base, house extension): while a dated
+    event window is open its companion trades are ADDED to the weekly list
+    instead of replacing it — the ID ranges are disjoint (weekly 1..126,
+    holiday 1000+), so both sets render together.  Stock for a holiday edition
+    is keyed by ``<event>:<year>`` per account (a Friday reset can fall inside
+    a window, so the week index must never be part of the key) while weekly
+    stock keeps turning over on Fridays as before.
     """
     window = holiday_active_window()
-    if window is not None and window.event.entries:
-        offers = {}
-        for offer_id, (buddy_id, target_count, stock, cost_count) in holiday_offers_for(window).items():
-            offers[offer_id] = ExchangeOffer(offer_id, 0, 0, target_count, stock, 0,
-                                             {ANIMATA_CORE_ITEM_ID: cost_count}, buddy_id)
-        # Per-edition stock, seeded once per account per edition (never weekly).
-        sentinel = f"holiday_stock:{window.stock_key}"
-        if sentinel not in account:
-            account[sentinel] = True
-            account["exchange_remaining"] = {str(offer.offer_id): offer.initial_count for offer in offers.values()}
-        account.setdefault("exchange_remaining", {str(offer.offer_id): offer.initial_count for offer in offers.values()})
-        # Retire stale per-edition stock keys so the save does not grow forever.
-        for key in [k for k in account if isinstance(k, str) and k.startswith("holiday_stock:") and k != sentinel]:
-            del account[key]
-        return offers, window.end_date_text
     week = active_week_index(time.time(), catalog.week_count())
-    offers = catalog.offers_open_at(week)
+    weekly = catalog.offers_open_at(week)
     if catalog.weeks and account.get("exchange_week") != week:
+        # Weekly restock first (its stock keys are the weekly offer IDs).
         account["exchange_week"] = week
-        account["exchange_remaining"] = {str(offer.offer_id): offer.initial_count for offer in offers.values()}
+        account["exchange_remaining"] = {str(offer.offer_id): offer.initial_count for offer in weekly.values()}
     else:
         account.setdefault("exchange_remaining", _initial_exchange_remaining(catalog))
-    return offers, None
+    if window is None or not window.event.entries:
+        return weekly, None
+    offers = dict(weekly)
+    for offer_id, (buddy_id, target_count, stock, cost_count) in holiday_offers_for(window).items():
+        offers[offer_id] = ExchangeOffer(offer_id, 0, 0, target_count, stock, 0,
+                                         {ANIMATA_CORE_ITEM_ID: cost_count}, buddy_id)
+    # Per-edition holiday stock, seeded once per account per edition (never
+    # weekly); merged into exchange_remaining WITHOUT wiping weekly stock.
+    sentinel = f"holiday_stock:{window.stock_key}"
+    holiday_stock = {str(offer.offer_id): offer.initial_count
+                     for offer_id, (buddy_id, _t, stock, cost) in holiday_offers_for(window).items()
+                     for offer in [ExchangeOffer(offer_id, 0, 0, 1, stock, 0, {}, buddy_id)]}
+    if sentinel not in account:
+        account[sentinel] = True
+        account["exchange_remaining"].update(holiday_stock)
+    account.setdefault("exchange_remaining", {}).update(holiday_stock)
+    # Retire stale per-edition holiday stock keys so the save does not grow forever.
+    for key in [k for k in account if isinstance(k, str) and k.startswith("holiday_stock:") and k != sentinel]:
+        del account[key]
+    return offers, window.end_date_text
 
 
 def _initial_exchange_remaining(catalog: ExchangeCatalog | None) -> dict[str, int]:
