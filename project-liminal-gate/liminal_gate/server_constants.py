@@ -94,9 +94,11 @@ def build_server_constants(
         "maxVsStamina": 5,
         # The retired help, policy, terms, support, and credits pages are gone.
         # Empty strings leave the client's own embedded defaults in place rather
-        # than pointing a tester at a dead or substituted address.
+        # than pointing a tester at a dead or substituted address.  The Help
+        # entry points at the locally served Drop Atlas guide (see
+        # /public_data/help below) — the one help page that exists here.
         "helpURL_jp": "",
-        "helpURL_en": "",
+        "helpURL_en": "/public_data/help/drop_atlas.html",
         "privacyPolicy_ja": "",
         "privacyPolicy_en": "",
         "tosURL_jp": "",

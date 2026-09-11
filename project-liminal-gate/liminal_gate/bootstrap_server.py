@@ -1404,7 +1404,7 @@ class BootstrapState:
                     userdata["freeEnergy"] = int(userdata.get("freeEnergy", 0)) + DAILY_GIFT_ENERGY
                     account["messages"][DAILY_GIFT_MESSAGE_ID]["read"] = True
                     self._persist_locked()
-                    # Wire shape per the reference server (production-tested
+                    # Wire shape per the TB reference server (production-tested
                     # against this client): signed envelope {success, errorCode,
                     # server_time} + result carrying EXACTLY energy, freeEnergy,
                     # coins, readlist and itemList.  The client's claim callback
@@ -1461,7 +1461,7 @@ class BootstrapState:
                 message["read"] = True
             data["coins"], data["freeEnergy"], data["itemList"] = coins, energy, updated_items
             _apply_message_grants(data, grants)
-            # Same exact shape as the daily-gift special case above (reference
+            # Same exact shape as the daily-gift special case above (TB
             # reference wire): envelope + result{energy, freeEnergy, coins,
             # readlist, itemList}.  The client's claim callback reads
             # result.itemList unguarded — no extra keys at either level.
@@ -1499,7 +1499,7 @@ class BootstrapState:
                 return "invalid_local_message", None
             for message_id in message_ids:
                 del messages[message_id]
-            # Reference wire: the client reads json["deletelist"]
+            # TB reference wire: the client reads json["deletelist"]
             # unconditionally (KeyNotFoundException on a missing key).
             payload = _canonical_payload({
                 "success": True,
@@ -3640,6 +3640,23 @@ class BootstrapHandler(BaseHTTPRequestHandler):
         if path == "/favicon.ico":
             self._empty(HTTPStatus.NO_CONTENT)
             return True
+        if path.startswith("/public_data/help/") and self.server.public_data_root is not None:
+            # Locally authored help pages (the Drop Atlas guide). Served from
+            # the state-volume public_data dir; the in-game Help button opens
+            # this via helpURL_en. Path traversal is refused: the resolved file
+            # must stay inside the help directory.
+            help_dir = self.server.public_data_root / "help"
+            name = path.rsplit("/", 1)[-1]
+            candidate = help_dir / name
+            try:
+                if candidate.is_file() and candidate.resolve().is_relative_to(help_dir.resolve()):
+                    ctype = "text/html; charset=utf-8" if name.endswith(".html") else "application/octet-stream"
+                    self._file(HTTPStatus.OK, candidate, ctype, cache="no-store")
+                    return True
+            except OSError:
+                pass
+            self._empty(HTTPStatus.NOT_FOUND)
+            return True
         if path in ("/public_data/patchData.zip", "/public_data/patchData.dat") and self.server.public_data_root is not None:
             # The client polls patchData.zip during the Mistwalker splash; a
             # non-200 keeps the splash up forever. Prefer the state-volume
@@ -3849,7 +3866,7 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                     self.server.state.accounts[resolved], time.time(),
                 )
             # Client-confirmed feature flags from the final service's own
-            # login payload (reference-server parity): tavern BGM,
+            # login payload (TB 1.4.18 auth_login parity): tavern BGM,
             # hunting/metal battle track, the Live Soundtrack options toggle,
             # the chapters 1-5 one-stamina campaign rule (the client applies
             # this to the raw master costs at runtime), slot rate display and
@@ -5957,7 +5974,7 @@ def _synchronize_chapter_milestone_messages(account: dict[str, Any]) -> bool:
     return changed
 
 
-#: Local house rule: every login (once per UTC day) puts an Energy gift in
+#: Local house rule: every login (once per UTC day) puts a Energy gift in
 #: the inbox. It is issued as a message so the player sees it in the mailbox
 #: and claims it there, exactly like the chapter milestone presents.
 DAILY_GIFT_ENERGY = 10
@@ -6009,9 +6026,9 @@ def _synchronize_daily_gift_messages(account: dict[str, Any], now: float) -> boo
 
 
 def _synchronize_holiday_gift_message(account: dict[str, Any], now: float) -> bool:
-    """Issue the holiday-window opening gift (reference parity).
+    """Issue the holiday-window opening gift (TB 1.4.21 parity).
 
-    Each holiday edition carries a one-shot inbox gift (Gifted Energy, the
+    Each holiday edition carries a one-shot inbox gift (Gifted Energy, TB's
     `gift_energy`) delivered on the window's first day.  The mail is once per
     edition per account, keyed `holiday:<event>:<year>`, and rides the same
     generic message-credit path as every other inbox present.  Energy only
@@ -6055,7 +6072,7 @@ def _restock_exchange_week(account: dict[str, Any], catalog: ExchangeCatalog) ->
     is detected by comparing the week the account last saw against the week that
     is open now; a catalog without weeks never turns over and keeps its stock.
 
-    Holiday window MERGE (reference base, house extension): while a dated
+    Holiday window MERGE (TB 1.4.21 base, house extension): while a dated
     event window is open its companion trades are ADDED to the weekly list
     instead of replacing it — the ID ranges are disjoint (weekly 1..126,
     holiday 1000+), so both sets render together.  Stock for a holiday edition
