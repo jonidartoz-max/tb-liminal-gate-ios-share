@@ -4507,7 +4507,13 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             or self.server.story_catalog is not None
             or self.server.story_progression_catalog is not None
         ) and (
-            not any(item["body"].encode("utf-8") == body for item in transitions)
+            # Same tutorial-boundary rule as the clear path: once an account is
+            # free-roam, a start body that happens to equal a tutorial
+            # transition must still go to the generic catalog.
+            (
+                not any(item["body"].encode("utf-8") == body for item in transitions)
+                or not state.allows_story_progression(token)
+            )
             or state.replays_cleared_stage(
                 token, _started_identity(body), self.server.story_progression_catalog,
             )
@@ -4564,7 +4570,19 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             replaying = state.replays_cleared_stage(
                 token, identity, self.server.story_progression_catalog,
             )
-            if event is not None or replaying or not _profile_clear_matches(body, transitions):
+            # A free-roam account is past the tutorial boundary, so the legacy
+            # tutorial transition table must never own its clear again. That
+            # table hard-codes each tutorial stage's progressCode, and a
+            # free-roam account that legitimately lands on the same value
+            # (chapter 2-1's clear code is the tutorial table's chapter2_1
+            # entry) used to be hijacked into the tutorial path and refused
+            # with a 409 -- which the player sees as a network error on the
+            # result screen, and the client retries it in a loop.
+            tutorial_owns = (
+                _profile_clear_matches(body, transitions)
+                and not state.allows_story_progression(token)
+            )
+            if event is not None or replaying or not tutorial_owns:
                 catalog = event or self.server.story_catalog or self.server.story_progression_catalog
                 return (
                     state.apply_generic_story_clear(
