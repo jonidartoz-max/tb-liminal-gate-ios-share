@@ -67,12 +67,12 @@ LUCK_CHEST_POOLS: dict[tuple[int, int], dict[str, tuple[str, ...]]] = {
     (36, 9): {"A": ('I6',), "B": ('I7',), "C": ('I106',), "Luck 80": ('C1300',)},  # incomplete
     (36, 10): {"A": ('C650', 'I2', 'I89', 'I105', 'I3', 'I6',), "B": ('C650', 'I10', 'I1', 'I89', 'I105', 'I91', 'I5', 'I2',), "C": ('C1300', 'I89', 'I8', 'I90', 'I4', 'I2', 'I106',), "D": ('C1950', 'I137',), "Luck 80": ('C1300', 'O128',), "Luck 100": ('C1300', 'I137', 'O128', 'O129',)},  # incomplete
 }
-# BEGIN reTB-IMPORTED POOLS (2026-09-08) --
-# Source: reTB v1.4.18 ltc_pools_by_stage.json (codeberg.org/WkmKsk/reTB),
+# BEGIN TB-IMPORTED POOLS (2026-09-08) --
+# Source: TB v1.4.18 ltc_pools_by_stage.json (repository.org/WkmKsk/TB),
 # mapped to per-tier format with FULL retention: every item, companion,
 # and character drop from the source appears in exactly the tiers below
 # (items split A/B/C; characters in D+Luck 100; companions split
-# Luck 80/Luck 100). Tier A coins = the stage's exact reTB value;
+# Luck 80/Luck 100). Tier A coins = the stage's exact TB value;
 # other tiers scale x2/x4/x6/x8/x12. Documented 30 stages above stay
 # byte-identical.
 LUCK_CHEST_POOLS.update({
@@ -443,11 +443,11 @@ LUCK_CHEST_POOLS.update({
     (9102, 14): {"A": ('C1350',), "B": ('C2700',), "C": ('C5400',), "D": ('C8100',), "Luck 80": ('C10800',), "Luck 100": ('C16200',)},
 })
 
-# BEGIN reTB EVENT POOLS (2026-09-09) --
-# Source: reTB quest_consts.py LTC_SPECIAL_TIERS (wiki-verified per-section
+# BEGIN TB EVENT POOLS (2026-09-09) --
+# Source: TB quest_consts.py LTC_SPECIAL_TIERS (wiki-verified per-section
 # tables). Boss descents drop the boss character: Bahamut M148 / Λ M632,
 # Leviathan M144 / Λ M634, Odin M151 / Λ M633; 8-Bit Strikes Back bosses
-# M853-M901; Kino Λ M965-M1016. reTB sections are 0-based; ours are 1-based.
+# M853-M901; Kino Λ M965-M1016. TB sections are 0-based; ours are 1-based.
 LUCK_CHEST_POOLS.update({
     (2000, 1): {"A": ('C250', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46',), "B": ('C250', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46',), "C": ('C500', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46',), "D": ('I50', 'I81', 'I112',), "Luck 80": ('M148', 'O8', 'O128',), "Luck 100": ('M148', 'O8',)},
     (2000, 2): {"A": ('C500', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46',), "B": ('C500', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46',), "C": ('I48', 'M524', 'M519',), "D": ('I50', 'I81', 'I112',), "Luck 80": ('M148', 'O8', 'O9',), "Luck 100": ('M148', 'O9',)},
@@ -522,7 +522,7 @@ LUCK_CHEST_POOLS.update({
     (9013, 3): {"A": ('C25', 'I12', 'I46', 'I5', 'I6',), "B": ('C25', 'I12', 'I46', 'I5', 'I6',), "C": ('C25', 'I12', 'I46', 'I5', 'I6',), "D": ('C50', 'I55', 'I56', 'I53', 'I54',), "Luck 80": ('C50', 'O70', 'O128',), "Luck 100": ('C50', 'O74', 'O128',)},
 })
 
-# BEGIN reTB V2-FALLBACK POOLS (event stages without a special table) --
+# BEGIN TB V2-FALLBACK POOLS (event stages without a special table) --
 LUCK_CHEST_POOLS.update({
     (2005, 2): {"A": ('C975',), "B": ('C1950',), "C": ('C3900',), "D": ('C5850',), "Luck 80": ('C7800', 'O128', 'O129',), "Luck 100": ('C11700', 'O405', 'O406', 'O407',)},
     (2006, 1): {"A": ('C675', 'I110',), "B": ('C1350',), "C": ('C2700',), "D": ('C4050',), "Luck 80": ('C5400',), "Luck 100": ('C8100',)},
@@ -536,7 +536,7 @@ LUCK_CHEST_POOLS.update({
 
 # BEGIN ANIMATA CORE CHESTS (2026-09-09) --
 # The 8-Bit and Kino Strikes Back quests pay Animata Core (item 181) amounts
-# from the A / B chests, on top of the listed rewards. Source: reTB quest_consts
+# from the A / B chests, on top of the listed rewards. Source: TB quest_consts
 # _SB_ANIMATA_{A,B}_COUNTS (wiki "Luck Treasure Chests/Strikes Back" template):
 # each chest draws ONE of its two candidate amounts uniformly on a win. Emitted
 # as L<count> slots the client renders as "<exchange item> x<count>".
@@ -566,11 +566,11 @@ _append_animata_candidates()
 
 
 # BEGIN DAILY QUEST POOLS (2026-09-09) --
-# Source: reTB quest_consts _DAILY_LTC_TIERS (wiki "Daily Quests/*", all 11
+# Source: TB quest_consts _DAILY_LTC_TIERS (wiki "Daily Quests/*", all 11
 # pages verified 2026-08-23). Shared layout: A/B = upgrade items, C = weapons
 # + nine dragon-class monsters, D = the eight Omicron-II companions, Luck80 =
 # quest-themed items + companions, Luck100 = the companions. Daily quests are
-# played at section 1 (reTB keys are "<chapter>-0").
+# played at section 1 (TB keys are "<chapter>-0").
 LUCK_CHEST_POOLS.update({
     (6000, 1): {"A": ('I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I82', 'I83', 'I89', 'I90', 'I91', 'I92', 'I105', 'I106', 'I9', 'I10', 'I11', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46', 'I122', 'I123', 'I164', 'I165',), "B": ('I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I82', 'I83', 'I89', 'I90', 'I91', 'I92', 'I105', 'I106', 'I9', 'I10', 'I11', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46', 'I122', 'I123', 'I164', 'I165',), "C": ('I9', 'I10', 'I11', 'I12', 'M165', 'M163', 'M164', 'M166', 'M237', 'M238', 'M239', 'M149', 'M150',), "D": ('O353', 'O323', 'O343', 'O384', 'O339', 'O332', 'O345', 'O355',), "Luck 80": ('I93', 'I94', 'I132', 'I137', 'I95', 'I96', 'I97', 'I98', 'I99', 'O353', 'O323', 'O343', 'O384', 'O339', 'O332', 'O345', 'O355',), "Luck 100": ('O353', 'O323', 'O343', 'O384', 'O339', 'O332', 'O345', 'O355',)},
     (6001, 1): {"A": ('I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I82', 'I83', 'I89', 'I90', 'I91', 'I92', 'I105', 'I106', 'I9', 'I10', 'I11', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46', 'I122', 'I123', 'I164', 'I165',), "B": ('I1', 'I2', 'I3', 'I4', 'I5', 'I6', 'I7', 'I8', 'I82', 'I83', 'I89', 'I90', 'I91', 'I92', 'I105', 'I106', 'I9', 'I10', 'I11', 'I12', 'I13', 'I14', 'I15', 'I16', 'I17', 'I46', 'I122', 'I123', 'I164', 'I165',), "C": ('I9', 'I10', 'I11', 'I12', 'M165', 'M163', 'M164', 'M166', 'M237', 'M238', 'M239', 'M149', 'M150',), "D": ('O353', 'O323', 'O343', 'O384', 'O339', 'O332', 'O345', 'O355',), "Luck 80": ('I93', 'I94', 'I132', 'I137', 'I95', 'I96', 'I97', 'I98', 'I99', 'O353', 'O323', 'O343', 'O384', 'O339', 'O332', 'O345', 'O355',), "Luck 100": ('O353', 'O323', 'O343', 'O384', 'O339', 'O332', 'O345', 'O355',)},

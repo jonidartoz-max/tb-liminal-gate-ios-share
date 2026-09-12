@@ -1,5 +1,5 @@
 """Animata Core (item 181) chest amounts for the 8-Bit Strikes Back and
-Kino Strikes Back quests, from reTB quest_consts (wiki
+Kino Strikes Back quests, from TB quest_consts (wiki
 "Luck Treasure Chests/Strikes Back", per-difficulty template).
 
 Each of the A / B chests draws ONE of its two candidate amounts uniformly on a
@@ -7,7 +7,7 @@ win; the amount is emitted as an "L<count>" slot code which the client renders
 as "<exchange item> x<count>" (the Animata Core for these chapters). Tiers II
 and III share the same amounts as each other.
 
-Keyed by our 1-based section: reTB suffix "-0" -> section 1, "-1"/"-2" -> 2/3.
+Keyed by our 1-based section: TB suffix "-0" -> section 1, "-1"/"-2" -> 2/3.
 """
 
 from __future__ import annotations

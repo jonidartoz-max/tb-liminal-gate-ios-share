@@ -146,7 +146,7 @@ def gains_luck(stamina: int) -> bool:
 
 
 # Duplicate-character Luck bonus for Luck-chest monster drops (2026-09-09).
-# Source: reTB state_consts DROP_LUCK_PER_DUPE / DROP_LUCK_OVERRIDES (wiki:
+# Source: TB state_consts DROP_LUCK_PER_DUPE / DROP_LUCK_OVERRIDES (wiki:
 # a duplicate recruit raises its Luck; a Lambda duplicate's gain is much
 # larger). Internal tenths: 10 = +1.0 displayed Luck.
 DUPE_LUCK_PER_DUPE = 10

@@ -1,5 +1,5 @@
-"""Item ID -> display name map, recovered from the reTB project
-(codeberg.org/WkmKsk/reTB, v1.4.18). Reference data for logging and
+"""Item ID -> display name map, recovered from the TB project
+(repository.org/WkmKsk/TB, v1.4.18). Reference data for logging and
 documenting Luck chest rewards; 181 items."""
 
 from __future__ import annotations

@@ -168,19 +168,19 @@ contribute 0, matching pre-fix behavior. Applied in both read paths.
 4-1 (ch<6) all return 200; earlier crash reproduced then confirmed gone.
 
 
-## 10. reTB data adoption — Luck pools 420 stages + reference masters
+## 10. TB data adoption — Luck pools 420 stages + reference masters
 
-**Source:** reTB v1.4.18 (codeberg.org/WkmKsk/reTB), an independent
+**Source:** TB v1.4.18 (repository.org/WkmKsk/TB), an independent
 reverse-engineering project. Their data files complement ours where the
 community scrape was incomplete.
 
 **Adopted:**
-- `luck_pool_data.py`: +390 stage pools imported from reTB's
+- `luck_pool_data.py`: +390 stage pools imported from TB's
   `ltc_pools_by_stage.json` (478 stages total; 20 overlap our documented 30
   and were skipped; 68 had no battledata entry - cutscene/section-0 stages).
-  Total pools now **420** (30 documented byte-identical + 390 reTB-mapped).
-  Mapping: reTB flat rewards -> our per-tier format; coins scaled by tier
-  (x1/x2/x4/x6/x8/x12) anchored on each stage's own reTB coin value;
+  Total pools now **420** (30 documented byte-identical + 390 TB-mapped).
+  Mapping: TB flat rewards -> our per-tier format; coins scaled by tier
+  (x1/x2/x4/x6/x8/x12) anchored on each stage's own TB coin value;
   items -> A/B/C; character drops -> D/Luck 100; companions -> D/Luck 80/100.
   Character drops (M<id>) now exist on 57 stages - previously impossible.
 - `achievement_master_data.py` (NEW): full 99-achievement master with
@@ -198,7 +198,7 @@ byte-identical to the community record.
 
 ## 11. Event boss drops — Bahamut/Leviathan/Odin & 8-Bit/Kino bosses (2026-09-09)
 
-The flat reTB `ltc_pools_by_stage.json` import lacked the boss characters.
+The flat TB `ltc_pools_by_stage.json` import lacked the boss characters.
 Their `quest_consts.py` contains `LTC_SPECIAL_TIERS` — wiki-verified
 per-difficulty tables — which were imported instead for all event chapters:
 
@@ -213,7 +213,7 @@ per-difficulty tables — which were imported instead for all event chapters:
   Odin M992, Bahamut M1014, Leviathan M1016 + recruit O/OII companions
 - Metal Minion O128/O129/O130 across event tiers
 
-Sections are 0-based in reTB and 1-based here (reTB 2000-0 = our 2000-1).
+Sections are 0-based in TB and 1-based here (TB 2000-0 = our 2000-1).
 Event stages with no recorded table anywhere (46) and story boss stages
 (81, e.g. (2,5)) keep empty chests - no data was invented.
 Total: 473 pools. Deployed to Modal, pushed as 317e657.
@@ -224,7 +224,7 @@ Total: 473 pools. Deployed to Modal, pushed as 317e657.
 The A / B luck chests of the 8-Bit Strikes Back (8000-8007) and Kino Strikes
 Back Lambda (8012-8017) quests pay Animata Core (item 181) amounts ON TOP of
 the listed rewards, per the wiki "Luck Treasure Chests/Strikes Back" template
-(reTB quest_consts _SB_ANIMATA_{A,B}_COUNTS):
+(TB quest_consts _SB_ANIMATA_{A,B}_COUNTS):
 - difficulty I:   A draws 8 or 18,  B draws 20 or 60
 - difficulty II & III: A draws 50 or 130, B draws 100 or 260
 Each chest draws ONE of its two candidate amounts uniformly on a win; the
@@ -236,7 +236,7 @@ New module: animata_counts_data.py (candidates + chapter list + item id).
 
 ## 13. Daily Quest Luck Chests (2026-09-09)
 
-Daily quests (chapters 6000-6012, wiki "Daily Quests/*" tables via reTB
+Daily quests (chapters 6000-6012, wiki "Daily Quests/*" tables via TB
 quest_consts _DAILY_LTC_TIERS) now roll Luck Treasure Chests:
 - Hunting start: stages with a chest table roll a chest seeded by the request
   identity (no re-roll on retry) and stash it as active_luck_result; the
@@ -268,7 +268,7 @@ so the guarantee never lands on a zero. The < 8 stamina rule is unchanged
 (daily quests still grant no battle-end Luck-up, per the original design).
 
 **Duplicate Luck bonus:** duplicate characters from Luck-chest monster drops
-now raise that character's Luck by +1.0 (Joker Lambda +10.0 per reTB's
+now raise that character's Luck by +1.0 (Joker Lambda +10.0 per TB's
 override table); first copies join the roster as before. Wired into both the
 hunting and event clear paths (event boss chest recruits previously were
 never registered to the roster at all — fixed).
@@ -289,7 +289,7 @@ never registered to the roster at all — fixed).
 
 ## 16. Human log, /healthz clients, client feature flags (2026-09-09)
 
-Adopted from reTB 1.4.18's quality-of-life set (changelog sweep):
+Adopted from TB 1.4.18's quality-of-life set (changelog sweep):
 
 - **Human-readable console log** (`human_log.py`): one coloured line per
   player action — route, outcome, coins, Luck-up recipients, chest slots.
@@ -298,7 +298,7 @@ Adopted from reTB 1.4.18's quality-of-life set (changelog sweep):
   request age, so operators can see which devices are talking to the
   server.
 - **Client feature flags** now served at login (all confirmed literals from
-  the final client, reTB parity): `use_sakaba_bgm_for_bar` (the Tavern plays
+  the final client, TB parity): `use_sakaba_bgm_for_bar` (the Tavern plays
   its own music), `use_another_bgm_for_hunting` (hunting/metal battle track),
   `EnableLiveMusic` (options toggle), `ch1-5_stamina_one` (client applies the
   one-stamina campaign rule for chapters 1-5), `slot_show_probabirity`,
@@ -311,7 +311,7 @@ Opening the inbox right after collecting the daily Energy gift crashed the
 client: the server answered `read_messages` with `result: true` plus the
 currency at the top level, while the client's collector replaces its
 in-memory currency from a dict at `result` (`energy`, `freeEnergy`, `coins`,
-`readlist`, `itemList` — reTB parity, confirmed by the retired service's
+`readlist`, `itemList` — TB parity, confirmed by the retired service's
 response model). The daily-gift fast path and the catalog read path now both
 ship the nested shape with the full `itemList` inside `result`.
 

@@ -1,6 +1,6 @@
 """Human-readable console log for player actions (2026-09-09).
 
-Adopted from reTB 1.4.15's RETB_HUMAN_LOG idea: the console shows one line
+Adopted from TB 1.4.15's RETB_HUMAN_LOG idea: the console shows one line
 per player action — battle start/clear, pacts, companion ops, exchange —
 with the account id, the route, the outcome and the interesting parts of
 the response (coins, Luck gains, chest slots). Off with TB_HUMAN_LOG=0;

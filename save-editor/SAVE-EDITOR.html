@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Terra Battle — Save Data Editor</title>
+<style>
+  :root{--bg:#12141c;--panel:#161b2a;--card:#1c2233;--line:#2b3a5c;--line2:rgba(201,161,90,.4);
+        --gold:#c9a15a;--gold2:#e8c87c;--blue:#9db8dd;--txt:#ece8dd;--dim:#a8a694;--dimmer:#7d7f70;
+        --green:#8fd48a;--red:#e26d5c;}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:radial-gradient(1000px 400px at 50% -120px,#202840 0,transparent 60%),linear-gradient(180deg,#12141c,#0d0f16);
+       color:var(--txt);font-family:Verdana,'Segoe UI',sans-serif;font-size:13px;padding:22px 16px 40px;min-height:100vh}
+  .wrap{max-width:1080px;margin:0 auto}
+  header{text-align:center;margin-bottom:18px}
+  h1{font-family:Georgia,serif;font-size:26px;letter-spacing:5px;color:var(--gold2);text-transform:uppercase}
+  .sub{color:var(--dim);font-size:12px;margin-top:6px}
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:14px;
+       background:var(--panel);border:1px solid var(--line);border-radius:3px;padding:12px}
+  button{background:var(--card);border:1px solid var(--line2);color:var(--txt);font-family:inherit;
+         font-size:12px;padding:8px 14px;border-radius:3px;cursor:pointer}
+  button:hover{background:#263147;border-color:var(--gold)}
+  button.primary{border-color:var(--gold);color:var(--gold2)}
+  button.danger:hover{border-color:var(--red);color:var(--red)}
+  input[type=text]{background:#10141e;border:1px solid var(--line);color:var(--txt);font-family:inherit;
+       font-size:13px;padding:8px 12px;border-radius:3px;outline:none;flex:1;min-width:180px}
+  input[type=text]:focus{border-color:var(--blue)}
+  .status{color:var(--dimmer);font-size:11.5px;margin-left:auto}
+  .status b{color:var(--green)}
+  .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  @media(max-width:820px){.cols{grid-template-columns:1fr}}
+  .panel{background:linear-gradient(180deg,var(--panel),#131722);border:1px solid var(--line);border-radius:3px;padding:14px}
+  h2{font-size:12.5px;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+  .panel.right h2{color:var(--gold2)}
+  ul{list-style:none;max-height:60vh;overflow:auto;border:1px solid var(--line);border-radius:2px;background:#10141e}
+  li{padding:7px 10px;border-bottom:1px solid rgba(201,161,90,.06);cursor:pointer;display:flex;gap:8px;align-items:center}
+  li:hover{background:#1a2133}
+  li.sel{background:#263147;outline:1px solid var(--line2)}
+  li .id{color:var(--dimmer);font-family:Consolas,monospace;font-size:11px;min-width:34px}
+  li .nm{flex:1}
+  li .rar{font-size:10px;font-weight:700;color:var(--dim);border:1px solid var(--line);border-radius:8px;padding:0 6px;min-width:22px;text-align:center}
+  li .rar.D{color:#8a8f9e;border-color:#3a4050}
+  li .rar.C{color:#9db8dd;border-color:#3f5375}
+  li .rar.B{color:#8fd48a;border-color:#3a6b3a}
+  li .rar.A{color:#6fc7e8;border-color:#2d5c75}
+  li .rar.S{color:#c9a15a;border-color:#6b5424}
+  li .rar.SS{color:#ffd97a;border-color:#8a6d2a}
+  li .rar.Z{color:#e26d5c;border-color:#7a3a30}
+  li .job{font-size:10px;color:var(--dim)}
+  .empty{padding:20px;text-align:center;color:var(--dimmer)}
+  .hint{color:var(--dimmer);font-size:11px;margin-top:6px}
+  .foot{text-align:center;color:var(--dimmer);font-size:11px;margin-top:20px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>Save Data Editor</h1>
+    <div class="sub">Terra Battle — Liminal Gate &nbsp;·&nbsp; add or remove characters in your save file</div>
+  </header>
+
+  <div class="bar">
+    <button class="primary" onclick="document.getElementById('file').click()">Open Save File…</button>
+    <input type="file" id="file" accept=".json" style="display:none" onchange="loadSave(event)">
+    <input type="text" id="q" placeholder="Search character by name or ID…" oninput="renderAll()">
+    <button onclick="loadTemplate()">Load Tutorial Template</button>
+    <button class="primary" onclick="saveFile()">Save (download)</button>
+    <div class="status" id="status">No file loaded</div>
+  </div>
+
+  <div class="cols">
+    <div class="panel">
+      <h2>All Characters <span id="cntAll" style="color:var(--dim)"></span></h2>
+      <ul id="listAll"></ul>
+      <div class="hint">Click to select · Ctrl/Shift+click for multiple · then ADD TO SAVE →</div>
+    </div>
+    <div class="panel right">
+      <h2>Characters In Save <span id="cntRoster" style="color:var(--dim)"></span></h2>
+      <ul id="listRoster"></ul>
+      <div class="hint">Select entries here and click REMOVE FROM SAVE</div>
+    </div>
+  </div>
+
+  <div class="bar" style="margin-top:14px;justify-content:center">
+    <button onclick="addSelected()" style="border-color:var(--green);color:var(--green)">→ ADD TO SAVE</button>
+    <button class="danger" onclick="removeSelected()">← REMOVE FROM SAVE</button>
+  </div>
+  <div class="foot">Works offline · no install needed · new entries start at Job 1, Level 10 (same as a Pact draw)<br>
+  Save a backup copy of your save file before editing</div>
+</div>
+
+<script>
+const CHARS = [[1,"Bahl","B",[1,7,8]],[2,"Samatha","SS",[2,9,10]],[3,"Grace","B",[3,11,12]],[4,"Kuscah","B",[4,13,14]],[5,"Ellvern","S",[5,15,16]],[6,"A'merpact","A",[6,17,18]],[7,"Djugan","S",[19,20,21]],[8,"Olber","SS",[22,23,24]],[9,"Sheena","SS",[199,200,201]],[10,"Ma'curi","B",[25,26,27]],[11,"Gatz","S",[28,29,30]],[12,"Eileen","A",[31,32,33]],[13,"Yukken","SS",[34,35,36]],[14,"Rikken","SS",[37,38,39]],[15,"Ka'pori","A",[40,41,42]],[16,"Sh'berdan","B",[43,44,45]],[17,"S'naip","A",[46,47,48]],[18,"R'zonand","A",[49,50,51]],[19,"Gugba","SS",[52,53,54]],[20,"Zuzu","S",[55,56,57]],[21,"Gaiga","SS",[58,59,60]],[22,"Kana","A",[61,62,63]],[23,"Gegonago","S",[64,65,66]],[24,"Amina","SS",[67,68,69]],[25,"A'misandra","SS",[70,71,72]],[26,"Amimari","SS",[73,74,75]],[27,"Amazora","B",[76,77,78]],[28,"Ba'gunar","B",[79,80,81]],[29,"Burbaba","A",[82,83,84]],[30,"Zan","B",[85,86,87]],[31,"Czekras","SS",[88,89,90]],[32,"Ra'prow","B",[91,92,93]],[33,"Zenzoze","B",[94,95,96]],[34,"Koko","SS",[97,98,99]],[35,"Alika","S",[100,101,102]],[36,"O'pari","B",[103,104,105]],[37,"Gigojago","B",[106,107,108]],[38,"Manmer","A",[109,110,111]],[39,"Korin","A",[112,113,114]],[40,"Kem","A",[115,116,117]],[41,"Pahrl","A",[118,119,120]],[42,"Nakupí","A",[121,122,123]],[43,"Samupí","A",[124,125,126]],[44,"Metupí","A",[127,128,129]],[45,"U'nasag","B",[130,131,132]],[46,"Daiana","A",[133,134,135]],[47,"Sha'plar","S",[136,137,138]],[48,"Sorman","B",[139,140,141]],[49,"Zafitte","S",[142,143,144]],[50,"Bonna","S",[145,146,147]],[51,"Zeera","S",[148,149,150]],[52,"Pupropé","S",[151,152,153]],[53,"Pupropu","S",[154,155,156]],[54,"Lunato","S",[157,158,159]],[55,"Lunaken","S",[160,161,162]],[56,"Lewto","SS",[163,164,165]],[57,"Piz'fer","SS",[166,167,168]],[58,"Jennish","SS",[169,170,171]],[59,"Zerro","SS",[172,173,174]],[60,"Palpa","S",[175,176,177]],[61,"36AIS","SS",[178,179,180]],[62,"54B2","Z",[181,182,183]],[63,"Warrior","C",[251]],[64,"Knight","C",[252]],[65,"Archer","C",[253]],[66,"Mage","C",[254]],[67,"Healer","C",[258]],[68,"Lizardfolk Warrior","C",[259]],[69,"Lizardfolk Knight","C",[260]],[70,"Lizardfolk Archer","C",[261]],[71,"Beastfolk Warrior","C",[262]],[72,"Beastfolk Knight","C",[263]],[73,"Beastfolk Archer","C",[264]],[74,"Maralme","A",[221,222,223]],[79,"Spinetrich","D",[376]],[80,"Sabertooth","D",[271]],[81,"Velraine","A",[224,225,226]],[82,"Whitewyrm","B",[273]],[84,"Triscorp","C",[275]],[85,"Dark Tortoise","C",[276]],[86,"Golem","B",[277]],[88,"Wyvern","D",[279]],[91,"Arachnobot","D",[282]],[94,"Cybergolem","B",[285]],[98,"Magma Mummy","D",[289]],[99,"Mantledrake","B",[290]],[100,"Cyberclops","C",[291]],[107,"Mothbot","C",[298]],[110,"Mecharose","C",[301]],[114,"Assassin","D",[305]],[115,"Vial Chucker","C",[306]],[123,"Regenercell","B",[314]],[124,"Mechavirus 3721","C",[315]],[126,"Megacell","B",[317]],[128,"Wastecell","C",[319]],[132,"Ethereal","A",[220]],[143,"Slasher","D",[334]],[144,"Leviathan","S",[217,218,219]],[145,"Mermaid","C",[336]],[146,"Pegawyrm","B",[337]],[148,"Bahamut","S",[211,212,213]],[149,"Cryowisp","C",[340]],[150,"Pyrowisp","C",[341]],[151,"Odin","S",[214,215,216]],[155,"Blastosaur","C",[346]],[163,"Lich","A",[354]],[164,"Marilith","A",[355]],[165,"Kraken","A",[356]],[166,"Tiamat","A",[357]],[175,"White Sabertooth","C",[366]],[176,"Sabertooth King","B",[367]],[184,"Bomborg","C",[375]],[185,"Mechanic","C",[272]],[187,"Blade Falcon","A",[210]],[188,"Dracorin","B",[379,872,873]],[198,"Beastfolk Hero","B",[389]],[199,"Devil Bat","C",[390]],[200,"Lizardfolk Mage","C",[391]],[201,"Beastfolk Mage","C",[392]],[202,"Stonefolk Warrior","C",[393]],[203,"Stonefolk Knight","C",[394]],[204,"Stonefolk Archer","C",[395]],[205,"Stonefolk Mage","C",[396]],[210,"Lizardfolk Healer","C",[401]],[211,"Beastfolk Healer","C",[402]],[212,"Stonefolk Healer","C",[403]],[215,"Androclops","C",[415]],[216,"Mechaclops","C",[416]],[220,"Mech Orbling","C",[420]],[221,"Phi Orbling","D",[421]],[228,"Mantle Tortoise","C",[428]],[237,"Celestial Dragon","A",[437]],[238,"Onyx Dragon","A",[439]],[239,"Vajra","A",[438]],[264,"Mediscanner","B",[464]],[285,"Floralpede","C",[485]],[286,"Paralypede","C",[486]],[287,"Slime Slug","D",[487]],[292,"Dark Petrifier","C",[440]],[299,"Dark Pegawyrm","B",[499]],[307,"Starwhip","C",[507]],[308,"Red Starwhip","C",[508]],[312,"Chargebot","D",[512]],[313,"Flamebot","C",[513]],[314,"Thornasaurus","D",[514]],[323,"Lizardfolk Hero","B",[523]],[337,"Electrosapper","C",[537]],[338,"Mage","C",[255]],[339,"Mage","C",[256]],[340,"Mage","C",[257]],[341,"Lizardfolk Mage","C",[404]],[342,"Lizardfolk Mage","C",[405]],[343,"Lizardfolk Mage","C",[406]],[344,"Beastfolk Mage","C",[407]],[345,"Beastfolk Mage","C",[408]],[346,"Beastfolk Mage","C",[409]],[347,"Stonefolk Mage","C",[410]],[348,"Stonefolk Mage","C",[411]],[349,"Stonefolk Mage","C",[412]],[399,"Jaguna","B",[190,191,192]],[402,"Suoh","SS",[202,203,204]],[403,"Camellia","SS",[205,206,207]],[463,"Wailing Wall","C",[785]],[519,"Kujata","C",[696]],[524,"Suzaku","C",[482]],[540,"Rejin","S",[227,228,229]],[546,"Pupru","S",[230,231,232]],[547,"Bajanna","SS",[233,234,235]],[557,"Y'apkar","S",[236,237,238]],[564,"Harold","A",[239,240,241]],[582,"Yulia","SS",[242,243,244]],[583,"Bone Killer","A",[739]],[588,"Invincible","Z",[193,194,195]],[596,"Zael","S",[245,246,247]],[597,"Calista","S",[248,249,250]],[620,"Seiryu","Z",[196,197,198]],[621,"Lich Λ","S",[746,747,748]],[622,"Marilith Λ","S",[749,750,751]],[623,"Samatha Λ","Z",[752]],[624,"Olber Λ","Z",[753]],[625,"Yukken Λ","Z",[754]],[626,"A'misandra Λ","Z",[755]],[627,"Koko Λ","Z",[756]],[628,"Lewto Λ","Z",[757]],[629,"Piz'fer Λ","Z",[758]],[630,"Jennish Λ","Z",[759]],[631,"Zerro Λ","Z",[760]],[632,"Bahamut Λ","Z",[761]],[633,"Odin Λ","Z",[762]],[634,"Leviathan Λ","Z",[763]],[648,"Snaptrap","A",[377]],[671,"Chiton","C",[784]],[673,"Jade Dragon","A",[787,788,789]],[678,"Apirath","A",[795]],[679,"Scar","A",[798]],[691,"Rejin Λ","Z",[791]],[692,"Alika Λ","Z",[792]],[693,"Gegonago Λ","Z",[793]],[694,"Pupropé Λ","Z",[794]],[703,"Fortified Oxsecian Bulwark","A",[814]],[711,"Layla","A",[8011]],[718,"Lucia","SS",[796]],[719,"Lucia Λ","Z",[797]],[736,"Echo","S",[559,595,800]],[763,"Leonidas","A",[596]],[764,"Storm Witch","A",[588]],[769,"Lucia","SS",[801,802,803]],[801,"Jaguna Λ","Z",[589]],[802,"Amazora Λ","Z",[599]],[804,"Ellvern Λ","Z",[593]],[805,"Captive Golem","S",[809,810,811]],[825,"Nakupí Λ","Z",[812]],[827,"Bonna Λ","Z",[813]],[828,"Andelucia","Z",[815,816,817]],[829,"Edg'low","Z",[818,819,820]],[830,"Zavison","Z",[821,822,823]],[831,"Sayu","Z",[824,825,826]],[832,"Schweiz","Z",[827,828,829]],[833,"Peyrna","Z",[830,831,832]],[834,"Beau'ne","Z",[833,834,835]],[835,"Myne","Z",[836,837,838]],[836,"Mogha","Z",[839,840,841]],[846,"Gatz Λ","Z",[842]],[848,"Palpa Λ","Z",[843]],[853,"Spinetrich Kino Λ","B",[852]],[855,"Kraken Kino Λ","B",[853]],[857,"Tiamat Kino Λ","B",[854]],[859,"Slugosaur Kino Λ","B",[855]],[861,"Eileen Λ","SS",[844]],[862,"Suoh Λ","Z",[845]],[863,"Camellia Λ","Z",[846]],[864,"Korin Λ","SS",[847]],[865,"Sh'berdan Λ","S",[848]],[866,"Daiana Λ","SS",[849]],[867,"Shin'en Λ","Z",[850]],[868,"Mutoh Λ","Z",[851]],[871,"Xaepha","SS",[856,857,858]],[887,"Primordial Dragon Λ","S",[8004]],[888,"Axion Dragon Λ","S",[8005]],[889,"Holy Dragon Λ","S",[8006]],[890,"Amina Λ","Z",[5000]],[891,"Burbaba Λ","SS",[5001]],[892,"Kem Λ","SS",[5002]],[893,"S'naip Λ","SS",[5003]],[894,"Mizell","Z",[5004,5005,5006]],[895,"8-Bit Spinetrich Λ","B",[8000]],[897,"8-Bit Golem Λ","B",[8001]],[899,"8-Bit Orbling Λ","B",[8002]],[901,"8-Bit Hiso Alien Λ","B",[8003]],[903,"Mizell Λ","Z",[5007]],[915,"Lacuma","Z",[5008,5009,5010]],[916,"Lacuma Λ","Z",[5011]],[917,"Okklitot","S",[5012,5013,5014]],[918,"Nia","SS",[5015,5016,5017]],[919,"Nia Λ","Z",[5018]],[920,"Bahl Λ","S",[5019]],[921,"Sha'plar Λ","Z",[5020]],[922,"A'merpact Λ","SS",[5021]],[923,"Ra'prow Λ","S",[5022]],[938,"Relic","A",[8012]],[939,"King Orbling Λ","S",[8009]],[943,"Artemis Λ","S",[8007]],[945,"Lamia Λ","S",[8008]],[947,"Rascal★","B",[8010]],[963,"Valkyrie Λ","S",[8014]],[964,"Chaos Λ","S",[8013]],[965,"Lich Kino Λ","B",[8015]],[967,"Marilith  Kino Λ","B",[8016]],[969,"Mechanic Kino Λ","B",[8017]],[971,"Senala","Z",[5023,5024,5025]],[972,"Senala Λ","Z",[5026]],[973,"Ella Λ","Z",[5034]],[974,"Clara","SS",[5027,5028,5029]],[975,"Clara Λ","Z",[5030]],[992,"Odin Kino Λ","B",[8019]],[994,"Raijin Λ","S",[8020]],[995,"Phoenix Λ","S",[8021]],[998,"Grace Λ","S",[5036]],[999,"Invincible Λ","Z",[5035]],[1002,"Echo Λ","Z",[5037]],[1003,"Cockatrice Λ","A",[8018]],[1004,"Dagus","Z",[5031,5032,5033]],[1005,"Violet","Z",[5038,5039,5040]],[1006,"Scarlet","Z",[5041,5042,5043]],[1007,"Seiryu Λ","Z",[5044]],[1008,"Nephrite Dragon","A",[5045,5046,5047]],[1014,"Bahamut Kino Λ","B",[8022]],[1016,"Leviathan Kino Λ","B",[8023]],[1018,"Joker Λ","Z",[8024]],[1019,"Engi","Z",[5048,5049,5050]],[1020,"Annu","Z",[5051,5052,5053]],[1021,"Maldor","SS",[5054,5055,5056]],[1022,"Kir'ue","SS",[5057,5058,5059]],[1023,"Iskar","A",[5060,5061,5062]],[1024,"Jag","SS",[5063,5064,5065]],[1080,"Noctis","S",[5072,5073,5074]],[1082,"Velraine Λ","SS",[5066]],[1083,"Dracorin Λ","S",[5067]],[1084,"Nazuna","Z",[5068,5069,5070]],[1085,"Nazuna Λ","Z",[5071]],[1090,"Steel Dragon","A",[8029]],[1096,"Tronic Gal","Z",[5075,5076,5077]],[1097,"Feno","Z",[5078,5079,5080]],[1098,"Hakann","Z",[5081,5082,5083]],[1099,"Marcus","Z",[5084,5085,5086]],[1100,"Ashe","Z",[5087,5088,5089]],[1103,"Dahlia","Z",[5090,5091,5092]],[1126,"Manticlaw","A",[8031]],[1127,"Golden Arachnobot","A",[8032]],[1156,"Shay","Z",[5093,5094,5095]],[1157,"Arionne","Z",[5096,5097,5098]],[1158,"Morgana","S",[5099,5100,5101]],[1159,"Haruhikari","Z",[5102,5103,5104]],[1174,"Apollo Λ","S",[8039]],[1200,"Zaldor","Z",[5105,5106,5107]],[1201,"Ginny","Z",[5108,5109,5110]],[1202,"Haggo","Z",[5111,5112,5113]],[1203,"Ba'gunar Λ","S",[5114]],[1204,"Djugan Λ","Z",[5115]],[1217,"Feno Λ","Z",[5116]],[1218,"Sayu Λ","Z",[5117]],[1219,"Andelucia Λ","Z",[5118]],[1220,"Beau'ne Λ","Z",[5119]],[1221,"Ginny Λ","Z",[5120]],[1222,"Zafitte Λ","Z",[5121]],[1223,"Pahrl Λ","SS",[5122]],[1224,"Phaarz","A",[8040]],[1225,"Giant Nega","A",[8041]],[1226,"Reaver","A",[8042]],[1227,"Ancient Sadness","A",[8043]],[1239,"Selene Λ","S",[8044]],[1243,"Renova","Z",[5123,5124,5125]],[1244,"Varve","Z",[5126,5127,5128]],[1245,"Lio","Z",[5129,5130,5131]],[1251,"Gigojago Λ","Z",[5132]],[1257,"Rowlow","Z",[5133,5134,5135]],[1258,"Djagos","Z",[5136,5137,5138]],[1259,"Tsutsura","Z",[5139,5140,5141]],[1260,"Chirol","Z",[5142,5143,5144]],[1261,"Ryoma","Z",[5145,5146,5147]],[1262,"Roland","SS",[5148,5149,5150]],[1263,"Elga","Z",[5151,5152,5153]],[1264,"Koh","SS",[5154,5155,5156]],[1265,"Mizury","Z",[5157,5158,5159]],[1266,"Lew","SS",[5160,5161,5162]],[1288,"Sarah","Z",[5163,5164,5165]]];   // [[id, name, rarity, [jobs]], ...]
+const byId = {}; CHARS.forEach(c => byId[c[0]] = c);
+let save = null, saveName = '', roster = [], selectedAll = new Set(), selectedRoster = new Set();
+
+function status(msg, ok){ const s = document.getElementById('status'); s.innerHTML = ok ? '<b>'+msg+'</b>' : msg; }
+function charName(id){ return byId[id] ? byId[id][1] : ('Character #'+id); }
+function charRar(id){ return byId[id] ? byId[id][2] : ''; }
+function charJobs(id){ return byId[id] ? byId[id][3] : [id,0,0]; }
+
+function loadSave(ev){
+  const f = ev.target.files[0]; if(!f) return;
+  const r = new FileReader();
+  r.onload = e => {
+    try { save = JSON.parse(e.target.result); }
+    catch(err){ alert('Not a valid JSON save file:\n' + err.message); return; }
+    const accs = save.accounts || {};
+    let aid = save.active_account_id;
+    if(!accs[aid]) aid = Object.keys(accs)[0];
+    save.__aid = aid;
+    const ud = accs[aid] && accs[aid].userdata;
+    roster = (ud && ud.chrdata) ? ud.chrdata : [];
+    saveName = f.name;
+    status('Loaded ' + f.name + ' — ' + roster.length + ' characters', true);
+    renderAll(); renderRoster();
+  };
+  r.readAsText(f);
+}
+
+function renderAll(){
+  const q = document.getElementById('q').value.trim().toLowerCase();
+  const ul = document.getElementById('listAll'); ul.innerHTML = '';
+  const owned = new Set(roster.map(r => r.id));
+  let n = 0;
+  for(const c of CHARS){
+    const [id, name, rar] = c;
+    if(q && !(name.toLowerCase().includes(q) || String(id) === q)) continue;
+    n++;
+    const li = document.createElement('li');
+    li.dataset.id = id;
+    if(selectedAll.has(id)) li.className = 'sel';
+    li.innerHTML = `<span class="id">${id}</span><span class="nm">${name}` +
+      (owned.has(id) ? ' <span style="color:var(--green);font-size:10px">✓ in save</span>' : '') +
+      `</span>` + (rar ? `<span class="rar ${rar}">${rar}</span>` : '');
+    li.onclick = e => {
+      if(!e.ctrlKey && !e.metaKey && !e.shiftKey) selectedAll.clear();
+      selectedAll.has(id) ? selectedAll.delete(id) : selectedAll.add(id);
+      renderAll();
+    };
+    ul.appendChild(li);
+  }
+  document.getElementById('cntAll').textContent = '(' + n + ')';
+}
+
+function renderRoster(){
+  const ul = document.getElementById('listRoster'); ul.innerHTML = '';
+  if(!roster.length){ ul.innerHTML = '<div class="empty">No save loaded</div>'; }
+  const sorted = roster.slice().sort((a,b) => a.id - b.id);
+  for(const row of sorted){
+    const id = row.id;
+    const li = document.createElement('li');
+    li.dataset.id = id;
+    if(selectedRoster.has(id)) li.className = 'sel';
+    li.innerHTML = `<span class="id">${id}</span><span class="nm">${charName(id)}</span>` +
+      `<span class="job">J${row.jobID}</span>` + (charRar(id) ? `<span class="rar ${charRar(id)}">${charRar(id)}</span>` : '');
+    li.onclick = e => {
+      if(!e.ctrlKey && !e.metaKey && !e.shiftKey) selectedRoster.clear();
+      selectedRoster.has(id) ? selectedRoster.delete(id) : selectedRoster.add(id);
+      renderRoster();
+    };
+    ul.appendChild(li);
+  }
+  document.getElementById('cntRoster').textContent = '(' + roster.length + ')';
+}
+
+function addSelected(){
+  if(!save){ alert('Open a save file first.'); return; }
+  const owned = new Set(roster.map(r => r.id));
+  let added = 0, skipped = 0;
+  for(const id of selectedAll){
+    if(owned.has(id)){ skipped++; continue; }
+    // exact shape the game server uses when a character is first obtained
+    // (pact draw): level 10, jobID = job INDEX 0, flags 0.
+    roster.push({id:id, buddy:0, date:0.0, jobSlots:[0.0,0.0,0.0],
+                 jobLevels:[10.0,0.0,0.0], jobID:0, flags:0, skillBoost:0});
+    owned.add(id); added++;
+  }
+  // the client indexes characters by array order -> keep ascending by id
+  roster.sort((a,b) => a.id - b.id);
+  selectedAll.clear();
+  status(added + ' character(s) added' + (skipped ? ' (' + skipped + ' already present)' : '') + ' — click Save to download', true);
+  renderAll(); renderRoster();
+}
+
+function removeSelected(){
+  if(!save){ alert('Open a save file first.'); return; }
+  if(!selectedRoster.size){ alert('Select characters in the right list first.'); return; }
+  const before = roster.length;
+  roster = roster.filter(r => !selectedRoster.has(r.id));
+  const n = before - roster.length;
+  selectedRoster.clear();
+  status(n + ' character(s) removed — click Save to download', true);
+  renderAll(); renderRoster();
+}
+
+function saveFile(){
+  if(!save){ alert('Open a save file first.'); return; }
+  const aid = save.__aid;
+  save.accounts[aid].userdata.chrdata = roster;
+  delete save.__aid;
+  const blob = new Blob([JSON.stringify(save)], {type:'application/json'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  const base = saveName.replace(/\.json$/i, '');
+  a.download = base + '-EDITED.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+  status('Downloaded ' + a.download + ' — rename it to bootstrap-state.json and put it in your server folder', true);
+}
+
+
+const TEMPLATE = {"chrdata":[{"id":1,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[3145731.0,0.0,0.0],"jobID":0,"flags":0,"skillBoost":0},{"id":25,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[347197455.0,0.0,0.0],"jobID":0,"flags":0,"skillBoost":0},{"id":63,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[1.0,0.0,0.0],"jobID":0,"flags":0,"skillBoost":0},{"id":64,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[69689354.0,0.0,0.0],"jobID":0,"flags":1,"skillBoost":0}],"teamMembers":[1,25,64,63,0,0],"progressCode":16777345,"coins":218,"freeEnergy":50,"itemList":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"summonList":[]};
+
+function loadTemplate(){
+  if(!save){ alert('Open your save file first, then click Load Template.'); return; }
+  if(!confirm('This replaces the current characters/party with the tutorial-complete template (4 characters, Chapter 1 finished). Continue?')) return;
+  const aid = save.__aid;
+  const ud = save.accounts[aid].userdata;
+  ud.chrdata = JSON.parse(JSON.stringify(TEMPLATE.chrdata));
+  ud.teamMembers = TEMPLATE.teamMembers.slice();
+  ud.progressCode = TEMPLATE.progressCode;
+  ud.coins = TEMPLATE.coins;
+  ud.freeEnergy = TEMPLATE.freeEnergy;
+  ud.itemList = TEMPLATE.itemList.slice();
+  ud.summonList = TEMPLATE.summonList.slice();
+  roster = ud.chrdata;
+  // account-level flags that mark the tutorial as finished
+  save.accounts[aid].tutorial_phase = 'free_roam';
+  save.accounts[aid].tutorial_starter_character_id = 1;
+  save.accounts[aid].initial_userdata_served = true;
+  status('Tutorial-complete template loaded - click Save to download', true);
+  renderAll(); renderRoster();
+}
+renderAll();
+</script>
+</body>
+</html>

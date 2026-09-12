@@ -1,5 +1,5 @@
-"""Full 99-achievement master recovered from the reTB project
-(codeberg.org/WkmKsk/reTB, v1.4.18). Reference data only: the server
+"""Full 99-achievement master recovered from the TB project
+(repository.org/WkmKsk/TB, v1.4.18). Reference data only: the server
 still settles only the ClearChapter rows via achievement_data.py.
 The other unlock types are client-local counters, kept here so the
 list matches what the client UI shows and future extensions have

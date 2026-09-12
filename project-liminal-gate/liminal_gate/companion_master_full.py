@@ -1,5 +1,5 @@
-"""Full 497-companion master recovered from the reTB project
-(codeberg.org/WkmKsk/reTB, v1.4.18). Supersedes companion_master_data.py
+"""Full 497-companion master recovered from the TB project
+(repository.org/WkmKsk/TB, v1.4.18). Supersedes companion_master_data.py
 (base coins only) as reference data: adds names (en/ja/zh_tw), rarity,
 max levels, EXP curves, evolve chains. Server behavior unchanged."""
 
