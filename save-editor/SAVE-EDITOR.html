@@ -52,6 +52,13 @@
   .empty{padding:20px;text-align:center;color:var(--dimmer)}
   .hint{color:var(--dimmer);font-size:11px;margin-top:6px}
   .foot{text-align:center;color:var(--dimmer);font-size:11px;margin-top:20px}
+  .dev-panel{margin-bottom:14px}
+  .devlist{max-height:150px;margin-bottom:10px}
+  .devlist li{cursor:default}
+  .devlist .own{color:var(--green);font-size:10px;border:1px solid var(--green);border-radius:8px;padding:0 6px}
+  .devlist .del{color:var(--red);cursor:pointer;font-size:11px;padding:0 6px;border:1px solid var(--line2);border-radius:3px}
+  .devlist .del:hover{border-color:var(--red)}
+  .devrow{display:flex;gap:8px;flex-wrap:wrap}
   .acctwarn{margin:-6px 0 12px;padding:8px 12px;font-size:11.5px;border-radius:3px;
              background:#161b2a;border:1px solid var(--line2);color:var(--gold2)}
   .acctwarn b{color:var(--gold2)}
@@ -71,6 +78,7 @@
 
   <div class="bar">
     <button class="primary" onclick="document.getElementById('file').click()">Open Save File…</button>
+    <button onclick="pasteSave()">Paste JSON</button>
     <input type="file" id="file" accept=".json" style="display:none" onchange="loadSave(event)">
     <select id="acctsel" title="Which account inside this save file you are editing"
             onchange="switchAccount(this.value)" style="display:none"></select>
@@ -78,9 +86,21 @@
     <button onclick="loadTemplate()">Load Tutorial Template</button>
     <button onclick="runSanitize(false);reportFixes()">Check &amp; Fix</button>
     <button class="primary" onclick="saveFile()">Save (download)</button>
+    <button onclick="copySave()">Copy JSON</button>
     <div class="status" id="status">No file loaded</div>
   </div>
   <div id="acctwarn" class="acctwarn" style="display:none"></div>
+
+  <div class="panel dev-panel">
+    <h2>Device Access <span style="color:var(--dim);letter-spacing:0;text-transform:none;font-size:11px">— which device UUIDs open this save</span></h2>
+    <div class="hint">The game looks up your account BY DEVICE UUID. Add a device here and the same save opens on it too. A device that has never signed up must sign up once first (then add it here).</div>
+    <ul id="devlist" class="devlist"></ul>
+    <div class="devrow">
+      <input type="text" id="devinput" placeholder="Device UUID (e.g. 624CFDD77A56EFE036803006F5D1A64A)">
+      <button onclick="linkDevice()">+ Link device</button>
+      <button class="primary" onclick="takeoverDevice()">Use save on this UUID only</button>
+    </div>
+  </div>
 
   <div class="cols">
     <div class="panel">
@@ -119,8 +139,15 @@ function loadSave(ev){
   const f = ev.target.files[0]; if(!f) return;
   const r = new FileReader();
   r.onload = e => {
-    try { save = JSON.parse(e.target.result); }
-    catch(err){ alert('Not a valid JSON save file:\n' + err.message); return; }
+    try { applyLoadedSave(JSON.parse(e.target.result), f.name); }
+    catch(err){ alert('Not a valid JSON save file:\n' + err.message); }
+  };
+  r.readAsText(f);
+}
+
+// Shared by the file picker and "Paste JSON" so both paths behave identically.
+function applyLoadedSave(obj, label){
+    save = obj;
     const accs = save.accounts || {};
     const ids = Object.keys(accs);
     if(!ids.length){ alert('This file has no accounts.'); save = null; return; }
@@ -131,10 +158,11 @@ function loadSave(ev){
     let aid = save.active_account_id;
     let guessed = false;
     if(!accs[aid]){ aid = ids[0]; guessed = ids.length > 1; }
-    saveName = f.name;
+    saveName = label || saveName || '';
+    save.account_aliases = save.account_aliases || {};
     const shown = buildAccountSelector(aid);
     loadAccount(aid);
-    renderAll(); renderRoster();
+    renderAll(); renderRoster(); renderDevices();
     if(shown.length > 1 || guessed){
       const warn = document.getElementById('acctwarn');
       if(warn){
@@ -145,8 +173,6 @@ function loadSave(ev){
           : 'This file holds ' + shown.length + ' accounts — the box above shows which one you are editing.';
       }
     }
-  };
-  r.readAsText(f);
 }
 
 // --- account selection -----------------------------------------------------
@@ -200,7 +226,7 @@ function switchAccount(aid){
   const sel = document.getElementById('acctsel');
   if(sel) sel.value = aid;
   status('Switched to ' + aid.slice(0,10) + '… (' + roster.length + ' characters)', true);
-  renderAll(); renderRoster();
+  renderAll(); renderRoster(); renderDevices();
   const rep = document.getElementById('report');
   if(rep && rep.style.display !== 'none') reportFixes();
 }
@@ -536,6 +562,112 @@ function loadTemplate(){
   status('Tutorial-complete template loaded - click Save to download', true);
   renderAll(); renderRoster();
 }
+// --- device (uuid) management ----------------------------------------------
+// The server resolves a login by DEVICE UUID: it either names an account or an
+// alias that points at one. That is the single knob that decides whether this
+// save opens on a given phone, so the editor exposes it directly.
+function devicesFor(aid){
+  const out = [];
+  if(save && save.accounts && save.accounts[aid]) out.push({uuid: aid, own: true});
+  const al = (save && save.account_aliases) || {};
+  for(const dev of Object.keys(al)) if(al[dev] === aid) out.push({uuid: dev, own: false});
+  return out;
+}
+
+function renderDevices(){
+  const ul = document.getElementById('devlist');
+  if(!ul) return;
+  ul.innerHTML = '';
+  if(!save){ ul.innerHTML = '<div class="empty">No save loaded</div>'; return; }
+  const aid = save.__aid;
+  const acc = save.accounts[aid] || {};
+  const n = ((acc.userdata||{}).chrdata||[]).length;
+  const head = document.createElement('li');
+  head.innerHTML = '<span class="nm">Account <b>' + String(aid).slice(0,12) + '…</b> — ' + n + ' characters</span>';
+  ul.appendChild(head);
+  for(const d of devicesFor(aid)){
+    const li = document.createElement('li');
+    li.innerHTML = '<span class="id" style="min-width:0;font-family:Consolas,monospace;font-size:10.5px">'
+      + d.uuid + '</span>'
+      + (d.own ? '<span class="own">account id</span>'
+               : '<span class="del" onclick="unlinkDevice(' + JSON.stringify(d.uuid) + ')">unlink</span>');
+    ul.appendChild(li);
+  }
+}
+
+function linkDevice(){
+  if(!save){ alert('Open or paste a save first.'); return; }
+  const inp = document.getElementById('devinput');
+  const dev = (inp.value || '').trim();
+  if(!dev){ alert('Type a device UUID first.'); return; }
+  if(dev in save.accounts){ alert('That UUID is already a full account in this file, not a link target.'); return; }
+  save.account_aliases = save.account_aliases || {};
+  save.account_aliases[dev] = save.__aid;
+  inp.value = '';
+  status('Device ' + dev.slice(0,10) + '… can now open this save', true);
+  renderDevices();
+  reportFixes();
+}
+
+function unlinkDevice(dev){
+  if(!save) return;
+  if(save.account_aliases) delete save.account_aliases[dev];
+  status('Unlinked ' + String(dev).slice(0,10) + '…', true);
+  renderDevices();
+  reportFixes();
+}
+
+function takeoverDevice(){
+  if(!save){ alert('Open or paste a save first.'); return; }
+  const dev = (document.getElementById('devinput').value || '').trim();
+  if(!dev){ alert('Type the target device UUID first.'); return; }
+  if(dev in save.accounts && dev !== save.__aid){ alert('That UUID already owns a different account here.'); return; }
+  if(!confirm('Make account ' + String(save.__aid).slice(0,10) + '… open as device\n\n' + dev + '\n\nThis renames the account to that UUID, so the phone with this UUID loads this save directly.')) return;
+  const old = save.__aid;
+  save.accounts[dev] = save.accounts[old];
+  delete save.accounts[old];
+  // repoint any alias / token that referenced the old id
+  if(save.account_aliases) for(const k of Object.keys(save.account_aliases))
+    if(save.account_aliases[k] === old) save.account_aliases[k] = dev;
+  if(save.tokens) for(const t of Object.keys(save.tokens))
+    if(save.tokens[t] === old) save.tokens[t] = dev;
+  if(save.client_hosts) for(const h of Object.keys(save.client_hosts))
+    if(save.client_hosts[h] === old) save.client_hosts[h] = dev;
+  if(save.active_account_id === old) save.active_account_id = dev;
+  save.__aid = dev;
+  status('Save now opens on device ' + dev.slice(0,10) + '…', true);
+  buildAccountSelector(dev);
+  renderDevices();
+  renderAll(); renderRoster(); reportFixes();
+}
+
+// --- portable: paste / copy ------------------------------------------------
+function pasteSave(){
+  const txt = prompt('Paste the save file contents (bootstrap-state.json):');
+  if(txt == null) return;
+  try { applyLoadedSave(JSON.parse(txt), 'pasted'); }
+  catch(err){ alert('Not valid JSON:\n' + err.message); }
+}
+
+function copySave(){
+  if(!save){ alert('Nothing to copy yet.'); return; }
+  const fixed = runSanitize(true);
+  const out = jsonEncode(save);
+  const done = () => status('JSON copied — paste it into bootstrap-state.json on your server', true);
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(out).then(done, () => fallbackCopy(out, done));
+  } else fallbackCopy(out, done);
+  if(fixed.length) setTimeout(reportFixes, 50);
+}
+
+function fallbackCopy(text, done){
+  const ta = document.createElement('textarea');
+  ta.value = text; document.body.appendChild(ta); ta.select();
+  try { document.execCommand('copy'); done(); }
+  catch(e){ alert('Copy failed — use Save (download) instead.'); }
+  document.body.removeChild(ta);
+}
+
 function reportFixes(){
   const el = document.getElementById('report');
   el.style.display = 'block';
