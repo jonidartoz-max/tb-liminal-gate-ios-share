@@ -1051,13 +1051,38 @@ class BootstrapState:
         digest = int(hashlib.sha256(account_id.encode()).hexdigest()[:12], 16)
         return digest % 900000000 + 100000000
 
-    def migrate_userdata_locked(self, target_account_id: str, migration_id: str, password: str) -> tuple[str, str | None]:
+    def migrate_userdata_locked(
+        self,
+        target_account_id: str,
+        migration_id: str,
+        password: str,
+        user_number: str = "",
+    ) -> tuple[str, str | None]:
+        """Locate the source account for a transfer, then copy it to the target.
+
+        The client's credential triple is ``userID`` (9-digit display number),
+        ``migrationID`` (12-char) and ``pass`` (MD5 of the plaintext).  TB
+        matches all three together across every account -- an empty credential
+        never matches, which is what stopped a blank request from adopting the
+        first account that happened to have no transfer key set.
+        """
+        user_number = (user_number or "").strip()
         for acct_id, acct in self.accounts.items():
             grant = acct.get("migration_grants", {}).get(migration_id)
-            if grant is not None and grant.get("password") == password:
-                source = acct
-                source_id = acct_id
-                break
+            if grant is None or not password:
+                continue
+            if grant.get("password") != password:
+                continue
+            # Empty credentials must never match (TB guard #1).
+            if not migration_id or not password:
+                continue
+            # The 9-digit number travels with the save; validate it when the
+            # client sent one (it always does on the real recovery screen).
+            if user_number and str(self.migration_user_id(acct_id)) != user_number:
+                continue
+            source = acct
+            source_id = acct_id
+            break
         else:
             return "invalid_migration_info", None
         target = self.accounts.get(target_account_id)
@@ -1071,6 +1096,13 @@ class BootstrapState:
         target["tutorial_phase"] = source.get("tutorial_phase", "initial")
         target["username"] = source.get("username", target.get("username", "Player"))
         target.setdefault("tutorial_requests", {})
+        # The in-game confirmation screen promises the key is single-use: burn
+        # it on the source (and on the copy, which must not carry it to the
+        # destination).  Without this the same transfer ID keeps answering on
+        # every keystone and a later recovery restores a stale clone.
+        source_grants = source.get("migration_grants") or {}
+        source_grants.pop(migration_id, None)
+        target["migration_grants"] = {}
         self._persist_locked()
         return "success", source_id
 
@@ -4476,14 +4508,20 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                 self._json(HTTPStatus.BAD_REQUEST, {"error": "missing_local_account_token"})
                 return
             account_id: str | None = None
+            migrate_body: dict[str, str] | None = None
             if target.path == MIGRATION_ROUTE_PATHS["migrate_userdata"]:
-                # The destination device posts NO uuid — its identity is "the
-                # device asking". Both devices behind one NAT share a public
-                # IP, so host-based binding would resolve to the SOURCE
-                # account and make the copy a self-copy ("same_account").
-                # Provision a private destination account keyed by this
-                # request's token instead; the client re-logins afterwards.
-                new_uuid = query.get("uuid") or f"migrated-{token[:12]}"
+                # The recovery request carries the device's OWN uuid in the
+                # body (TB: `uuid=<NEW_DEVICE>&userID=..&migrationID=..&pass=..`).
+                # Provision the destination under exactly that uuid so the copy
+                # lands on the account this device will log in with -- no
+                # follow-up adoption step needed.  Host/IP binding is never used
+                # here: both devices behind one NAT share the CF public IP, and
+                # that would resolve to the SOURCE account (a self-copy).
+                migrate_body = self._read_migration_body_fields() or {}
+                new_uuid = (
+                    (migrate_body.get("uuid") or query.get("uuid") or "").strip()
+                    or f"migrated-{token[:12]}"
+                )
                 if new_uuid not in self.server.state.accounts:
                     self.server.state.create_account(
                         token, new_uuid, self.server.profile.userdata_seed,
@@ -4494,6 +4532,12 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                 if account_id not in self.server.state.accounts:
                     self.server.state.bind_rotated_token(token, None)
                     account_id = self.server.state.tokens.get(token)
+                # Re-bind this token to the destination uuid we just provisioned
+                # (create_account binds it to the token already, but a rotated
+                # token can otherwise still point at the pre-login slot).
+                if new_uuid in self.server.state.accounts:
+                    self.server.state.tokens[token] = new_uuid
+                    account_id = new_uuid
             elif not self.server.state.bind_rotated_token(token, self._client_host()):
                 self._json(HTTPStatus.UNAUTHORIZED, {"error": "unknown_account"})
                 return
@@ -4561,15 +4605,18 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                 self._signed(HTTPStatus.OK, token, {"success": code == "success", "errorCode": 0 if code == "success" else 1})
                 return
             if target.path == MIGRATION_ROUTE_PATHS["migrate_userdata"]:
-                body = self._read_migration_body_fields()
-                if body is None:
-                    return
+                body = migrate_body if migrate_body is not None else (self._read_migration_body_fields() or {})
                 migration_id = (body.get("migrationID") or body.get("transferID") or body.get("transferId") or body.get("migration_id") or "").strip()
                 # Client MigrateUserdata posts "pass" = MD5(password), matching
                 # what SetMigrationPassword stored.
                 password = (body.get("pass") or body.get("pw") or body.get("password") or body.get("migrationPassword") or body.get("transferPassword") or "").strip()
+                # The 9-digit display User ID is part of the credential triple
+                # (TB: userID + migrationID + pass, matched together across
+                # accounts).  Reading only migrationID/pass lets a stale clone
+                # answer for the same transfer ID.
+                user_number = (body.get("userID") or body.get("userId") or body.get("user_id") or "").strip()
                 with self.server.state.lock:
-                    code, source_id = self.server.state.migrate_userdata_locked(account_id, migration_id, password)
+                    code, source_id = self.server.state.migrate_userdata_locked(account_id, migration_id, password, user_number)
                 print(f"[migrate_userdata] account={account_id[:16]} q_uuid={query.get('uuid','')[:16]} "
                       f"mid={migration_id[:6]}*** code={code} source={str(source_id)[:16]}", flush=True)
                 if code != "success":
@@ -4577,18 +4624,15 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                     # cmdError; keep the reason server-side only.
                     self._signed(HTTPStatus.OK, token, {"success": False, "cmdError": 1, "error": code})
                     return
-                # Empirically: {"success":true} alone crashes the client here
-                # (nil field read), while the earlier richer body rendered the
-                # success dialog. Restore the fuller shape the client parses:
-                # sourceAccount echo + a zeroed transport errorCode.
-                # The ONLY response shape the client accepts without crashing
-                # (verified across 4 A/B runs): success + sourceAccount +
-                # errorCode. Unknown keys (userID, token, ...) throw inside the
-                # client's strict response walker → instant kill. The post-
-                # migrate re-login 401 is solved separately by login adoption.
+                # TB returns the plain BaseResponse envelope here, and the
+                # client's MigrateUserdata callback (Action<int>) reads *only*
+                # errorCode -- it walks no other key.  `sourceAccount` was a
+                # guess: it appears ZERO times in the client's metadata (Android
+                # AND iOS global-metadata.dat) and the crash .ips lands exactly
+                # on this request (EXC_BREAKPOINT at 0x186C8, a nil/unknown-key
+                # read).  Emit the standard envelope and nothing else.
                 self._signed(HTTPStatus.OK, token, {
                     "success": True,
-                    "sourceAccount": source_id,
                     "errorCode": 0,
                 })
                 return
