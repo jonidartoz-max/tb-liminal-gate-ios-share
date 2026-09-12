@@ -3629,13 +3629,19 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             self.wfile.write(body)
             self.server.events.record(self.command, self.path, HTTPStatus.OK)
             return True
-        if path == "/en/news/app":
-            self._html(
-                HTTPStatus.OK,
-                "<!doctype html><html><head><meta charset=\"utf-8\"><title>Project Liminal Gate</title></head>"
-                "<body><h1>Project Liminal Gate</h1><p>Your local preservation server is running.</p>"
-                "<p>Check the project README for local setup and support details.</p></body></html>",
-            )
+        if path.startswith("/jp/news/app") or path.startswith("/en/news/app"):
+            # UINews ("What's New", shown right after login) fetches this URL —
+            # the original literal points at the dead Mistwalker news server.
+            # The client renders the response as PLAIN TEXT in its scroll label,
+            # so serve the Drop Atlas as formatted text.
+            from liminal_gate.drop_atlas_text import DROP_ATLAS_TEXT
+            body = DROP_ATLAS_TEXT.encode("utf-8")
+            self.send_response(HTTPStatus.OK)
+            self.send_header("Content-Type", "text/plain; charset=utf-8")
+            self.send_header("Content-Length", str(len(body)))
+            self.send_header("Cache-Control", "no-store")
+            self.end_headers()
+            self.wfile.write(body)
             return True
         if path == "/favicon.ico":
             self._empty(HTTPStatus.NO_CONTENT)
@@ -5974,7 +5980,7 @@ def _synchronize_chapter_milestone_messages(account: dict[str, Any]) -> bool:
     return changed
 
 
-#: Local house rule: every login (once per UTC day) puts a Energy gift in
+#: Local house rule: every login (once per UTC day) puts a 10-Energy gift in
 #: the inbox. It is issued as a message so the player sees it in the mailbox
 #: and claims it there, exactly like the chapter milestone presents.
 DAILY_GIFT_ENERGY = 10

@@ -96,18 +96,23 @@ def build_server_constants(
         # Empty strings leave the client's own embedded defaults in place rather
         # than pointing a tester at a dead or substituted address.  The Help
         # entry points at the locally served Drop Atlas guide (see
-        # /public_data/help below) — the one help page that exists here.
+        # /public_data/help below).  It MUST be an absolute URL: the client
+        # hands the string straight to Application.OpenURL.  Keep it a plain
+        # https URL — intent:// wrappers fail hard in Unity's OpenURL when the
+        # pinned package is missing, which bricks the Help button entirely.
         "helpURL_jp": "",
-        "helpURL_en": "/public_data/help/drop_atlas.html",
+        "helpURL_en": "",
         "privacyPolicy_ja": "",
         "privacyPolicy_en": "",
         "tosURL_jp": "",
         "tosURL_en": "",
         "creditsURL": "",
         "supportURL_jp": "",
-        "supportURL_en": "",
+        "supportURL_en": "http://t.mszero00.my.id/public_data/help/index.html",
         "supportEmail_jp": "",
         "supportEmail_en": "",
+        "scheduleURL_jp": "",
+        "scheduleURL_en": "http://t.mszero00.my.id/public_data/help/drop_atlas.html",
         "ChapterClearEnergyBonus": 1,
         "EnergyBonusByDailyQuest": 1,
         # `ServerConstants.maxCharacterCount` (ARM64 field offset 0x68) is the
