@@ -27,6 +27,11 @@ minted for item and monster slots but **not** for Companion slots, so a chest
 Companion was lost the same way. Story clears now mint chest Companions too,
 matching what Hunting already did.
 
+### Also fixed: a battle drop and a chest Companion in the same clear
+
+When a single clear both reported a dropped Companion **and** had a Companion
+in its Luck chest, only one of the two survived. Both are kept now.
+
 Coverage of the generated catalog:
 
 - 780 stage rules

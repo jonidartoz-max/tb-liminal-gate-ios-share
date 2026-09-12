@@ -2699,8 +2699,17 @@ class BootstrapState:
                        "record": list(box.get("record", []))}
                 userdata["buddyInfo"] = box
             if result["buddies"]:
-                userdata["buddyInfo"] = companions
-                payload = _canonical_payload(payload | {"buddyInfo": copy.deepcopy(companions)})
+                # `companions` was projected before the chest slots were minted,
+                # so when a clear reports a dropped Companion *and* its Luck
+                # chest holds one, assigning `companions` would erase the chest
+                # rows.  Merge instead: the reported drop first, then the chest
+                # rows that are already on the box.
+                merged = {
+                    "list": list(companions.get("list", [])) + list(chest_buddy_rows),
+                    "record": list(companions.get("record", [])),
+                }
+                userdata["buddyInfo"] = merged
+                payload = _canonical_payload(payload | {"buddyInfo": copy.deepcopy(merged)})
             elif chest_buddy_rows:
                 payload = _canonical_payload(payload | {"buddyInfo": copy.deepcopy(userdata["buddyInfo"])})
             requests[_replay_key(request_id, body)] = {"body_sha256": digest, "payload": copy.deepcopy(payload)}
