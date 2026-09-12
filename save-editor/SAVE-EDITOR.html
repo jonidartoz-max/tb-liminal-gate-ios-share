@@ -512,19 +512,76 @@ function sanitize(ud){
   return fixes;
 }
 
+// Account-level fields the server validates on load. Missing or wrong-typed
+// entries here make the whole save fail to load ("invalid tutorial state"),
+// which is why the editor fills them in as well -- not just userdata.
+const ACCT_DEFAULTS = {
+  tutorial_phase: 'free_roam',
+  tutorial_requests: () => ({}),
+  initial_userdata_served: true,
+  tutorial_starter_character_id: 1,
+  active_generic_story: null,
+  active_hunt: null,
+  active_hunt_ticket_spent: null,
+  active_world_map_special: null,
+  claimed_achievements: () => [],
+  achievement_requests: () => ({}),
+  messages: () => ({}),
+  chapter_milestones_issued: () => [],
+  message_requests: () => ({}),
+};
+
 function sanitizeAccount(aid){
   const acc = save.accounts[aid];
   if(!acc || typeof acc !== 'object') return [];
   if(!acc.userdata || typeof acc.userdata !== 'object') acc.userdata = {};
   const fixes = sanitize(acc.userdata);
+
+  // --- account-level shape (server-validated) ---
+  for(const key of Object.keys(ACCT_DEFAULTS)){
+    const dflt = ACCT_DEFAULTS[key];
+    const want = (typeof dflt === 'function') ? dflt() : dflt;
+    if(!(key in acc)){
+      acc[key] = want;
+      fixes.push('added ' + key);
+      continue;
+    }
+    // correct the container type when the server would reject it
+    if(Array.isArray(want) && !Array.isArray(acc[key])){ acc[key] = want; fixes.push(key + ' -> list'); }
+    else if(want !== null && typeof want === 'object' && !Array.isArray(want) &&
+            (typeof acc[key] !== 'object' || acc[key] === null || Array.isArray(acc[key]))){
+      acc[key] = want; fixes.push(key + ' -> object');
+    }
+  }
+
+  // A roster that exists means the opening tutorial is behind us. The server
+  // refuses most mutations while an account still sits on a tutorial phase.
   if(acc.tutorial_phase !== 'free_roam' && acc.userdata.chrdata.length){
     acc.tutorial_phase = 'free_roam';
     fixes.push('tutorial_phase -> free_roam');
   }
-  if(acc.tutorial_starter_character_id == null){
+  // must be a positive int when present, never a string/null
+  if(typeof acc.tutorial_starter_character_id !== 'number'
+     || !Number.isInteger(acc.tutorial_starter_character_id)
+     || acc.tutorial_starter_character_id <= 0){
     acc.tutorial_starter_character_id = 1;
   }
   acc.initial_userdata_served = true;
+  // sorted, unique, positive ints
+  if(Array.isArray(acc.claimed_achievements)){
+    const clean = Array.from(new Set(acc.claimed_achievements
+      .filter(v => Number.isInteger(v) && v > 0))).sort((a,b) => a - b);
+    if(JSON.stringify(clean) !== JSON.stringify(acc.claimed_achievements)){
+      acc.claimed_achievements = clean; fixes.push('claimed_achievements cleaned');
+    }
+  }
+  if(Array.isArray(acc.chapter_milestones_issued)){
+    const clean = Array.from(new Set(acc.chapter_milestones_issued
+      .filter(v => typeof v === 'string' && v))).sort();
+    if(JSON.stringify(clean) !== JSON.stringify(acc.chapter_milestones_issued)){
+      acc.chapter_milestones_issued = clean; fixes.push('chapter_milestones_issued cleaned');
+    }
+  }
   return fixes;
 }
 
