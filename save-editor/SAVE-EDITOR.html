@@ -49,6 +49,11 @@
   .empty{padding:20px;text-align:center;color:var(--dimmer)}
   .hint{color:var(--dimmer);font-size:11px;margin-top:6px}
   .foot{text-align:center;color:var(--dimmer);font-size:11px;margin-top:20px}
+  .report{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:3px;
+          padding:12px;font-size:11.5px;line-height:1.7;max-height:200px;overflow:auto}
+  .report .ok{color:var(--green)}
+  .report .warn{color:var(--gold2)}
+  .report h3{font-size:11.5px;letter-spacing:2px;text-transform:uppercase;color:var(--blue);margin-bottom:6px}
 </style>
 </head>
 <body>
@@ -63,6 +68,7 @@
     <input type="file" id="file" accept=".json" style="display:none" onchange="loadSave(event)">
     <input type="text" id="q" placeholder="Search character by name or ID…" oninput="renderAll()">
     <button onclick="loadTemplate()">Load Tutorial Template</button>
+    <button onclick="runSanitize(false);reportFixes()">Check &amp; Fix</button>
     <button class="primary" onclick="saveFile()">Save (download)</button>
     <div class="status" id="status">No file loaded</div>
   </div>
@@ -79,6 +85,8 @@
       <div class="hint">Select entries here and click REMOVE FROM SAVE</div>
     </div>
   </div>
+
+  <div id="report" class="report" style="display:none"></div>
 
   <div class="bar" style="margin-top:14px;justify-content:center">
     <button onclick="addSelected()" style="border-color:var(--green);color:var(--green)">→ ADD TO SAVE</button>
@@ -197,8 +205,12 @@ function saveFile(){
   if(!save){ alert('Open a save file first.'); return; }
   const aid = save.__aid;
   save.accounts[aid].userdata.chrdata = roster;
+  // Normalise EVERY account before writing: an invalid shape here is what
+  // crashes the game on load (see the sanitizer's header comment).
+  const fixed = runSanitize(true);
   delete save.__aid;
-  const blob = new Blob([JSON.stringify(save)], {type:'application/json'});
+  // jsonEncode (not JSON.stringify) so double-typed fields keep their ".0"
+  const blob = new Blob([jsonEncode(save)], {type:'application/json'});
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
   const base = saveName.replace(/\.json$/i, '');
@@ -210,6 +222,215 @@ function saveFile(){
 
 
 const TEMPLATE = {"chrdata":[{"id":1,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[3145731.0,0.0,0.0],"jobID":0,"flags":0,"skillBoost":0},{"id":25,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[347197455.0,0.0,0.0],"jobID":0,"flags":0,"skillBoost":0},{"id":63,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[1.0,0.0,0.0],"jobID":0,"flags":0,"skillBoost":0},{"id":64,"buddy":0,"date":0.0,"jobSlots":[0.0,0.0,0.0],"jobLevels":[69689354.0,0.0,0.0],"jobID":0,"flags":1,"skillBoost":0}],"teamMembers":[1,25,64,63,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"progressCode":16777345,"coins":218,"freeEnergy":50,"itemList":[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],"summonList":[]};
+
+// ============================================================================
+// ANTI-CRASH SANITIZER
+// Every fix below maps to a real SIGTRAP we have already seen in the wild:
+//   * short fixed arrays  -> client reads past the end        (teamMembers 90,
+//                            summonList 16, VS squads 18, itemList 181)
+//   * int where the client unboxes a double -> InvalidCast   (lastupdate,
+//                            refillStartTime, chrdata date/jobSlots/jobLevels)
+//   * chrdata entries missing keys / unsorted / duplicated
+//   * missing ContainKey-guarded fields -> nil read
+// The server also normalises on serve, but the editor must never EMIT a
+// save that would crash a server that does not.
+// ============================================================================
+const ARRAY_LEN   = {teamMembers:90, teamMembers_VS:18, teamBuddies_VS:18,
+                     summonList:16, itemList:181};
+const FLOAT_KEYS  = ['lastupdate','lastUpdate','lastLogin','refillStartTime',
+                     'metalZoneUnlockTime','changeUsernameDate'];
+const INT_DEFAULTS = {summonId:1, teamNo:1, teamNo_VS:1, worldMapNo:0,
+                      countryId:0, bonusStamina:0, loginDays:1,
+                      consecutiveLoginDays:1, birthyear:0, birthmonth:0};
+const NUM_DEFAULT = {changeUsernameDate:0.0, lastUpdate:0.0};
+const LIST_DEFAULT = {achivementFlags:[], achivementReadFlags:[]};
+const MAP_DEFAULT  = {multipleFlags:{}, questClearDate:{}};
+const STR_DEFAULT  = {countryCode:''};
+
+// The value the server pins so the client always boots into the main world.
+const METAL_ZONE_OPEN = 9999999999.0;
+
+function _toFloat(v){ return (typeof v === 'number' && isFinite(v)) ? v : 0.0; }
+function _isInt(v){ return typeof v === 'number' && Number.isInteger(v); }
+
+// One chrdata entry in exactly the shape the server hands a freshly drawn
+// character (pact draw): floats for the per-job arrays, jobID as the JOB INDEX.
+function _normEntry(row, fixes){
+  if(!row || typeof row !== 'object') return null;
+  const id = parseInt(row.id, 10);
+  if(!Number.isInteger(id) || id <= 0) return null;
+  const jobLevels = Array.isArray(row.jobLevels) ? row.jobLevels : [10.0,0.0,0.0];
+  const jobSlots  = Array.isArray(row.jobSlots)  ? row.jobSlots  : [0.0,0.0,0.0];
+  const entry = {
+    id: id,
+    buddy: _isInt(row.buddy) ? row.buddy : 0,
+    date:  _toFloat(row.date),
+    jobSlots:  [0,1,2].map(i => _toFloat(jobSlots[i])),
+    jobLevels: [0,1,2].map(i => _toFloat(jobLevels[i])),
+    jobID: _isInt(row.jobID) ? row.jobID : 0,
+    flags: _isInt(row.flags) ? row.flags : 0,
+    skillBoost: _isInt(row.skillBoost) ? row.skillBoost : 0
+  };
+  // preserve any extra key the server round-trips (extra="allow")
+  for(const k of Object.keys(row)){
+    if(!(k in entry)) entry[k] = row[k];
+  }
+  // a jobLevels entry of 0 makes the client divide/flat-line and force-close
+  if(entry.jobLevels[0] <= 0){ entry.jobLevels[0] = 10.0; fixes.push('level '+id+': 0 -> 10'); }
+  return entry;
+}
+
+
+// ---------------------------------------------------------------------------
+// JSON encoder that preserves the DOUBLE type.
+// JSON.stringify(1.0) emits "1", which the game's parser reads back as Int64
+// and throws InvalidCastException on the unbox -> SIGTRAP.  So we encode
+// ourselves and force a decimal point on every field the client unboxes as
+// System.Double, plus the per-job arrays (jobLevels/jobSlots are list[float]).
+// ---------------------------------------------------------------------------
+const DOUBLE_KEYS = new Set(['lastupdate','lastUpdate','lastLogin','refillStartTime',
+                             'metalZoneUnlockTime','changeUsernameDate','date',
+                             'lastUpdate','server_time']);
+const DOUBLE_LIST_KEYS = new Set(['jobSlots','jobLevels']);
+
+function _encNum(n, asDouble){
+  if(typeof n !== 'number' || !isFinite(n)) n = 0;
+  if(asDouble) return Number.isInteger(n) ? n.toFixed(1) : String(n);
+  return Number.isInteger(n) ? String(n) : String(n);
+}
+
+function jsonEncode(value, keyName, inDoubleList){
+  if(value === null || value === undefined) return 'null';
+  const t = typeof value;
+  if(t === 'number')
+    return _encNum(value, inDoubleList || (keyName != null && DOUBLE_KEYS.has(keyName)));
+  if(t === 'boolean') return value ? 'true' : 'false';
+  if(t === 'string')  return JSON.stringify(value);
+  if(Array.isArray(value)){
+    const childDouble = inDoubleList || (keyName != null && DOUBLE_LIST_KEYS.has(keyName));
+    return '[' + value.map(v => jsonEncode(v, null, childDouble)).join(',') + ']';
+  }
+  if(t === 'object'){
+    const parts = [];
+    for(const k of Object.keys(value)){
+      if(k === '__aid') continue;
+      parts.push(JSON.stringify(k) + ':' + jsonEncode(value[k], k, false));
+    }
+    return '{' + parts.join(',') + '}';
+  }
+  return 'null';
+}
+
+function sanitize(ud){
+  const fixes = [];
+  if(!ud || typeof ud !== 'object') return fixes;
+
+  // --- roster ---------------------------------------------------------
+  const seen = new Set();
+  const roster = [];
+  for(const row of (Array.isArray(ud.chrdata) ? ud.chrdata : [])){
+    const e = _normEntry(row, fixes);
+    if(!e) continue;
+    if(seen.has(e.id)){ fixes.push('removed duplicate #'+e.id); continue; }
+    seen.add(e.id);
+    roster.push(e);
+  }
+  roster.sort((a,b) => a.id - b.id);
+  ud.chrdata = roster;
+  if(!roster.length) fixes.push('roster was empty');
+
+  // --- fixed-length arrays -------------------------------------------
+  for(const k of Object.keys(ARRAY_LEN)){
+    const want = ARRAY_LEN[k];
+    const cur = ud[k];
+    if(!Array.isArray(cur)){ ud[k] = new Array(want).fill(0); fixes.push(k+' -> '+want+' slots'); continue; }
+    if(cur.length < want){
+      ud[k] = cur.concat(new Array(want - cur.length).fill(0));
+      fixes.push(k+' '+cur.length+' -> '+want+' slots');
+    } else if(cur.length > want){
+      ud[k] = cur.slice(0, want);
+      fixes.push(k+' trimmed to '+want);
+    }
+    // itemList / summonList hold integers
+    if(k === 'itemList' || k === 'summonList'){
+      ud[k] = ud[k].map(v => _isInt(v) ? v : 0);
+    }
+  }
+
+  // --- double-typed scalars ------------------------------------------
+  // Coerce to a finite number. Note: JS has ONE number type, so we cannot
+  // tell 1 from 1.0 here -- the decimal point is enforced by jsonEncode(),
+  // which is what actually keeps the wire type a double.
+  for(const k of FLOAT_KEYS){
+    if(k in ud) ud[k] = _toFloat(ud[k]);
+  }
+  ud.lastupdate = _toFloat(ud.lastupdate);
+  ud.lastUpdate = _toFloat(ud.lastUpdate);
+  ud.metalZoneUnlockTime = METAL_ZONE_OPEN;
+
+  // --- missing guarded fields ----------------------------------------
+  for(const k of Object.keys(INT_DEFAULTS))
+    if(!(k in ud)) { ud[k] = INT_DEFAULTS[k]; fixes.push('added '+k); }
+  for(const k of Object.keys(NUM_DEFAULT))
+    if(!(k in ud)) { ud[k] = NUM_DEFAULT[k]; fixes.push('added '+k); }
+  for(const k of Object.keys(LIST_DEFAULT))
+    if(!Array.isArray(ud[k])) { ud[k] = LIST_DEFAULT[k].slice(); fixes.push('added '+k); }
+  for(const k of Object.keys(MAP_DEFAULT))
+    if(!ud[k] || typeof ud[k] !== 'object') { ud[k] = Object.assign({}, MAP_DEFAULT[k]); fixes.push('added '+k); }
+  for(const k of Object.keys(STR_DEFAULT))
+    if(typeof ud[k] !== 'string') { ud[k] = STR_DEFAULT[k]; fixes.push('added '+k); }
+
+  // --- progressCode -> chapter/section (never hard-coded) -------------
+  let pc = _isInt(ud.progressCode) && ud.progressCode >= 0 ? ud.progressCode : 0;
+  ud.progressCode = pc;
+  ud.chapter = Math.max(1, (pc >> 6) & 0x3FF);
+  ud.section = pc & 0x3F;
+
+  // --- wallet mirror ---------------------------------------------------
+  if(!ud.valuables || typeof ud.valuables !== 'object'){ ud.valuables = {}; fixes.push('added valuables'); }
+  const v = ud.valuables;
+  v.coins      = _isInt(v.coins)      ? v.coins      : (ud.coins || 0);
+  v.freeEnergy = _isInt(v.freeEnergy) ? v.freeEnergy : (ud.freeEnergy || 0);
+  v.energy     = _isInt(v.energy)     ? v.energy     : 0;
+  v.energyAndApp = _isInt(v.energyAndApp) ? v.energyAndApp : 0;
+  v.energyAppStore = _isInt(v.energyAppStore) ? v.energyAppStore : 0;
+  v.energyGooglePlay = _isInt(v.energyGooglePlay) ? v.energyGooglePlay : 0;
+  // keep the top-level wallet in sync (the client reads both surfaces)
+  ud.coins = v.coins;
+  ud.freeEnergy = v.freeEnergy;
+
+  return fixes;
+}
+
+function sanitizeAccount(aid){
+  const acc = save.accounts[aid];
+  if(!acc || typeof acc !== 'object') return [];
+  if(!acc.userdata || typeof acc.userdata !== 'object') acc.userdata = {};
+  const fixes = sanitize(acc.userdata);
+  if(acc.tutorial_phase !== 'free_roam' && acc.userdata.chrdata.length){
+    acc.tutorial_phase = 'free_roam';
+    fixes.push('tutorial_phase -> free_roam');
+  }
+  if(acc.tutorial_starter_character_id == null){
+    acc.tutorial_starter_character_id = 1;
+  }
+  acc.initial_userdata_served = true;
+  return fixes;
+}
+
+function runSanitize(silent){
+  if(!save){ if(!silent) alert('Open a save file first.'); return []; }
+  const all = [];
+  for(const aid of Object.keys(save.accounts || {})){
+    const f = sanitizeAccount(aid);
+    if(f.length) all.push(aid.slice(0,8) + ': ' + f.join(', '));
+  }
+  // keep the live roster pointing at the sanitised array
+  const ud = save.accounts[save.__aid] && save.accounts[save.__aid].userdata;
+  if(ud) roster = ud.chrdata;
+  return all;
+}
+
 
 function loadTemplate(){
   if(!save){ alert('Open your save file first, then click Load Template.'); return; }
@@ -230,6 +451,39 @@ function loadTemplate(){
   save.accounts[aid].initial_userdata_served = true;
   status('Tutorial-complete template loaded - click Save to download', true);
   renderAll(); renderRoster();
+}
+function reportFixes(){
+  const el = document.getElementById('report');
+  el.style.display = 'block';
+  if(!save){ el.innerHTML = '<div class="warn">No save loaded.</div>'; return; }
+  // run twice: the second pass should always be empty when we are idempotent
+  const before = runSanitize(true);
+  const after  = runSanitize(true);
+  let html = '<h3>Save Validation</h3>';
+  if(before.length){
+    html += '<div class="warn">Fixed ' + before.length + ' issue group(s):</div>';
+    for(const line of before) html += '<div>&nbsp;· ' + line.replace(/</g,'&lt;') + '</div>';
+  } else {
+    html += '<div class="ok">✓ No structural issues found — this save matches the shape the game expects.</div>';
+  }
+  if(after.length){
+    html += '<div class="warn">⚠ Still non-idempotent (report a bug):</div>';
+    for(const line of after) html += '<div>&nbsp;· ' + line + '</div>';
+  } else if(before.length){
+    html += '<div class="ok">✓ Second pass clean — fixes are stable.</div>';
+  }
+  // shape summary
+  const ud = save.accounts[save.__aid] && save.accounts[save.__aid].userdata;
+  if(ud){
+    const lens = ['teamMembers','teamMembers_VS','teamBuddies_VS','summonList','itemList']
+      .map(k => k + '=' + (Array.isArray(ud[k]) ? ud[k].length : '-')).join(' &nbsp; ');
+    html += '<h3 style="margin-top:8px">Shape</h3><div>' + lens + '</div>';
+    html += '<div>chrdata=' + (ud.chrdata||[]).length +
+            ' &nbsp; chapter=' + ud.chapter + ' section=' + ud.section +
+            ' &nbsp; lastupdate=' + ud.lastupdate + ' (' + (typeof ud.lastupdate) + ')</div>';
+  }
+  el.innerHTML = html;
+  status('Validation complete', true);
 }
 renderAll();
 </script>

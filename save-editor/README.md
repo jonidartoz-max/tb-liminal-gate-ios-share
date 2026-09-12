@@ -1,89 +1,42 @@
-# Save Data Editor + Tutorial Template
+# Save Data Editor — Terra Battle (Liminal Gate)
 
-Two tools for editing a Terra Battle (Liminal Gate) save file
-(`bootstrap-state.json`). **No install, no Python needed for the editor** —
-it runs in any browser.
+Editor HTML offline untuk save file (`bootstrap-state.json`): tambah/hapus
+karakter, lalu unduh save yang **sudah dipastikan aman**.
 
----
+## Cara pakai
 
-## 1. SAVE-EDITOR.html — edit your save
+1. Buka `OPEN-EDITOR.bat` (atau klik 2x `SAVE-EDITOR.html`) — jalan di browser, tanpa install.
+2. **Open Save File...** → pilih `bootstrap-state.json` server kamu.
+3. Pilih karakter di kiri → **→ ADD TO SAVE**. (Ctrl/Shift+klik untuk banyak sekaligus.)
+4. Hapus karakter: pilih di kanan → **← REMOVE FROM SAVE**.
+5. Klik **Check & Fix** — lihat laporan. Harus muncul centang hijau.
+6. **Save (download)** → hasilnya `<nama>-EDITED.json`.
+7. Ganti nama jadi `bootstrap-state.json`, taruh di folder server (timpa yang lama).
+   **Matikan server dulu**, dan simpan backup save lama.
 
-**How to open**
+## Check & Fix — kenapa ini penting
 
-- Double-click `OPEN-EDITOR.bat`, **or**
-- Just open `SAVE-EDITOR.html` in any browser (Chrome / Edge / Brave / Firefox)
+Save yang bentuknya salah bikin game **langsung crash** (SIGTRAP) saat load.
+Editor ini menormalkan otomatis setiap kali kamu klik Save:
 
-**How to use**
-
-1. Click **Open Save File…** and pick your `bootstrap-state.json`
-2. Left panel = **All Characters** (346 units). Type in the search box to filter
-   by name or ID. Ctrl/Shift+click to select several.
-3. Click **→ ADD TO SAVE**. New entries are created exactly the way the game
-   server creates them from a Pact draw: **Job 1, Level 10**.
-4. Right panel = **Characters In Save**. Select entries and click
-   **← REMOVE FROM SAVE** to delete.
-5. Click **Save (download)**. You get `<name>-EDITED.json` — rename it back to
-   `bootstrap-state.json` and put it in your server folder.
-
-Rarity badges are the game's real 7 classes: **D, C, B, A, S, SS, Z** (with a
-different colour each).
-
-> Always keep a backup copy of your save file before editing.
-
----
-
-## 2. Load Tutorial Template — skip the tutorial
-
-The button **Load Tutorial Template** in the editor fills the save with a
-**tutorial-complete** state, so the game starts in free-roam mode with the
-chapter-1 story already finished.
-
-What you get:
-
-| | |
+| Yang dinormalkan | Kenapa |
 |---|---|
-| Mode | free roam (tutorial done) |
-| Story | Chapter 1 complete, `progressCode` 16777345 |
-| Characters | 4 — the starter, Grace, the Knight, the Warrior |
-| Coins | 218 |
-| Free Energy | 50 |
+`teamMembers` → 90 slot | client mengindeks 9 tim × 10; kurang = baca lewat ujung → crash |
+`summonList` → 16 slot | slot companion/summon; kosong = crash |
+`teamMembers_VS` / `teamBuddies_VS` → 18 | squad VS |
+`itemList` → 181 slot | inventory |
+`lastupdate`, `refillStartTime`, `date`, `jobSlots`, `jobLevels` → **desimal** | client unbox sebagai `double`; angka bulat → InvalidCast → crash |
+`chrdata` | diurutkan naik per id, duplikat dibuang, level 0 diganti 10 |
+field wajib hilang | ditambahkan dengan default yang sama seperti server |
+`chapter`/`section` | dihitung dari `progressCode` (bukan ditulis manual) |
+`valuables` | disamakan dengan `coins`/`freeEnergy` |
 
-How to use it:
+Kalau **Check & Fix** bilang "No structural issues found" dua kali berturut-turut,
+save kamu aman.
 
-1. Open your save file in the editor
-2. Click **Load Tutorial Template** (confirm the prompt)
-3. Click **Save (download)**, rename to `bootstrap-state.json`, drop it in your
-   server folder
-4. Stop the server, replace the file, start it again
+## Catatan
 
----
-
-## Files
-
-| File | What it is |
-|---|---|
-| `SAVE-EDITOR.html` | the editor (open in a browser) |
-| `OPEN-EDITOR.bat` | double-click launcher for the editor |
-| `TEMPLATE-bootstrap-state.json` | a ready-made tutorial-complete save |
-| `template-tutorial-complete.json` | the template data in a readable form |
-| `chr_names.json` | character names (source data) |
-
----
-
-## Notes for the technical user
-
-- The template and the ready-made save were produced by **replaying the real
-  server tutorial state machine** (all 22 transitions from
-  `profiles/legacy-client-bootstrap.json`), not hand-written — so every value
-  matches what the game itself would have produced.
-- `chrdata` rows use the server's own field shape:
-  `{id, buddy, date, jobSlots, jobLevels, jobID, flags, skillBoost}`.
-  `jobLevels` is packed as `(experience << 12) | level`, and `jobID` is the
-  **job index** (0–2), not a job id.
-- Rows are kept sorted ascending by `id` — the client indexes characters by
-  array position, so an unsorted array makes clicks open the wrong character.
-- `TEMPLATE-bootstrap-state.json` uses the account id `migrated-template`.
-  On a brand-new device the server adopts that account automatically at first
-  login (its migration-adoption path), so the new device inherits the finished
-  save. When reusing a save that already has an account, use the editor's
-  **Load Tutorial Template** button instead.
+- Karakter baru mulai di **Job 1, Level 10** (sama seperti hasil Pact draw).
+- `jobID` adalah **indeks job** (0/1/2), bukan id job.
+- Selalu simpan backup save sebelum mengedit.
+- Editor hanya mengubah data karakter; tidak menyentuh kredit/akun.
