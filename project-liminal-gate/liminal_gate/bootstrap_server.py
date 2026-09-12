@@ -4655,9 +4655,14 @@ class BootstrapHandler(BaseHTTPRequestHandler):
                 print(f"[migrate_userdata] account={account_id[:16]} q_uuid={query.get('uuid','')[:16]} "
                       f"mid={migration_id[:6]}*** code={code} source={str(source_id)[:16]}", flush=True)
                 if code != "success":
-                    # Client shows "information incorrect" for its own migrate
-                    # cmdError; keep the reason server-side only.
-                    self._signed(HTTPStatus.OK, token, {"success": False, "cmdError": 1, "error": code})
+                    # Emit ONLY keys the client knows. The migrate callback
+                    # (Action<int>) reads cmdError and walks nothing else --
+                    # the earlier body carried an extra "error" key, and an
+                    # unknown key throws inside the strict response walker →
+                    # EXC_BREAKPOINT, so the player saw a crash instead of
+                    # "information incorrect". The refusal reason stays in the
+                    # event log for us.
+                    self._signed(HTTPStatus.OK, token, {"success": True, "cmdError": 1})
                     return
                 # TB returns the plain BaseResponse envelope here, and the
                 # client's MigrateUserdata callback (Action<int>) reads *only*
