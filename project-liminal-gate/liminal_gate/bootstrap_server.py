@@ -1042,6 +1042,7 @@ class BootstrapState:
         mid, grant = sorted(grants.items(), key=lambda kv: kv[1].get("created_at", 0.0))[-1]
         return "success", mid, grant.get("password")
 
+
     def migration_user_id(self, account_id: str) -> int:
         """Client renders the transfer screen's User ID as a NUMBER (original
         server issued 9-digit ids). Parsing our hex uuid throws -> unhandled
@@ -3816,6 +3817,37 @@ class BootstrapHandler(BaseHTTPRequestHandler):
         )
         return None
 
+    @staticmethod
+    def _normalize_save_arrays(userdata: dict) -> None:
+        """Pad the fixed-length arrays the client indexes unconditionally.
+
+        The client walks ``teamMembers`` as a 90-slot squad (9 teams x 10) and
+        ``teamMembers_VS``/``teamBuddies_VS`` as 18-slot VS squads; a shorter
+        array makes the second-team screen read past the end and force-close
+        with EXC_BREAKPOINT (SIGTRAP) on the main thread while rendering -- no
+        .ips needed for a shape fault, but the crash lands on a frame tick
+        right after GET /gd/userdata.  Saves authored by the HTML editor used
+        to carry a 6-slot ``teamMembers``; pad instead of trusting the shape.
+
+        Idempotent: arrays already at full length are left untouched.
+        """
+        def pad_int(key: str, length: int) -> None:
+            value = userdata.get(key)
+            if value is None:
+                userdata[key] = [0] * length
+                return
+            if not isinstance(value, list):
+                userdata[key] = [0] * length
+                return
+            if len(value) < length:
+                userdata[key] = list(value) + [0] * (length - len(value))
+
+        # 9 teams of 10 character slots.
+        pad_int("teamMembers", 90)
+        # Three VS squads of 6? The reference save carries 18; keep 18.
+        pad_int("teamMembers_VS", 18)
+        pad_int("teamBuddies_VS", 18)
+
     def do_GET(self) -> None:
         target = urlsplit(self.path)
         if target.path == "/healthz":
@@ -4024,6 +4056,9 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             userdata.setdefault("questClearDate", {})
             userdata.setdefault("loginDays", 1)
             userdata.setdefault("consecutiveLoginDays", 1)
+            # Pad client-indexed fixed arrays last, so a short editor-authored
+            # save cannot force-close the second-team screen.
+            self._normalize_save_arrays(userdata)
             self._signed(HTTPStatus.OK, token, {"success": True, **userdata})
             return
         for operation in ("multiplay_enable", "special_event"):
