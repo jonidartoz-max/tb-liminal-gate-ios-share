@@ -616,6 +616,11 @@ function loadTemplate(){
   save.accounts[aid].tutorial_phase = 'free_roam';
   save.accounts[aid].tutorial_starter_character_id = 1;
   save.accounts[aid].initial_userdata_served = true;
+  // ...then let the sanitizer do the rest: array lengths, double types,
+  // required fields, values mirror, account-level defaults. That guarantees
+  // the template output ALWAYS matches the current validation rules.
+  runSanitize(true);
+  roster = save.accounts[aid].userdata.chrdata;
   status('Tutorial-complete template loaded - click Save to download', true);
   renderAll(); renderRoster();
 }
