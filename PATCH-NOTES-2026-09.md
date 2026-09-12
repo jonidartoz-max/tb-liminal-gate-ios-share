@@ -68,8 +68,9 @@ A player's server showed "New Game / Transfer Data" after a partial update —
 save intact but unreachable. Built and verified:
 
 - **SAVE-RESTORE-PACK** — the player's save rebuilt as a transfer-ready
-  account (`migrated-TBRESTORE9X7`, password `restore77`, User ID `861571992`),
+  account (a fresh migration grant minted locally on their own server),
   plus current game data files.
+  Credentials are minted per-operator and are never shipped in this archive.
 - **RESTORE-NOW.bat / RESTORE-NOW.py (v2 installer)** — one-click installer
   that: finds the server folder, refuses to run while the server is up, backs
   up the old state, installs the save, **also updates `bootstrap_server.py` to
