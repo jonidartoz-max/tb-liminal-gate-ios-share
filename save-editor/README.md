@@ -13,6 +13,12 @@ No install, no internet. Everything runs in your browser.
 1. Open `OPEN-EDITOR.bat` (or double-click `SAVE-EDITOR.html`).
 2. **Open Save File…** → pick your server's `bootstrap-state.json`.
    (Or use **Paste JSON** to paste the file's contents from the clipboard.)
+   **Tip:** if you just need a fresh working save, pick
+   `TEMPLATE-bootstrap-state.json` instead and go straight to step 4 — every
+   array is already padded and every field already typed, so all that is left
+   is choosing characters.
+   If the loaded save never finished the tutorial, the editor marks the edited
+   account as tutorial-complete on **Save** (section 4 below explains why).
 3. **Pick the account** in the account box — a save file can hold several.
 4. Select characters on the left → **→ ADD TO SAVE**.
    (Ctrl / Shift + click selects more than one.)
