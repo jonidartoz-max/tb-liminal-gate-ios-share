@@ -3167,8 +3167,40 @@ class BootstrapState:
                 code.startswith("M") and code[1:].isdigit() for code in authored_chest
             ):
                 _apply_chest_recruits(userdata, authored_chest)
+            # Luck-chest Companion slots ("O<id>") are server-authored exactly
+            # like the monster slots above: the client never uploads them, so a
+            # chest that rolled a Companion has to be minted here or the drop is
+            # lost while the result screen still shows it.  Hunting has always
+            # done this; the ordinary story clear did not.
+            chest_buddy_ids = [
+                int(code[1:]) for code in authored_chest
+                if code.startswith("O") and code[1:].isdigit()
+            ]
+            if chest_buddy_ids:
+                box = userdata.get("buddyInfo")
+                if not isinstance(box, dict) or not isinstance(box.get("list"), list):
+                    box = {"list": [], "record": []}
+                    userdata["buddyInfo"] = box
+                known_iids = {
+                    row.get("iid") for row in box["list"] if isinstance(row, dict)
+                }
+                next_iid = userdata.get("nextCompanionInventoryId", max(known_iids, default=0) + 1)
+                if type(next_iid) is not int or next_iid <= max(known_iids, default=0):
+                    next_iid = max(known_iids, default=0) + 1
+                new_rows = []
+                for buddy_id in chest_buddy_ids:
+                    new_rows.append({
+                        "bid": buddy_id, "lv": 1, "date": 0, "iid": next_iid,
+                        "exp": 0, "flag": 0, "chrID": 0,
+                    })
+                    next_iid += 1
+                box["list"] = list(box["list"]) + new_rows
+                userdata["buddyInfo"] = box
+                userdata["nextCompanionInventoryId"] = next_iid
             if buddy_info is not None:
                 payload["buddyInfo"] = copy.deepcopy(buddy_info)
+            elif userdata.get("buddyInfo") is not None and chest_buddy_ids:
+                payload["buddyInfo"] = copy.deepcopy(userdata["buddyInfo"])
             account["tutorial_phase"] = "free_roam"
             account["active_generic_story"] = None
             account["active_battle_continue_coins"] = 0
