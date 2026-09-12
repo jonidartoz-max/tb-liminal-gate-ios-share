@@ -119,6 +119,25 @@ the phone keeps its progress as long as the server address stays the same.
 Reinstalling the game on the phone does NOT lose progress.
 
 ================================================================================
+SAVE EDITOR (add/remove characters — no install)
+================================================================================
+In the  save-editor\  folder:  open  OPEN-EDITOR.bat  (or SAVE-EDITOR.html).
+
+  1. Open Save File...   -> pick  user-data\bootstrap-state.json
+  2. Pick the ACCOUNT in the account box (a save file can hold several).
+  3. Select characters on the left, click  -> ADD TO SAVE
+     Remove: select on the right, click  <- REMOVE FROM SAVE
+  4. Click  Check & Fix   (you want the green check)
+  5. Save (download)  ->  <name>-EDITED.json
+     Then rename it to  bootstrap-state.json  and replace the one in
+     user-data\  (STOP THE SERVER FIRST, keep a backup).
+
+The editor fixes every shape the game needs (squad sizes, decimal numbers,
+story chapter) so the save cannot crash the game. It also manages DEVICE
+ACCESS: in the Device Access panel you can link another phone's UUID so the
+same save opens on it too. See  save-editor\README.md  and  DEVICE-ACCESS.md.
+
+================================================================================
 IF SOMETHING GOES WRONG
 --------------------------------------------------------------------------------
 "Network error" on the phone / stuck on white loading screen
