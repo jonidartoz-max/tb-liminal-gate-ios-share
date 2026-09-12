@@ -20,6 +20,13 @@ was discarded. Hunting / Metal Zone drops were unaffected.
 `--story-outcome-catalog` to both launchers. No action needed beyond copying
 the update over.
 
+### Also fixed: Luck-chest Companion in story stages
+
+A **Luck chest** that rolled a Companion (a chest slot shown as `O<id>`) was
+minted for item and monster slots but **not** for Companion slots, so a chest
+Companion was lost the same way. Story clears now mint chest Companions too,
+matching what Hunting already did.
+
 Coverage of the generated catalog:
 
 - 780 stage rules
