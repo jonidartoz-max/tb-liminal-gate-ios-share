@@ -107,6 +107,37 @@ crash we actually hit.
 **Check & Fix** runs the sanitizer twice and shows what changed. If the second
 pass is clean, the fixes are stable and the save is safe to ship.
 
+### Account-level fields (not just the roster)
+
+The server also validates a set of **per-account** fields when it loads the file
+— `tutorial_phase`, `tutorial_requests`, `initial_userdata_served`,
+`active_generic_story`, `active_hunt`, `active_world_map_special`,
+`claimed_achievements`, `achievement_requests`, `messages`,
+`chapter_milestones_issued`, `message_requests`. A missing or wrong-typed one
+makes the **whole save fail to load** (`invalid tutorial state`) — the server
+refuses to start.
+
+The sanitizer therefore completes those too, with the exact types the server
+checks, and repairs two shapes that bite in practice:
+
+- `messages: []` → `{}` (it must be an object, not a list)
+- `achievement_requests` missing → added; `claimed_achievements` cleaned to
+  sorted unique positive ints; `chapter_milestones_issued` to sorted unique strings
+
+### Progress: any point in the game
+
+Editing works at **any** story position, not only at the end of the tutorial:
+
+| Save state | Editor result |
+|---|---|
+mid-tutorial (`chapter1_3_active`) | `tutorial_phase` → `free_roam` (a roster means the opening is done; the server refuses mutations while an account sits on a tutorial phase) |
+early free-roam (`progressCode` 2-1) | kept as-is |
+far along (chapter 25, `worldProgressCode` set) | kept as-is |
+
+`progressCode`, `worldMapNo` and `worldProgressCode` are **never invented** —
+they pass through untouched, and `chapter`/`section` are only *derived* from
+`progressCode` for display.
+
 ---
 
 ## 5. The double-preserving encoder (important)
