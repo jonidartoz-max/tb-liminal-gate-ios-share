@@ -56,6 +56,9 @@ echo
   --jobs --rebirth --status-items --companion-draw --companion-sale \
   --companion-strengthen --companion-evolution --trading-post \
   --drop-eligibility --achievements --summon-skills \
+  --event-catalog "$ROOT/user-data/event-catalog.json" \
+  --character-catalog "$ROOT/user-data/character-catalog.json" \
+  --story-outcome-catalog "$ROOT/user-data/story-outcomes.json" \
   --companion-equipment-catalog "$ROOT/user-data/companion-equipment.json"
 
 echo
