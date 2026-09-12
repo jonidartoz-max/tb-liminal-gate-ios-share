@@ -3844,9 +3844,53 @@ class BootstrapHandler(BaseHTTPRequestHandler):
 
         # 9 teams of 10 character slots.
         pad_int("teamMembers", 90)
-        # Three VS squads of 6? The reference save carries 18; keep 18.
+        # The reference save carries 18 for the VS squads; keep 18.
         pad_int("teamMembers_VS", 18)
         pad_int("teamBuddies_VS", 18)
+        # Summon/companion slot list: the store seeds it as [0] * 16 and the
+        # client walks all 16 slots, so an empty list reads past the end and
+        # force-closes exactly like the short teamMembers above.
+        pad_int("summonList", 16)
+
+        # --- Type fidelity -------------------------------------------------
+        # The client unboxes these as System.Double.  A JSON integer (1, 0)
+        # deserialises as Int64 and throws InvalidCastException on the unbox
+        # -> unhandled -> SIGTRAP, exactly like a nil read.  Saves authored by
+        # the HTML editor write ints, so coerce every double-typed field.
+        def to_float(key: str) -> None:
+            value = userdata.get(key)
+            if isinstance(value, bool) or value is None:
+                return
+            if isinstance(value, int):
+                userdata[key] = float(value)
+
+        for _k in ("lastupdate", "lastUpdate", "lastLogin", "refillStartTime",
+                   "metalZoneUnlockTime", "changeUsernameDate"):
+            to_float(_k)
+
+        def floats_in(key: str) -> None:
+            value = userdata.get(key)
+            if not isinstance(value, list):
+                return
+            userdata[key] = [
+                float(x) if isinstance(x, int) and not isinstance(x, bool) else x
+                for x in value
+            ]
+
+        # chrdata: jobLevels + jobSlots are list[float]; 'date' is a double.
+        for entry in userdata.get("chrdata") or []:
+            if not isinstance(entry, dict):
+                continue
+            floats_in_entry = entry
+            for _k in ("jobLevels", "jobSlots"):
+                v = floats_in_entry.get(_k)
+                if isinstance(v, list):
+                    floats_in_entry[_k] = [
+                        float(x) if isinstance(x, int) and not isinstance(x, bool) else x
+                        for x in v
+                    ]
+            if isinstance(floats_in_entry.get("date"), int) and not isinstance(floats_in_entry["date"], bool):
+                floats_in_entry["date"] = float(floats_in_entry["date"])
 
     def do_GET(self) -> None:
         target = urlsplit(self.path)
@@ -4004,6 +4048,11 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             _inquiry = _h.sha256(resolved.encode()).hexdigest()[:11]
             payload["inquiryID"] = _inquiry
             payload["inquiryId"] = _inquiry
+            # Same fixed-array padding + double-typed coercion the userdata GET
+            # applies: login is parsed first but the client keeps these arrays
+            # in one place, so a short/int-typed field submitted later still
+            # crashes the render even though login "worked".
+            self._normalize_save_arrays(payload)
             self._signed(HTTPStatus.OK, token, payload)
             return
         if target.path in {
@@ -4056,6 +4105,25 @@ class BootstrapHandler(BaseHTTPRequestHandler):
             userdata.setdefault("questClearDate", {})
             userdata.setdefault("loginDays", 1)
             userdata.setdefault("consecutiveLoginDays", 1)
+            # Fields the reference userdata model always serialises. Missing
+            # ones read as nil in the client's ContainsKey-guarded screens and
+            # force-close on render; the defaults below mirror the reference
+            # server exactly, so they are known-good shapes.
+            userdata.setdefault("changeUsernameDate", 0.0)
+            userdata.setdefault("lastUpdate", 0.0)
+            # chapter/section are DERIVED from the packed progressCode, never
+            # hard-coded (reference: unpack_progress_code -- chapter is bits
+            # 6-15, section bits 0-5, chapter floors at 1). A static default
+            # sends the client to the wrong stage gate.
+            _pc = userdata.get("progressCode", 0)
+            if type(_pc) is not int or _pc < 0:
+                _pc = 0
+            userdata["chapter"] = max(1, (_pc >> 6) & 0x3FF)
+            userdata["section"] = _pc & 0x3F
+            userdata.setdefault("multipleFlags", {})
+            userdata.setdefault("country_id", 1)
+            userdata.setdefault("achivementFlags", [])
+            userdata.setdefault("achivementReadFlags", [])
             # Pad client-indexed fixed arrays last, so a short editor-authored
             # save cannot force-close the second-team screen.
             self._normalize_save_arrays(userdata)
