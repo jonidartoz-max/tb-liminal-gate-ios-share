@@ -24,6 +24,9 @@
   input[type=text]{background:#10141e;border:1px solid var(--line);color:var(--txt);font-family:inherit;
        font-size:13px;padding:8px 12px;border-radius:3px;outline:none;flex:1;min-width:180px}
   input[type=text]:focus{border-color:var(--blue)}
+  select{background:#10141e;border:1px solid var(--line2);color:var(--txt);font-family:inherit;
+         font-size:12px;padding:8px 10px;border-radius:3px;outline:none;cursor:pointer;max-width:340px}
+  select:focus{border-color:var(--gold)}
   .status{color:var(--dimmer);font-size:11.5px;margin-left:auto}
   .status b{color:var(--green)}
   .cols{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -49,6 +52,9 @@
   .empty{padding:20px;text-align:center;color:var(--dimmer)}
   .hint{color:var(--dimmer);font-size:11px;margin-top:6px}
   .foot{text-align:center;color:var(--dimmer);font-size:11px;margin-top:20px}
+  .acctwarn{margin:-6px 0 12px;padding:8px 12px;font-size:11.5px;border-radius:3px;
+             background:#161b2a;border:1px solid var(--line2);color:var(--gold2)}
+  .acctwarn b{color:var(--gold2)}
   .report{margin-top:14px;background:var(--panel);border:1px solid var(--line);border-radius:3px;
           padding:12px;font-size:11.5px;line-height:1.7;max-height:200px;overflow:auto}
   .report .ok{color:var(--green)}
@@ -66,12 +72,15 @@
   <div class="bar">
     <button class="primary" onclick="document.getElementById('file').click()">Open Save File…</button>
     <input type="file" id="file" accept=".json" style="display:none" onchange="loadSave(event)">
+    <select id="acctsel" title="Which account inside this save file you are editing"
+            onchange="switchAccount(this.value)" style="display:none"></select>
     <input type="text" id="q" placeholder="Search character by name or ID…" oninput="renderAll()">
     <button onclick="loadTemplate()">Load Tutorial Template</button>
     <button onclick="runSanitize(false);reportFixes()">Check &amp; Fix</button>
     <button class="primary" onclick="saveFile()">Save (download)</button>
     <div class="status" id="status">No file loaded</div>
   </div>
+  <div id="acctwarn" class="acctwarn" style="display:none"></div>
 
   <div class="cols">
     <div class="panel">
@@ -113,16 +122,87 @@ function loadSave(ev){
     try { save = JSON.parse(e.target.result); }
     catch(err){ alert('Not a valid JSON save file:\n' + err.message); return; }
     const accs = save.accounts || {};
+    const ids = Object.keys(accs);
+    if(!ids.length){ alert('This file has no accounts.'); save = null; return; }
+    // Honour the file's own active account. If it is missing we must NOT
+    // guess "the biggest roster": in a shared save file that is somebody
+    // else's account, and editing it is what overwrote real saves before.
+    // Fall back to the first account, then always make the choice visible.
     let aid = save.active_account_id;
-    if(!accs[aid]) aid = Object.keys(accs)[0];
-    save.__aid = aid;
-    const ud = accs[aid] && accs[aid].userdata;
-    roster = (ud && ud.chrdata) ? ud.chrdata : [];
+    let guessed = false;
+    if(!accs[aid]){ aid = ids[0]; guessed = ids.length > 1; }
     saveName = f.name;
-    status('Loaded ' + f.name + ' — ' + roster.length + ' characters', true);
+    const shown = buildAccountSelector(aid);
+    loadAccount(aid);
     renderAll(); renderRoster();
+    if(shown.length > 1 || guessed){
+      const warn = document.getElementById('acctwarn');
+      if(warn){
+        warn.style.display = '';
+        warn.innerHTML = guessed
+          ? '⚠ This file has ' + shown.length + ' accounts and no active one — ' +
+            'the editor picked the first. <b>Check the account box above</b> before editing or saving.'
+          : 'This file holds ' + shown.length + ' accounts — the box above shows which one you are editing.';
+      }
+    }
   };
   r.readAsText(f);
+}
+
+// --- account selection -----------------------------------------------------
+// A save file can hold several accounts (the player's, a friend's, leftovers).
+// Always make it explicit WHICH one is being edited.
+function acctCharCount(acc){ return ((acc.userdata||{}).chrdata||[]).length; }
+
+function buildAccountSelector(activeId){
+  const sel = document.getElementById('acctsel');
+  const accs = save.accounts || {};
+  const ids = Object.keys(accs).sort((a,b) => acctCharCount(accs[b]) - acctCharCount(accs[a]));
+  sel.innerHTML = '';
+  for(const id of ids){
+    const acc = accs[id];
+    const n = acctCharCount(acc);
+    const o = document.createElement('option');
+    o.value = id;
+    o.textContent = id.slice(0,10) + '…  ·  ' + n + ' character' + (n === 1 ? '' : 's') +
+                    '  ·  ' + (acc.tutorial_phase || '?');
+    if(id === activeId) o.selected = true;
+    sel.appendChild(o);
+  }
+  sel.style.display = ids.length > 1 ? '' : 'none';
+  // surface the loaded account in the status line too
+  const acc = accs[activeId] || {};
+  const warn = document.getElementById('acctwarn');
+  if(warn){
+    const n = acctCharCount(acc);
+    warn.style.display = '';
+    warn.innerHTML = 'Editing account <b>' + String(activeId).slice(0,12) + '…</b> — ' +
+                     n + ' character' + (n === 1 ? '' : 's');
+    warn.className = 'report ok-note';
+  }
+  return ids;
+}
+
+function loadAccount(aid){
+  save.__aid = aid;
+  const acc = save.accounts[aid];
+  if(!acc.userdata || typeof acc.userdata !== 'object') acc.userdata = {};
+  const ud = acc.userdata;
+  roster = Array.isArray(ud.chrdata) ? ud.chrdata : [];
+  selectedAll.clear(); selectedRoster.clear();
+  if(saveName) status('Editing account ' + aid.slice(0,10) + '… — ' + roster.length + ' characters', true);
+}
+
+function switchAccount(aid){
+  if(!save || !save.accounts[aid]) return;
+  const before = roster.length;
+  loadAccount(aid);
+  const sel = document.getElementById('acctsel');
+  if(sel) sel.value = aid;
+  status('Switched to ' + aid.slice(0,10) + '… (' + roster.length + ' characters)', true);
+  renderAll(); renderRoster();
+  const rep = document.getElementById('report');
+  if(rep && rep.style.display !== 'none') reportFixes();
 }
 
 function renderAll(){
@@ -292,6 +372,8 @@ const DOUBLE_KEYS = new Set(['lastupdate','lastUpdate','lastLogin','refillStartT
                              'metalZoneUnlockTime','changeUsernameDate','date',
                              'lastUpdate','server_time']);
 const DOUBLE_LIST_KEYS = new Set(['jobSlots','jobLevels']);
+// Maps whose VALUES are doubles (dict[str, float]); worldProgressCode stays int.
+const DOUBLE_MAP_KEYS = new Set(['questClearDate']);
 
 function _encNum(n, asDouble){
   if(typeof n !== 'number' || !isFinite(n)) n = 0;
@@ -299,22 +381,24 @@ function _encNum(n, asDouble){
   return Number.isInteger(n) ? String(n) : String(n);
 }
 
-function jsonEncode(value, keyName, inDoubleList){
+function jsonEncode(value, keyName, inDoubleList, inDoubleMap){
   if(value === null || value === undefined) return 'null';
   const t = typeof value;
   if(t === 'number')
-    return _encNum(value, inDoubleList || (keyName != null && DOUBLE_KEYS.has(keyName)));
+    return _encNum(value, inDoubleList || inDoubleMap === true ||
+                          (keyName != null && DOUBLE_KEYS.has(keyName)));
   if(t === 'boolean') return value ? 'true' : 'false';
   if(t === 'string')  return JSON.stringify(value);
   if(Array.isArray(value)){
     const childDouble = inDoubleList || (keyName != null && DOUBLE_LIST_KEYS.has(keyName));
-    return '[' + value.map(v => jsonEncode(v, null, childDouble)).join(',') + ']';
+    return '[' + value.map(v => jsonEncode(v, null, childDouble, false)).join(',') + ']';
   }
   if(t === 'object'){
     const parts = [];
+    const isDoubleMap = keyName != null && DOUBLE_MAP_KEYS.has(keyName);
     for(const k of Object.keys(value)){
       if(k === '__aid') continue;
-      parts.push(JSON.stringify(k) + ':' + jsonEncode(value[k], k, false));
+      parts.push(JSON.stringify(k) + ':' + jsonEncode(value[k], k, false, isDoubleMap));
     }
     return '{' + parts.join(',') + '}';
   }
